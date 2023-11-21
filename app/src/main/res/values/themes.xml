@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.PedidosExpress" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Agrega el atributo para definir el fondo blanco -->
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+
+    <style name="Theme.PedidosExpress" parent="Base.Theme.PedidosExpress" />
+</resources>

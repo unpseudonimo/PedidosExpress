@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">PEDIDOS EXPRESS</string>
+    <string name="nav_bar">BARRA DE NAVEGACIÓN</string>
+    <string name="home">HOME</string>
+    <string name="Bienvenido">Bienvenido</string>
+    <string name="ingrese_correo">Ingrese su correo electrónico</string>
+    <string name="title">TITULO\n</string>
+    <string name="description">DESCRIPCCION</string>
+    <string name="price">PPRECIO</string>
+    <string name="action_1">Aceptar</string>
+    <string name="action_2">Cancelar</string>
+</resources>

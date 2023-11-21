@@ -1,0 +1,7 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.PedidosExpress" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Personalización de la barra de estado -->
+        <item name="android:statusBarColor">#FFA500</item> <!-- Naranja -->
+    </style>
+</resources>
