@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.pedidosexpress.R;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,7 +30,9 @@ import java.util.Map;
 
 public class ConsumidorActivity extends AppCompatActivity {
 
+    private TextInputLayout usernameInputLayout, passwordInputLayout;
     private EditText usernameEditText, passwordEditText;
+
     private ProgressDialog progressDialog;
     public static final String PREFS_USER_ID_KEY = "user_id"; // Clave para guardar y recuperar el user_id de SharedPreferences
 
@@ -45,8 +48,10 @@ public class ConsumidorActivity extends AppCompatActivity {
         ImageView btnback = findViewById(R.id.btnback);
 
         //CONFIGURACION DE EDITTEXT PARA EL LOGIN
-        usernameEditText = findViewById(R.id.usernameEditText);
-        passwordEditText = findViewById(R.id.passwordEditText);
+        usernameInputLayout = findViewById(R.id.usernameTextInputLayout);
+        passwordInputLayout = findViewById(R.id.passwordTextInputLayout);
+        usernameEditText = usernameInputLayout.getEditText();
+        passwordEditText = passwordInputLayout.getEditText();
         progressDialog = new ProgressDialog(this);
 
 

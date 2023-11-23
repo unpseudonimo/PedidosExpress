@@ -37,20 +37,24 @@
 
             <Button
                 android:id="@+id/btnHistorial"
+                style="@style/Widget.Material3.Button.ElevatedButton"
                 android:layout_marginTop="10dp"
                 android:layout_width="250dp"
                 android:layout_height="60dp"
                 android:onClick="login"
+                android:textColor="@color/white"
                 android:text="Historial de Pedidos"
                 android:backgroundTint="#ffa900"/>
 
             <Button
                 android:id="@+id/btnFavoritos"
+                style="@style/Widget.Material3.Button.ElevatedButton"
                 android:layout_marginTop="10dp"
                 android:layout_width="250dp"
                 android:layout_height="60dp"
                 android:onClick="login"
                 android:text="Favoritos"
+                android:textColor="@color/white"
                 android:backgroundTint="#ffa900"/>
 
             <TextView

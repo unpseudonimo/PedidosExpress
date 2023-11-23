@@ -9,4 +9,10 @@
     <string name="price">PPRECIO</string>
     <string name="action_1">Aceptar</string>
     <string name="action_2">Cancelar</string>
+    <string name="iniciar_sesion">Iniciar sesión</string>
+    <string name="Username">Nombre de usuario</string>
+    <string name="Password">Contraseña</string>
+    <string name="Crear_cuenta">¿Crear una cuenta nueva?</string>
+    <string name="missingPassword">¿Olvidó su contraseña?</string>
+
 </resources>
