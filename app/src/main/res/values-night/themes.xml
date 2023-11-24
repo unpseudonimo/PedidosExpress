@@ -1,7 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.PedidosExpress" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Agrega el atributo para definir el fondo black -->
+        <item name="android:windowBackground">#121316</item>
         <!-- Personalización de la barra de estado -->
         <item name="android:statusBarColor">#FFA500</item> <!-- Naranja -->
     </style>
+    <style name="Theme.PedidosExpress" parent="Base.Theme.PedidosExpress" />
+
 </resources>

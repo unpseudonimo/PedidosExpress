@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnIniciarSesionAbarrotes = findViewById(R.id.btnIniciarSesionAbarrotes);
         Button btnSalir = findViewById(R.id.btnSalir);
 
-        /* // Boton de Navegación
+        // Boton de Navegación
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 });
 
         // Configurar el fragmento de inicio al inicio
-        loadFragment(new HomeFragment());*/
+        loadFragment(new HomeFragment());
 
 
         btnIniciarSesionConsumidor.setOnClickListener(new View.OnClickListener() {

@@ -33,6 +33,12 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/usernameTextInputLayout"
+                app:boxCornerRadiusBottomEnd="30dp"
+                app:boxCornerRadiusBottomStart="30dp"
+                app:boxCornerRadiusTopEnd="30dp"
+                app:boxCornerRadiusTopStart="30dp"
+                app:boxStrokeColor="@color/colorOrangeStrong"
+                app:hintTextColor="@color/colorOrangeStrong"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -49,6 +55,12 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/passwordTextInputLayout"
+                app:boxCornerRadiusBottomEnd="30dp"
+                app:boxCornerRadiusBottomStart="30dp"
+                app:boxCornerRadiusTopEnd="30dp"
+                app:boxCornerRadiusTopStart="30dp"
+                app:boxStrokeColor="@color/colorOrangeStrong"
+                app:hintTextColor="@color/colorOrangeStrong"
                 app:endIconMode="password_toggle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

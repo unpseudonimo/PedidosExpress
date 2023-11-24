@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
     tools:context=".MainActivity">
 
     <ScrollView
@@ -78,9 +77,18 @@
                 android:backgroundTint="#ffa900"
                 android:textColor="@color/white"
                 />
+
+            <!-- BottomNavigationView -->
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottom_navigation"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                app:menu="@menu/menu_main"
+                />
+
         </LinearLayout>
     </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

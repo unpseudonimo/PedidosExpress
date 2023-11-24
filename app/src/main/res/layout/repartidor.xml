@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.ConsumidorActivity">
 
     <ScrollView
@@ -28,23 +28,47 @@
                 android:src="@drawable/logo_1" />
 
 
-            <EditText
-                android:id="@+id/usernameEditText"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/usernameTextInputLayout"
+                app:boxCornerRadiusBottomEnd="30dp"
+                app:boxCornerRadiusBottomStart="30dp"
+                app:boxCornerRadiusTopEnd="30dp"
+                app:boxCornerRadiusTopStart="30dp"
+                app:boxStrokeColor="@color/colorOrangeStrong"
+                app:hintTextColor="@color/colorOrangeStrong"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:hint="Ingrese su correo electrónico" />
+                android:layout_margin="10dp"
+                android:hint="@string/Username">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/usernameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hintEnabled="false"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-            <EditText
-                android:id="@+id/passwordEditText1"
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordTextInputLayout"
+                app:boxCornerRadiusBottomEnd="30dp"
+                app:boxCornerRadiusBottomStart="30dp"
+                app:boxCornerRadiusTopEnd="30dp"
+                app:boxCornerRadiusTopStart="30dp"
+                app:endIconMode="password_toggle"
+                app:boxStrokeColor="@color/colorOrangeStrong"
+                app:hintTextColor="@color/colorOrangeStrong"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:hint="Ingrese su contraseña"
-                android:inputType="textPassword" />
-
-
+                android:layout_margin="10dp"
+                android:hint="@string/Password">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <TextView
@@ -58,7 +82,7 @@
                 android:onClick="createAccount"
                 android:padding="8dp"
                 android:layout_marginTop="30dp"
-                android:text="¿Crear una cuenta nueva?"
+                android:text="@string/Crear_cuenta"
                 android:textColor="@color/black" />
 
             <LinearLayout
@@ -73,7 +97,7 @@
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:onClick="login"
-                    android:text="Iniciar sesión"
+                    android:text="@string/iniciar_sesion"
                     android:backgroundTint="#ffa900"/>
 
             </LinearLayout>
@@ -89,7 +113,7 @@
                 android:focusable="true"
                 android:onClick="forgotPassword"
                 android:padding="8dp"
-                android:text="¿Olvidó su contraseña?"
+                android:text="@string/missingPassword"
                 android:textColor="@color/black" />
 
             <TextView

@@ -14,5 +14,10 @@
     <string name="Password">Contraseña</string>
     <string name="Crear_cuenta">¿Crear una cuenta nueva?</string>
     <string name="missingPassword">¿Olvidó su contraseña?</string>
+    <string name="inbox_title">Inbox</string>
+    <string name="outbox_title">Outbox</string>
+    <string name="favourites_title">Favourites</string>
+    <string name="mail_subheader_title">Mail</string>
+
 
 </resources>
