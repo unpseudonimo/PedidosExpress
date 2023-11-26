@@ -28,46 +28,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Ocultamos la barra de navegacion en esta clase
+
+
         setContentView(R.layout.activity_main); // Establece el layout de la actividad
+
+        //Declaracion e inicializacion de variables
         Button btnIniciarSesionConsumidor = findViewById(R.id.btnIniciarSesionConsumidor);
         Button btnIniciarSesionAbarrotes = findViewById(R.id.btnIniciarSesionAbarrotes);
         Button btnSalir = findViewById(R.id.btnSalir);
-
-        // Boton de Navegación
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @SuppressLint("NonConstantResourceId")
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        int itemId = item.getItemId();
-
-                        if (itemId == MENU_HOME) {
-                            // Navegar a la otra actividad (puedes cambiar SecondActivity.class)
-                            Intent intent = new Intent(MainActivity.this, Home.class);
-                            startActivity(intent);
-                            return true;
-                        }if (itemId == MENU_CARRITO) {
-                            // Navegar a la otra actividad (puedes cambiar SecondActivity.class)
-                            Intent intent = new Intent(MainActivity.this, Home.class);
-                            startActivity(intent);
-                            return true;
-                        }if (itemId == MENU_USUARIO) {
-                            // Navegar a la otra actividad (puedes cambiar SecondActivity.class)
-                            Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            return true;
-                        } else {
-                            // Agrega más casos según sea necesario para otros ítems del menú
-                            return false;
-                        }
-                    }
-
-
-                });
-
-        // Configurar el fragmento de inicio al inicio
-        loadFragment(new HomeFragment());
 
 
         btnIniciarSesionConsumidor.setOnClickListener(new View.OnClickListener() {
@@ -108,46 +78,10 @@ public class MainActivity extends AppCompatActivity {
                 builder.show();
             }
         });
-    }
-
-    private void loadFragment(HomeFragment fragment) {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.home_item, fragment)
-                .commit();
-    }
 
 
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.home_item) {
-            // Acción para el botón "Repartidor"
-            Toast.makeText(this, "Seleccionaste Repartidor", Toast.LENGTH_SHORT).show();
-            // Crea un Intent para iniciar RepartidorActivity
-            Intent intent = new Intent(this, RepartidorActivity.class);
-            startActivity(intent);
-            return true;
-        } else if (id == R.id.car_item) {
-            // Acción para el botón "Usuuario"
-            Toast.makeText(this, "Seleccionaste Usuario", Toast.LENGTH_SHORT).show();
-            return true;
-        } else if (id == R.id.user_item) {
-            // Acción para el botón "Repartidor"
-            Toast.makeText(this, "Saliendo...", Toast.LENGTH_SHORT).show();
-            // Acción para el botón "Salir"
-            finish(); // Cierra la actividad
-            return true;
-        } else {
-            return super.onOptionsItemSelected(item);
-        }
     }
 }
