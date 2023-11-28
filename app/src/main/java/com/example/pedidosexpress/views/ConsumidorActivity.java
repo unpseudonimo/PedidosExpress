@@ -168,7 +168,7 @@ public class ConsumidorActivity extends AppCompatActivity {
                 Toast.makeText(this, "Inicio de sesión exitoso. User ID: " + userId, Toast.LENGTH_SHORT).show();
 
                 // Inicia la siguiente actividad (por ejemplo, 'tienda')
-                Intent intent = new Intent(this, FeedConsumidor.class);
+                Intent intent = new Intent(this, Home.class);
                 startActivity(intent);
             } else {
                 // Autenticación fallida, muestra un mensaje de error
