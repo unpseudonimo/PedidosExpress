@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,44 +11,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PedidosExpress"
-        tools:targetApi="31">
+        tools:targetApi="33">
+
         <activity
-            android:name=".MainActivity"
+            android:name=".Home"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- Agrega la entrada para RepartidorActivity -->
-        <activity android:name=".views.RepartidorActivity">
-            <!-- Puedes agregar más configuraciones de actividad aquí si es necesario -->
+        <activity android:name=".MainActivity">
         </activity>
-        <!-- Agrega la entrada para ConsumidorActivity -->
-        <activity android:name=".views.ConsumidorActivity">
-            <!-- Otras configuraciones de actividad -->
+        <activity android:name=".Carrito">
         </activity>
-        <!-- Agrega la entrada para AddCuenta -->
-        <activity android:name=".views.AddCuenta">
-            <!-- Otras configuraciones de actividad -->
+        <activity android:name=".views.tienda.RepartidorActivity">
         </activity>
-        <!-- Agrega la entrada para AddCuenta -->
-        <activity android:name=".views.Recuperacion">
-            <!-- Otras configuraciones de actividad -->
+        <activity android:name=".views.consumidor.ConsumidorActivity">
         </activity>
-        <activity android:name=".views.FeedConsumidor">
-            <!-- Puedes agregar otros atributos de actividad aquí, como el nombre de la etiqueta, el tema, etc. -->
+        <activity android:name=".views.registro.AddCuenta">
         </activity>
-        <activity android:name=".views.FeedRepartidor">
-            <!-- Puedes agregar otros atributos de actividad aquí, como el nombre de la etiqueta, el tema, etc. -->
+        <activity android:name=".views.recuperacion.Recuperacion">
         </activity>
-        <activity android:name=".views.MapaActivity">
-            <!-- Puedes agregar otros atributos de actividad aquí, como el nombre de la etiqueta, el tema, etc. -->
+        <activity android:name=".views.consumidor.FeedConsumidor">
         </activity>
-        <activity android:name=".views.Home">
-            <!-- Puedes agregar más configuraciones si es necesario -->
+        <activity android:name=".views.tienda.FeedRepartidor">
+        </activity>
+        <activity android:name=".views.mapa.MapaActivity">
         </activity>
 
     </application>
+
 </manifest>
