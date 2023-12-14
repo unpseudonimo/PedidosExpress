@@ -10,7 +10,7 @@ import com.example.pedidosexpress.views.mapa.MapaActivity
 class CuentaConsumidor : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.account_consumidor) // Establece el layout de la actividad
+        setContentView(R.layout.cuenta_consumidor) // Establece el layout de la actividad
         val btnmapa = findViewById<TextView>(R.id.btnmapa)
         btnmapa.setOnClickListener {
             val intent = Intent(this@CuentaConsumidor, MapaActivity::class.java)

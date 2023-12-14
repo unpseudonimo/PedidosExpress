@@ -7,6 +7,6 @@ import com.example.pedidosexpress.R
 class CuentaRepartidor : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.account_repartidor) // Establece el layout de la actividad
+        setContentView(R.layout.cuenta_repartidor) // Establece el layout de la actividad
     }
 }
