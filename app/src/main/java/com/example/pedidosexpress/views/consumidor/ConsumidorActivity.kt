@@ -14,10 +14,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.pedidosexpress.views.home.Home
 import com.example.pedidosexpress.R
-import com.example.pedidosexpress.views.recuperacion.RecuperarCuenta
-import com.example.pedidosexpress.views.registro.RegistrarCuenta
+import com.example.pedidosexpress.views.consumidor.homeCosumidor.HomeConsumidor
+import com.example.pedidosexpress.views.main.recuperacion.RecuperarCuenta
+import com.example.pedidosexpress.views.main.registro.RegistrarCuenta
 import com.google.android.material.textfield.TextInputLayout
 import org.json.JSONException
 import org.json.JSONObject
@@ -136,8 +136,8 @@ class ConsumidorActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
 
-                // Inicia la siguiente actividad (por ejemplo, 'Repartidor')
-                val intent = Intent(this, Home::class.java)
+                // Inicia la siguiente actividad (por ejemplo, 'repartidor')
+                val intent = Intent(this, HomeConsumidor::class.java)
                 startActivity(intent)
             } else {
                 // Autenticación fallida, muestra un mensaje de error

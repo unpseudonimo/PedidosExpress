@@ -33,6 +33,8 @@
     <string name="searchbar_hint">Encuentra tu producto</string>
     <string name="SeleecionDeDireccionEnTiempo">Seleecionar la direccion actual</string>
     <string name="SelectDireccion">Entregar ahora</string>
+    <string name="open">opendrawer\n\t\t\t</string>
+    <string name="close">cerrar drawer</string>
 
 
 </resources>

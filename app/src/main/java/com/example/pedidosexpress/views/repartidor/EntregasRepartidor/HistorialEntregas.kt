@@ -1,12 +1,12 @@
-package com.example.pedidosexpress.views.pedidos
+package com.example.pedidosexpress.views.repartidor.EntregasRepartidor
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pedidosexpress.R
 
-class Pedidos : AppCompatActivity() {
+class HistorialEntregas : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pedidos)
+        setContentView(R.layout.activity_historialentregas)
     }
 }

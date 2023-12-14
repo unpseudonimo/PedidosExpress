@@ -7,12 +7,12 @@
     <item
         android:icon="@drawable/home"
         android:id="@+id/home_item"
-        android:title="Productos"/>
+        android:title="Inicio"/>
 
     <item
-        android:icon="@drawable/pedidos"
+        android:icon="@drawable/shopping"
         android:id="@+id/orders_item"
-        android:title="Pedidos" />
+        android:title="Carrito" />
 
     <item
         android:icon="@drawable/user"
