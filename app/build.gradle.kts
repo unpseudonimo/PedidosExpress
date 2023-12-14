@@ -7,6 +7,10 @@ android {
     namespace = "com.example.pedidosexpress"
     compileSdk = 34
 
+    viewBinding{
+        enable=true
+    }
+
     defaultConfig {
         applicationId = "com.example.pedidosexpress"
         minSdk = 24

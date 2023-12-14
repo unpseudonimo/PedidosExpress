@@ -7,6 +7,6 @@ import com.example.pedidosexpress.R
 class HistorialConsumidorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_historial_consumidor2)
+        setContentView(R.layout.activity_historial_consumidor)
     }
 }

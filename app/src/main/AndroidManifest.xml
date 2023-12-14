@@ -13,6 +13,9 @@
         android:theme="@style/Theme.PedidosExpress"
         tools:targetApi="33">
         <activity
+            android:name=".views.consumidor.ajustesConsumidorActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.Repartidor.ConfiguracionActivity"
             android:exported="false" />
         <activity
@@ -41,9 +44,6 @@
             android:exported="false" />
         <activity
             android:name=".views.Repartidor.HistorialRepartidorActivity"
-            android:exported="false" />
-        <activity
-            android:name=".views.consumidor.ajustesConsumidorActivity"
             android:exported="false" />
         <activity
             android:name=".views.consumidor.recomendacionConsumidorActivity"
