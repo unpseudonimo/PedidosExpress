@@ -13,11 +13,11 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.pedidosexpress.R
-import com.example.pedidosexpress.views.consumidor.FeedConsumidor
+import com.example.pedidosexpress.views.consumidor.CuentaConsumidor
 import org.json.JSONException
 import org.json.JSONObject
 
-class AddCuenta : AppCompatActivity() {
+class RegistrarCuenta : AppCompatActivity() {
     private var usernameEditText: EditText? = null
     private var passwordEditText: EditText? = null
     private var emailEditText: EditText? = null
@@ -25,10 +25,10 @@ class AddCuenta : AppCompatActivity() {
     private val loginButton: Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.nuevacuenta)
+        setContentView(R.layout.fragment_registro)
         usernameEditText = findViewById(R.id.usernameEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
-        emailEditText = findViewById(R.id.emailEditText)
+        emailEditText = findViewById(R.id.emaildEditText)
         registerButton = findViewById(R.id.registerButton)
         // Realiza las configuraciones necesarias para la actividad RepartidorActivity si las tienes.
         val btnback = findViewById<ImageView>(R.id.btnback)
@@ -43,11 +43,11 @@ class AddCuenta : AppCompatActivity() {
                         val message = jsonResponse.getString("message")
                         if (success) {
                             // Registro exitoso, puedes mostrar un mensaje al usuario
-                            Toast.makeText(this@AddCuenta, message, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@RegistrarCuenta, message, Toast.LENGTH_SHORT).show()
 
                             // Agregar un retraso de 2 segundos (2000 milisegundos) antes de cambiar de actividad
                             Handler().postDelayed({ // Código que se ejecutará después del retraso
-                                val intent = Intent(this@AddCuenta, FeedConsumidor::class.java)
+                                val intent = Intent(this@RegistrarCuenta, CuentaConsumidor::class.java)
                                 startActivity(intent)
 
                                 // Asegúrate de cerrar la actividad actual si no quieres que el usuario pueda regresar a ella con el botón "Atrás"
@@ -55,7 +55,7 @@ class AddCuenta : AppCompatActivity() {
                             }, 2000) // 2000 milisegundos (2 segundos)
                         } else {
                             // Error en el registro, muestra un mensaje de error
-                            Toast.makeText(this@AddCuenta, message, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@RegistrarCuenta, message, Toast.LENGTH_SHORT).show()
                         }
                     } catch (e: JSONException) {
                         e.printStackTrace()
@@ -63,7 +63,7 @@ class AddCuenta : AppCompatActivity() {
                     }
                 },
                 Response.ErrorListener { // Manejar errores de la solicitud
-                    Toast.makeText(this@AddCuenta, "Error en la solicitud", Toast.LENGTH_SHORT)
+                    Toast.makeText(this@RegistrarCuenta, "Error en la solicitud", Toast.LENGTH_SHORT)
                         .show()
                 }) {
                 override fun getParams(): Map<String, String>? {
@@ -74,7 +74,7 @@ class AddCuenta : AppCompatActivity() {
                     return params
                 }
             }
-            val queue = Volley.newRequestQueue(this@AddCuenta)
+            val queue = Volley.newRequestQueue(this@RegistrarCuenta)
             queue.add(request)
         })
 

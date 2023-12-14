@@ -1,12 +1,13 @@
-package com.example.pedidosexpress
+package com.example.pedidosexpress.views.main
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.pedidosexpress.R
 import com.example.pedidosexpress.views.consumidor.ConsumidorActivity
-import com.example.pedidosexpress.views.tienda.RepartidorActivity
+import com.example.pedidosexpress.views.Repartidor.RepartidorActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,20 +20,15 @@ class MainActivity : AppCompatActivity() {
         val btnIniciarSesionConsumidor = findViewById<Button>(R.id.btnIniciarSesionConsumidor)
         val btnIniciarSesionAbarrotes = findViewById<Button>(R.id.btnIniciarSesionAbarrotes)
         val btnSalir = findViewById<Button>(R.id.btnSalir)
+
         btnIniciarSesionConsumidor.setOnClickListener {
-            startActivity(
-                Intent(
-                    this@MainActivity,
-                    ConsumidorActivity::class.java
-                )
-            )
+            startActivity(Intent(this@MainActivity, ConsumidorActivity::class.java))
         }
 
-        // El segundo botón no navega y simplemente puede realizar otras acciones.
         btnIniciarSesionAbarrotes.setOnClickListener {
-            val intent = Intent(this@MainActivity, RepartidorActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this@MainActivity, RepartidorActivity::class.java))
         }
+
         btnSalir.setOnClickListener {
             val builder = AlertDialog.Builder(this@MainActivity)
             builder.setTitle("Confirmar Salida")

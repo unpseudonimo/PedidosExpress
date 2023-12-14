@@ -4,7 +4,8 @@
     <string name="home">HOME</string>
     <string name="Bienvenido">Bienvenido</string>
     <string name="ingrese_correo">Ingrese su correo electrónico</string>
-    <string name="title">TITULO\n</string>
+    <string name="title">Pedidos Express</string>
+    <string name="Logo">Logo 1</string>
     <string name="description">DESCRIPCCION</string>
     <string name="price">PPRECIO</string>
     <string name="action_1">Aceptar</string>
@@ -18,6 +19,20 @@
     <string name="outbox_title">Outbox</string>
     <string name="favourites_title">Favourites</string>
     <string name="mail_subheader_title">Mail</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="edit">Edit\n</string>
+    <string name="content_description_search">Editar</string>
+    <string name="favorite">Favoritos</string>
+    <string name="content_description_favorite">Favoritos</string>
+    <string name="more">Mas</string>
+    <string name="content_description_more">Mas</string>
+    <string name="page_title">Pedidos express</string>
+    <string name="Email">Correo electronico</string>
+    <string name="RecuperarPorEmail">Ingrese su correo electronico</string>
+    <string name="searchbar_hint">Encuentra tu producto</string>
+    <string name="SeleecionDeDireccionEnTiempo">Seleecionar la direccion actual</string>
+    <string name="SelectDireccion">Entregar ahora</string>
 
 
 </resources>

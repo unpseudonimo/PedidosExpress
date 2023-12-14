@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    tools:context=".views.registro.AddCuenta">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".views.RecuperarCuentaFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -52,16 +52,24 @@
                 android:text="Ingresa tu correo electronico para recibir instrucciones de como restablecer tu contraseña."
                 android:textColor="@color/black" />
 
-
-
-            <EditText
-                android:id="@+id/confirmarpasswordEditText"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/RecuperEmailTextInputLayout"
+                app:boxCornerRadiusBottomEnd="30dp"
+                app:boxCornerRadiusBottomStart="30dp"
+                app:boxCornerRadiusTopEnd="30dp"
+                app:boxCornerRadiusTopStart="30dp"
+                app:boxStrokeColor="@color/colorOrangeStrong"
+                app:hintTextColor="@color/colorOrangeStrong"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="16dp"
-                android:hint="Ingrese su correo electrónico"
-                android:inputType="textPassword" />
+                android:layout_margin="10dp"
+                android:hint="@string/RecuperarPorEmail">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/confirmarpasswordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:layout_width="200dp"
@@ -87,4 +95,5 @@
                 android:textColor="@color/black" />
         </LinearLayout>
     </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

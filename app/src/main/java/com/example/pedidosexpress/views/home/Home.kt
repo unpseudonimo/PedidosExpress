@@ -1,4 +1,4 @@
-package com.example.pedidosexpress
+package com.example.pedidosexpress.views.home
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,16 +6,26 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.pedidosexpress.views.consumidor.FeedConsumidor
-import com.example.pedidosexpress.views.home.HomeFragment
-import com.example.pedidosexpress.views.tienda.RepartidorActivity
+import androidx.fragment.app.add
+import androidx.fragment.app.commit
+import com.example.pedidosexpress.views.pedidos.Pedidos
+import com.example.pedidosexpress.R
+import com.example.pedidosexpress.views.consumidor.CuentaConsumidor
+import com.example.pedidosexpress.views.Repartidor.RepartidorActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class Home : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home) // Establece el layout o interfaz de la actividad
+
+        supportFragmentManager.commit {
+            setReorderingAllowed(true)
+            add<ProductsFragment>(R.id.FragmentContainer)
+        }
+
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+
         bottomNavigationView.setOnNavigationItemSelectedListener { item: MenuItem ->
             handleNavigation(
                 item
@@ -35,12 +45,12 @@ class Home : AppCompatActivity() {
         }
         if (itemId == MENU_CARRITO) {
             // Navegar a la otra actividad (puedes cambiar SecondActivity.class)
-            startActivity(Intent(this@Home, Carrito::class.java))
+            startActivity(Intent(this@Home, Pedidos::class.java))
             return true
         }
         return if (itemId == MENU_USUARIO) {
             // Navegar a la otra actividad (puedes cambiar SecondActivity.class)
-            startActivity(Intent(this@Home, FeedConsumidor::class.java))
+            startActivity(Intent(this@Home, CuentaConsumidor::class.java))
             true
         } else {
             // Agrega más casos según sea necesario para otros ítems del menú
@@ -69,7 +79,7 @@ class Home : AppCompatActivity() {
             val intent = Intent(this, RepartidorActivity::class.java)
             startActivity(intent)
             true
-        } else if (id == R.id.car_item) {
+        } else if (id == R.id.orders_item) {
             // Acción para el botón "Usuuario"
             Toast.makeText(this, "Seleccionaste Usuario", Toast.LENGTH_SHORT).show()
             true
@@ -86,7 +96,7 @@ class Home : AppCompatActivity() {
 
     companion object {
         val MENU_HOME = R.id.home_item
-        val MENU_CARRITO = R.id.car_item
+        val MENU_CARRITO = R.id.orders_item
         val MENU_USUARIO = R.id.user_item
     }
 }

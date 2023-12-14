@@ -14,10 +14,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.pedidosexpress.Home
+import com.example.pedidosexpress.views.home.Home
 import com.example.pedidosexpress.R
-import com.example.pedidosexpress.views.recuperacion.Recuperacion
-import com.example.pedidosexpress.views.registro.AddCuenta
+import com.example.pedidosexpress.views.recuperacion.RecuperarCuenta
+import com.example.pedidosexpress.views.registro.RegistrarCuenta
 import com.google.android.material.textfield.TextInputLayout
 import org.json.JSONException
 import org.json.JSONObject
@@ -31,7 +31,7 @@ class ConsumidorActivity : AppCompatActivity() {
     private var progressDialog: ProgressDialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.consumidor) // Establece el layout o interfaz de la actividad
+        setContentView(R.layout.fragment_login_c) // Establece el layout o interfaz de la actividad
         //CONFIGURACION DE BOTONES Y
         //Button btnIniciarC = findViewById(R.id.btnIniciarC);
         val btnAddCuenta = findViewById<TextView>(R.id.createAccountLink)
@@ -50,22 +50,22 @@ class ConsumidorActivity : AppCompatActivity() {
         /*btnIniciarC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ConsumidorActivity.this, FeedConsumidor.class);
+                Intent intent = new Intent(ConsumidorActivity.this, CuentaConsumidor.class);
                 startActivity(intent);
             }
-        });*/btnAddCuenta.setOnClickListener { // Inicia la actividad AddCuenta.java
-            val intent = Intent(this@ConsumidorActivity, AddCuenta::class.java)
+        });*/btnAddCuenta.setOnClickListener { // Inicia la actividad RegistrarCuenta.java
+            val intent = Intent(this@ConsumidorActivity, RegistrarCuenta::class.java)
             startActivity(intent)
         }
-        btnRecuperarPw.setOnClickListener { // Inicia la actividad AddCuenta.java
-            val intent = Intent(this@ConsumidorActivity, Recuperacion::class.java)
+        btnRecuperarPw.setOnClickListener { // Inicia la actividad RegistrarCuenta.java
+            val intent = Intent(this@ConsumidorActivity, RecuperarCuenta::class.java)
             startActivity(intent)
         }
 
         /*btnmapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Inicia la actividad AddCuenta.java
+                // Inicia la actividad RegistrarCuenta.java
                 Intent intent = new Intent(ConsumidorActivity.this, MapsActivity.class);
                 startActivity(intent);
             }
@@ -136,7 +136,7 @@ class ConsumidorActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
 
-                // Inicia la siguiente actividad (por ejemplo, 'tienda')
+                // Inicia la siguiente actividad (por ejemplo, 'Repartidor')
                 val intent = Intent(this, Home::class.java)
                 startActivity(intent)
             } else {

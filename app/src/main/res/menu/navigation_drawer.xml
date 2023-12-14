@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
     <item
         android:id="@+id/main_item"
         android:title="@string/mail_subheader_title">
@@ -19,6 +21,24 @@
                 android:icon="@drawable/ic_favourites_24px"
                 android:title="@string/favourites_title"
                 android:checkable="true"/>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/labels_item"
+        android:title="labels">
+        <menu>
+            <item
+                android:id="@+id/label_one"
+                android:icon="@drawable/label_24"
+                android:title="label"
+                android:checkable="true"
+                app:showAsAction="ifRoom"/>
+            <item
+                android:id="@+id/label_two"
+                android:icon="@drawable/label_24"
+                android:title="label"
+                android:checkable="true"
+                app:showAsAction="ifRoom"/>
         </menu>
     </item>
 </menu>

@@ -14,28 +14,28 @@
         tools:targetApi="33">
 
         <activity
-            android:name=".Home"
+            android:name=".views.home.Home"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".views.main.MainActivity">
         </activity>
-        <activity android:name=".Carrito">
+        <activity android:name=".views.pedidos.Pedidos">
         </activity>
-        <activity android:name=".views.tienda.RepartidorActivity">
+        <activity android:name=".views.Repartidor.RepartidorActivity">
         </activity>
         <activity android:name=".views.consumidor.ConsumidorActivity">
         </activity>
-        <activity android:name=".views.registro.AddCuenta">
+        <activity android:name=".views.registro.RegistrarCuenta">
         </activity>
-        <activity android:name=".views.recuperacion.Recuperacion">
+        <activity android:name=".views.recuperacion.RecuperarCuenta">
         </activity>
-        <activity android:name=".views.consumidor.FeedConsumidor">
+        <activity android:name=".views.consumidor.CuentaConsumidor">
         </activity>
-        <activity android:name=".views.tienda.FeedRepartidor">
+        <activity android:name=".views.Repartidor.CuentaRepartidor">
         </activity>
         <activity android:name=".views.mapa.MapaActivity">
         </activity>
