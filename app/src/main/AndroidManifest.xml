@@ -12,34 +12,82 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PedidosExpress"
         tools:targetApi="33">
-
+        <activity
+            android:name=".views.consumidor.ajustesConsumidorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.Repartidor.ConfiguracionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.Repartidor.PrivacidadySeguridadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.Repartidor.AcercadeActivityy"
+            android:exported="false" />
+        <activity
+            android:name=".views.Repartidor.AdministrarCuentaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.Repartidor.soporteRepartidorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.Repartidor.pagosRepartidorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.Repartidor.VehiculosRepartidorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.Repartidor.notificacionRepartidorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.Repartidor.FavoritosRepartidorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.Repartidor.HistorialRepartidorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.consumidor.recomendacionConsumidorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.consumidor.soporteConsumidorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.consumidor.notificacionConsumidorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.consumidor.FavoritosConsumidorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.consumidor.HistorialConsumidorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.login.HistorialConsumidorActivity"
+            android:exported="false"
+            android:label="@string/title_activity_historial_consumidor" />
+        <activity
+            android:name=".views.consumidor.PagosConsumidorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.consumidor.InvitarAmigosActivity"
+            android:exported="false" />
         <activity
             android:name=".views.home.Home"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.main.MainActivity">
-        </activity>
-        <activity android:name=".views.pedidos.Pedidos">
-        </activity>
-        <activity android:name=".views.Repartidor.RepartidorActivity">
-        </activity>
-        <activity android:name=".views.consumidor.ConsumidorActivity">
-        </activity>
-        <activity android:name=".views.registro.RegistrarCuenta">
-        </activity>
-        <activity android:name=".views.recuperacion.RecuperarCuenta">
-        </activity>
-        <activity android:name=".views.consumidor.CuentaConsumidor">
-        </activity>
-        <activity android:name=".views.Repartidor.CuentaRepartidor">
-        </activity>
-        <activity android:name=".views.mapa.MapaActivity">
-        </activity>
-
+        <activity android:name=".views.main.MainActivity" />
+        <activity android:name=".views.pedidos.Pedidos" />
+        <activity android:name=".views.Repartidor.RepartidorActivity" />
+        <activity android:name=".views.consumidor.ConsumidorActivity" />
+        <activity android:name=".views.registro.RegistrarCuenta" />
+        <activity android:name=".views.recuperacion.RecuperarCuenta" />
+        <activity android:name=".views.consumidor.CuentaConsumidor" />
+        <activity android:name=".views.Repartidor.CuentaRepartidor" />
+        <activity android:name=".views.mapa.MapaActivity" />
     </application>
 
 </manifest>
