@@ -58,7 +58,6 @@
                 android:text="Favoritos"
                 android:textColor="@color/black" />
 
-
             <TextView
                 android:id="@+id/notificacion"
                 android:layout_width="match_parent"
@@ -71,11 +70,12 @@
                 android:minHeight="48dp"
                 android:onClick="createAccount"
                 android:padding="8dp"
-                android:text="NotIficaciones"
+                android:text="Notoficaciones"
                 android:textColor="@color/black" />
 
+
             <TextView
-                android:id="@+id/btnpagos"
+                android:id="@+id/pagos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
@@ -86,7 +86,7 @@
                 android:minHeight="48dp"
                 android:onClick="createAccount"
                 android:padding="8dp"
-                android:text="Pagos y tarjetas"
+                android:text="Pagos y targetas"
                 android:textColor="@color/black" />
 
             <TextView
@@ -131,22 +131,7 @@
                 android:minHeight="48dp"
                 android:onClick="createAccount"
                 android:padding="8dp"
-                android:text="Recomendaciones y Promociones "
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/btnInvitar_amigos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginTop="10dp"
-                android:background="?android:selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:minHeight="48dp"
-                android:onClick="createAccount"
-                android:padding="8dp"
-                android:text="Invitar Amigos"
+                android:text="Recomendaciones"
                 android:textColor="@color/black" />
 
             <TextView

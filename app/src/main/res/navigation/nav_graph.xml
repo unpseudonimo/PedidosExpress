@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeConsumidor">
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.pedidosexpress.views.main.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/loginCFragment"
+        android:name="com.example.pedidosexpress.views.consumidor.LoginCFragment"
+        android:label="fragment_login_c"
+        tools:layout="@layout/fragment_login_c">
+        <action
+            android:id="@+id/action_loginCFragment_to_homeConsumidor3"
+            app:destination="@id/homeConsumidor" />
+        <action
+            android:id="@+id/action_loginCFragment_to_recuperarCuentaFragment"
+            app:destination="@id/recuperarCuentaFragment" />
+        <action
+            android:id="@+id/action_loginCFragment_to_registroFragment"
+            app:destination="@id/registroFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginRFragment"
+        android:name="com.example.pedidosexpress.views.repartidor.LoginRFragment"
+        android:label="fragment_login_r"
+        tools:layout="@layout/fragment_login_r">
+        <action
+            android:id="@+id/action_loginRFragment_to_homeRepartidor"
+            app:destination="@id/homeRepartidor" />
+        <action
+            android:id="@+id/action_loginRFragment_to_recuperarCuentaFragment"
+            app:destination="@id/recuperarCuentaFragment" />
+        <action
+            android:id="@+id/action_loginRFragment_to_registroFragment"
+            app:destination="@id/registroFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/homeRepartidor"
+        android:name="com.example.pedidosexpress.views.repartidor.homeRepartidor.HomeRepartidor"
+        android:label="homerepartidor"
+        tools:layout="@layout/homerepartidor" />
+    <activity
+        android:id="@+id/homeConsumidor"
+        android:name="com.example.pedidosexpress.views.consumidor.homeCosumidor.HomeConsumidor"
+        android:label="HomeConsumidor" />
+    <fragment
+        android:id="@+id/recuperarCuentaFragment"
+        android:name="com.example.pedidosexpress.views.main.RecuperarCuentaFragment"
+        android:label="fragment_recuperar_cuenta"
+        tools:layout="@layout/fragment_recuperar_cuenta" />
+    <fragment
+        android:id="@+id/registroFragment"
+        android:name="com.example.pedidosexpress.views.main.RegistroFragment"
+        android:label="fragment_registro"
+        tools:layout="@layout/fragment_registro" />
+    <activity
+        android:id="@+id/carrito"
+        android:name="com.example.pedidosexpress.views.consumidor.CarritoConsumidor.Carrito"
+        android:label="activity_carrito"
+        tools:layout="@layout/activity_carrito" />
+</navigation>

@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".views.RegistroFragment">
+    tools:context=".views.main.RegistroFragment"
+    android:background="@color/white">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -152,12 +153,14 @@
                 android:text="¿Tienes una cuenta?"
                 android:textColor="@color/black" />
 
-            <ImageView
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btnback"
+                style="?attr/materialIconButtonFilledTonalStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/colorOrangeStrong"
+                android:contentDescription="@string/title"
                 android:src="@drawable/back" />
         </LinearLayout>
     </ScrollView>

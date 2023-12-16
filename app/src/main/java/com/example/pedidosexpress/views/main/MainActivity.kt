@@ -5,9 +5,15 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.add
+import androidx.fragment.app.commit
 import com.example.pedidosexpress.R
 import com.example.pedidosexpress.views.consumidor.ConsumidorActivity
-import com.example.pedidosexpress.views.Repartidor.RepartidorActivity
+import com.example.pedidosexpress.views.consumidor.LoginCFragment
+import com.example.pedidosexpress.views.consumidor.homeCosumidor.MapaCFragment
+import com.example.pedidosexpress.views.repartidor.LoginRFragment
+import com.example.pedidosexpress.views.repartidor.RepartidorActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,16 +24,32 @@ class MainActivity : AppCompatActivity() {
 
         //Declaracion e inicializacion de variables
         val btnIniciarSesionConsumidor = findViewById<Button>(R.id.btnIniciarSesionConsumidor)
-        val btnIniciarSesionAbarrotes = findViewById<Button>(R.id.btnIniciarSesionAbarrotes)
+        val btnIniciarSesionRepartidor = findViewById<Button>(R.id.btnIniciarSesionRepartidor)
+        val btnIniciarSesionNegocio = findViewById<Button>(R.id.btnIniciarSesionNegocio)
         val btnSalir = findViewById<Button>(R.id.btnSalir)
 
+        // Manejar clics en los botones para mostrar fragmentos
         btnIniciarSesionConsumidor.setOnClickListener {
-            startActivity(Intent(this@MainActivity, ConsumidorActivity::class.java))
+            supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                add<LoginCFragment>(R.id.FragmentContainer)
+            }
         }
 
-        btnIniciarSesionAbarrotes.setOnClickListener {
-            startActivity(Intent(this@MainActivity, RepartidorActivity::class.java))
+        btnIniciarSesionRepartidor.setOnClickListener {
+            supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                add<LoginRFragment>(R.id.FragmentContainer)
+            }
         }
+
+        btnIniciarSesionNegocio.setOnClickListener {
+            supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                add<LoginRFragment>(R.id.FragmentContainer)
+            }
+        }
+
 
         btnSalir.setOnClickListener {
             val builder = AlertDialog.Builder(this@MainActivity)
