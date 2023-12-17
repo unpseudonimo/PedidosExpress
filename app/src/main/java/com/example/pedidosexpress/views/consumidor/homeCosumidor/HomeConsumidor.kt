@@ -21,7 +21,7 @@ class HomeConsumidor : AppCompatActivity() {
 
         supportFragmentManager.commit {
             setReorderingAllowed(true)
-            add<MapaCFragment>(R.id.FragmentMapaContainer)
+            add<MapaCFragment>(R.id.FragmentContainer)
         }
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
