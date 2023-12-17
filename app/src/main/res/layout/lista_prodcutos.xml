@@ -20,7 +20,7 @@
         android:layout_marginTop="20dp"
         android:src="@drawable/logo_1" />
     <TextView
-        android:id="@+id/precio"
+        android:id="@+id/precioProducto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Precio: $18.00"

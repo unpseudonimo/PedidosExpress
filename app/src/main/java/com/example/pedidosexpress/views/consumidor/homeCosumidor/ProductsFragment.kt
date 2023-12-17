@@ -36,7 +36,7 @@ class ProductsFragment : Fragment() {
     // Método para generar productos de ejemplo (puedes reemplazarlo con tu propia lógica)
     private fun generateSampleProducts(): List<Product> {
         val productList = mutableListOf<Product>()
-        productList.add(Product("Producto 1", "$10", R.drawable.logo_1))
+        productList.add(Product("Producto", "$10", R.drawable.logo_1))
 
         // Agrega más productos según sea necesario
         return productList
