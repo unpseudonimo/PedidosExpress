@@ -22,7 +22,7 @@ class AdministrarCuentaActivity : AppCompatActivity() {
     // Método para guardar los cambios en la cuenta
     private fun guardarCambiosEnCuenta() {
         // Aquí implementa la lógica para guardar los cambios en la cuenta
-        val adminCuentaLayout: View = findViewById(R.id.AdministrarCuenta) // Reemplaza con el ID correcto si es necesario
+        val adminCuentaLayout: View = findViewById(R.id.btnGuardarCambios) // Reemplaza con el ID correcto si es necesario
         Snackbar.make(
             adminCuentaLayout,
             "Cambios guardados exitosamente",

@@ -7,7 +7,7 @@
     <string name="title">Pedidos Express</string>
     <string name="Logo">Logo 1</string>
     <string name="description">DESCRIPCCION</string>
-    <string name="price">PPRECIO</string>
+    <string name="price">PRECIO</string>
     <string name="action_1">Aceptar</string>
     <string name="action_2">Cancelar</string>
     <string name="iniciar_sesion">Iniciar sesión</string>
@@ -19,7 +19,6 @@
     <string name="outbox_title">Outbox</string>
     <string name="favourites_title">Favourites</string>
     <string name="mail_subheader_title">Mail</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="edit">Edit\n</string>
     <string name="content_description_search">Editar</string>
@@ -34,5 +33,9 @@
     <string name="SeleecionDeDireccionEnTiempo">Seleecionar la direccion actual</string>
     <string name="SelectDireccion">Entregar ahora</string>
 
-
+    <!-- Recursos adicionales -->
+    <string name="prompt_email">Correo electrónico</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in_short">Iniciar sesión</string>
+    <string name="action_sign_in">Iniciar sesión</string>
 </resources>

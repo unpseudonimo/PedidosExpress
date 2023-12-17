@@ -1,12 +1,11 @@
-package com.example.pedidosexpress.views.Repartidor
+package com.example.pedidosexpress.views.consumidor.CarritoConsumidor
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 import com.example.pedidosexpress.R
 
-class CuentaRepartidor : AppCompatActivity() {
+class Pedidos : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.cuenta_repartidor) // Establece el layout de la actividad
     }
 }

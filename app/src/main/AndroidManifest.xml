@@ -13,6 +13,12 @@
         android:theme="@style/Theme.PedidosExpress"
         tools:targetApi="33">
         <activity
+            android:name=".views.consumidor.CarritoConsumidor.Pedidos"
+            android:exported="false" />
+        <activity
+            android:name=".views.consumidor.CarritoConsumidor.CarritoAdapter"
+            android:exported="false" />
+        <activity
             android:name=".views.consumidor.ajustesConsumidorActivity"
             android:exported="false" />
         <activity
@@ -60,10 +66,6 @@
         <activity
             android:name=".views.consumidor.HistorialConsumidorActivity"
             android:exported="false" />
-        <activity
-            android:name=".ui.login.HistorialConsumidorActivity"
-            android:exported="false"
-            android:label="@string/title_activity_historial_consumidor" />
         <activity
             android:name=".views.consumidor.PagosConsumidorActivity"
             android:exported="false" />

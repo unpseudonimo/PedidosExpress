@@ -1,5 +1,6 @@
 package com.example.pedidosexpress.views.repartidor
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -17,6 +18,7 @@ class CuentaRepartidor : AppCompatActivity() {
 
     private lateinit var bottomNavigationHandler: BottomNavigationHandler
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.cuenta_repartidor) // Establece el layout de la actividad

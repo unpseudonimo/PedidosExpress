@@ -1,117 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".views.consumidor.CarritoConsumidor.Carrito">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/ContainerBar"
+    <!-- Contenedor del ListView -->
+
+    <!-- Bottom Navigation -->
+
+    <ListView
+        android:id="@+id/listViewCarrito"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center"
-        >
-        <ImageView
-            android:id="@+id/btnback"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/back"
-            android:layout_marginRight="20dp"/>
-
-        <TextView
-            android:id="@+id/txvTitleCar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Carrito"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginRight="80dp"/>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnPedidos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pedidos"
-            android:textSize="15sp"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/colorOrangeStrong"
-            android:layout_marginLeft="50dp"/>
-
-    </LinearLayout>
-
-   <androidx.coordinatorlayout.widget.CoordinatorLayout
-       android:id="@+id/ListpedidosContainer"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       app:layout_constraintTop_toBottomOf="@id/ContainerBar"
-       app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
-       android:foregroundGravity="center_vertical"
-       >
-       <ScrollView
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content">
-
-           <LinearLayout
-               android:id="@+id/indicacionesDeCompra"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:orientation="vertical"
-               android:gravity="center"
-               android:layout_gravity="center">
-
-               <TextView
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:text="Agrega articulos para llenar el carrito"
-                   android:textAlignment="textStart"
-                   android:textSize="20sp"
-                   android:textStyle="bold"
-                   android:layout_margin="20dp"/>
-
-               <TextView
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:text="Cuando agregues articulos de un restaurante o negocio, tu carrito aparecera aquí"
-                   android:textAlignment="center"
-                   android:layout_margin="20dp"/>
-
-               <com.google.android.material.button.MaterialButton
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="Comprar ahora"
-                   android:backgroundTint="@color/colorOrangeStrong"
-                   android:textColor="@color/black"
-                   android:textSize="15sp"
-                   android:textStyle="bold"/>
-
-               <view class="androidx.appcompat.app.AlertController$RecycleListView"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content">
-
-
-               </view>
-
-           </LinearLayout>
-
-       </ScrollView>
-   </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_navigation"
+        android:layout_marginBottom="-1dp"
+        android:clipToPadding="false"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="0.5dp"
+        android:padding="8dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
-        app:backgroundTint="@color/white"
-        app:itemRippleColor="#ffa900"
-        app:itemTextColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         app:menu="@menu/menu_main" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
