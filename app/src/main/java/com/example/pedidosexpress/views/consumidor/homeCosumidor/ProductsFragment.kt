@@ -18,7 +18,7 @@ class ProductsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_products, container, false)
 
         // Obtén la referencia al ListView
-        val productListView: ListView = view.findViewById(R.id.productListView)
+        val productListView: ListView = view.findViewById(R.id.lista)
 
         // Crea un array de ejemplo de productos (puedes reemplazar esto con tu lógica de obtención de datos)
         val productList = generateSampleProducts()

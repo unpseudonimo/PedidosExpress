@@ -21,7 +21,7 @@ class ProductAdapter(context: Context, resource: Int, objects: List<ProductsFrag
         val product = getItem(position)
 
         // Configura los elementos de la vista con los datos del producto
-        val productName: TextView = itemView.findViewById(R.id.nombreProducto)
+        val productName: TextView = itemView.findViewById(R.id.nombre_Producto)
         val productPrice: TextView = itemView.findViewById(R.id.precioProducto)
         val productImage: ImageView = itemView.findViewById(R.id.imageProducto)
         val addToCartButton: Button = itemView.findViewById(R.id.btnagregar)
