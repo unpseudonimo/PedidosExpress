@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.fragment.app.Fragment
 import com.example.pedidosexpress.R
@@ -17,10 +16,10 @@ class ProductsFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_products, container, false)
 
-        // Obtén la referencia al ListView
+        // Obtén la referencia al ListView utilizando la ID "lista"
         val productListView: ListView = view.findViewById(R.id.lista)
 
-        // Crea un array de ejemplo de productos (puedes reemplazar esto con tu lógica de obtención de datos)
+        // Crea un array de ejemplo de productos (utilizando el método generateSampleProducts)
         val productList = generateSampleProducts()
 
         // Crea un adaptador personalizado
@@ -36,9 +35,33 @@ class ProductsFragment : Fragment() {
     // Método para generar productos de ejemplo (puedes reemplazarlo con tu propia lógica)
     private fun generateSampleProducts(): List<Product> {
         val productList = mutableListOf<Product>()
-        productList.add(Product("Producto", "$10", R.drawable.logo_1))
 
-        // Agrega más productos según sea necesario
+        val productNames = arrayOf("Coca Cola 600ml", "Pepsi 500ml", "Sprite 750ml", "Fanta 330ml", "Dr. Pepper 355ml", "Mountain Dew 500ml", "7UP 330ml", "Mirinda 250ml", "Root Beer 355ml", "Sunkist 473ml")
+
+        val productPrices = arrayOf("$18.00", "$20.00", "$15.00", "$12.50", "$22.50", "$19.00", "$14.00", "$11.00", "$25.00", "$17.50")
+
+        val productImages = intArrayOf(
+            R.drawable.logo_1,
+            R.drawable.logo_1,
+            R.drawable.logo_1,
+            R.drawable.logo_1,
+            R.drawable.logo_1,
+            R.drawable.logo_1,
+            R.drawable.logo_1,
+            R.drawable.logo_1,
+            R.drawable.logo_1,
+            R.drawable.logo_1
+        )
+
+        for (i in productNames.indices) {
+            val product = Product(
+                name = productNames[i],
+                price = productPrices[i],
+                imageResId = productImages[i]
+            )
+            productList.add(product)
+        }
+
         return productList
     }
 
