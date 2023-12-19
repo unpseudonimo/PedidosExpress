@@ -15,7 +15,7 @@
 
         <!--Actividad de inicio-->
         <activity
-            android:name=".views.consumidor.homeCosumidor.HomeConsumidor"
+            android:name=".views.consumidor.HomeConsumidor"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,11 +25,20 @@
         </activity>
 
         <!--Actividades de logica-->
-        <activity android:name=".views.consumidor.CarritoConsumidor.Carrito"
+        <activity android:name=".views.main.MainActivity"
+            android:exported="true"/>
+        <activity android:name=".views.consumidor.Carrito"
             android:exported="true"/>
         <activity android:name=".views.consumidor.CuentaConsumidor"
             android:exported="true"/>
-
+        <activity android:name=".views.repartidor.CuentaRepartidor"
+            android:exported="true"/>
+        <activity android:name=".views.consumidor.FavoritosConsumidorActivity"
+            android:exported="true"/>
+        <activity android:name=".views.consumidor.Pedidos"
+            android:exported="true"/>
+        <activity android:name=".views.consumidor.HistorialConsumidorActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.consumidor.homeCosumidor.HomeConsumidor">
+    tools:context=".views.consumidor.HomeConsumidor">
 
     <LinearLayout
         android:id="@+id/ContainerMenuandSearch"
@@ -85,6 +85,27 @@
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/Oferta2"
+                        android:layout_width="300dp"
+                        android:layout_height="200dp"
+                        android:layout_margin="8dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <!-- Media -->
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:srcCompat="@drawable/oferta"
+                                android:scaleType="centerCrop"
+                                android:contentDescription="@string/content_description_media"
+                                />
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/Oferta3"
                         android:layout_width="300dp"
                         android:layout_height="200dp"
                         android:layout_margin="8dp">
@@ -205,12 +226,13 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:gravity="center_horizontal">
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/Producto1"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="4dp">
+                            android:layout_height="wrap_content">
+
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -224,7 +246,7 @@
                                     android:contentDescription="@string/content_description_media"
                                     />
                                 <LinearLayout
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:orientation="vertical"
                                     android:padding="16dp">
@@ -257,23 +279,30 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="8dp"
-                                    android:orientation="horizontal">
+                                    android:orientation="horizontal"
+                                    android:gravity="center_vertical">
                                     <com.google.android.material.floatingactionbutton.FloatingActionButton
                                         android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
-                                        android:layout_marginEnd="8dp"
+                                        android:layout_height="wrap_content"
                                         android:src="@drawable/ic_favourites_24px"
                                         android:text="@string/action_1"
-                                        style="?attr/materialIconButtonStyle"
+                                        app:rippleColor="@color/white"
+                                        app:backgroundTint="@color/colorOrangeStrong"
+                                        app:iconTint="@color/colorOrangeStrong"
+                                        style="?attr/materialIconButtonFilledStyle"
                                         />
                                     <com.google.android.material.button.MaterialButton
                                         android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
+                                        android:layout_height="65dp"
                                         android:text="@string/action_2"
-                                        app:iconPadding="8dp"
+                                        app:iconPadding="4dp"
                                         app:iconGravity="start"
                                         app:icon="@drawable/shopping"
-                                        style="?attr/materialIconButtonStyle"
+                                        app:rippleColor="@color/colorOrangeStrong"
+                                        android:textColor="@color/colorOrangeStrong"
+                                        android:backgroundTint="@color/white"
+                                        app:iconTint="@color/colorOrangeStrong"
+                                        style="?attr/materialIconButtonFilledStyle"
                                         />
                                 </LinearLayout>
                             </LinearLayout>
@@ -282,8 +311,8 @@
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/Producto2"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="4dp">
+                            android:layout_height="wrap_content">
+
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -297,7 +326,7 @@
                                     android:contentDescription="@string/content_description_media"
                                     />
                                 <LinearLayout
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:orientation="vertical"
                                     android:padding="16dp">
@@ -330,44 +359,50 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="8dp"
-                                    android:orientation="horizontal">
+                                    android:orientation="horizontal"
+                                    android:gravity="center_vertical">
                                     <com.google.android.material.floatingactionbutton.FloatingActionButton
                                         android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
-                                        android:layout_marginEnd="8dp"
+                                        android:layout_height="wrap_content"
                                         android:src="@drawable/ic_favourites_24px"
                                         android:text="@string/action_1"
-                                        style="?attr/materialIconButtonStyle"
+                                        app:rippleColor="@color/white"
+                                        app:backgroundTint="@color/colorOrangeStrong"
+                                        app:iconTint="@color/colorOrangeStrong"
+                                        style="?attr/materialIconButtonFilledStyle"
                                         />
                                     <com.google.android.material.button.MaterialButton
                                         android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
+                                        android:layout_height="65dp"
                                         android:text="@string/action_2"
-                                        app:iconPadding="8dp"
+                                        app:iconPadding="4dp"
                                         app:iconGravity="start"
                                         app:icon="@drawable/shopping"
-                                        style="?attr/materialIconButtonStyle"
+                                        app:rippleColor="@color/colorOrangeStrong"
+                                        android:textColor="@color/colorOrangeStrong"
+                                        android:backgroundTint="@color/white"
+                                        app:iconTint="@color/colorOrangeStrong"
+                                        style="?attr/materialIconButtonFilledStyle"
                                         />
                                 </LinearLayout>
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
+                        android:orientation="horizontal"
+                        android:gravity="center_horizontal">
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/Producto3"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="4dp">
+                            android:layout_height="wrap_content">
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
-
                                 <!-- Media -->
                                 <ImageView
                                     android:layout_width="match_parent"
@@ -376,13 +411,11 @@
                                     android:scaleType="centerCrop"
                                     android:contentDescription="@string/content_description_media"
                                     />
-
                                 <LinearLayout
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:orientation="vertical"
                                     android:padding="16dp">
-
                                     <!-- Title, secondary and supporting text -->
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -406,49 +439,50 @@
                                         android:textAppearance="?attr/textAppearanceBodyMedium"
                                         android:textColor="?android:attr/textColorSecondary"
                                         />
-
                                 </LinearLayout>
-
                                 <!-- Buttons -->
                                 <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="8dp"
-                                    android:orientation="horizontal">
+                                    android:orientation="horizontal"
+                                    android:gravity="center_vertical">
                                     <com.google.android.material.floatingactionbutton.FloatingActionButton
                                         android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
-                                        android:layout_marginEnd="8dp"
+                                        android:layout_height="wrap_content"
                                         android:src="@drawable/ic_favourites_24px"
                                         android:text="@string/action_1"
-                                        style="?attr/materialIconButtonStyle"
+                                        app:rippleColor="@color/white"
+                                        app:backgroundTint="@color/colorOrangeStrong"
+                                        app:iconTint="@color/colorOrangeStrong"
+                                        style="?attr/materialIconButtonFilledStyle"
                                         />
                                     <com.google.android.material.button.MaterialButton
                                         android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
+                                        android:layout_height="65dp"
                                         android:text="@string/action_2"
-                                        app:iconPadding="8dp"
+                                        app:iconPadding="4dp"
                                         app:iconGravity="start"
                                         app:icon="@drawable/shopping"
-                                        style="?attr/materialIconButtonStyle"
+                                        app:rippleColor="@color/colorOrangeStrong"
+                                        android:textColor="@color/colorOrangeStrong"
+                                        android:backgroundTint="@color/white"
+                                        app:iconTint="@color/colorOrangeStrong"
+                                        style="?attr/materialIconButtonFilledStyle"
                                         />
                                 </LinearLayout>
-
                             </LinearLayout>
-
                         </com.google.android.material.card.MaterialCardView>
 
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/Producto4"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="4dp">
+                            android:layout_height="wrap_content">
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
-
                                 <!-- Media -->
                                 <ImageView
                                     android:layout_width="match_parent"
@@ -457,13 +491,11 @@
                                     android:scaleType="centerCrop"
                                     android:contentDescription="@string/content_description_media"
                                     />
-
                                 <LinearLayout
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:orientation="vertical"
                                     android:padding="16dp">
-
                                     <!-- Title, secondary and supporting text -->
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -487,38 +519,43 @@
                                         android:textAppearance="?attr/textAppearanceBodyMedium"
                                         android:textColor="?android:attr/textColorSecondary"
                                         />
-
                                 </LinearLayout>
-
                                 <!-- Buttons -->
                                 <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="8dp"
-                                    android:orientation="horizontal">
+                                    android:orientation="horizontal"
+                                    android:gravity="center_vertical">
                                     <com.google.android.material.floatingactionbutton.FloatingActionButton
                                         android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
-                                        android:layout_marginEnd="8dp"
+                                        android:layout_height="wrap_content"
                                         android:src="@drawable/ic_favourites_24px"
                                         android:text="@string/action_1"
-                                        style="?attr/materialIconButtonStyle"
+                                        app:rippleColor="@color/white"
+                                        app:backgroundTint="@color/colorOrangeStrong"
+                                        app:iconTint="@color/colorOrangeStrong"
+                                        style="?attr/materialIconButtonFilledStyle"
                                         />
                                     <com.google.android.material.button.MaterialButton
                                         android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
+                                        android:layout_height="65dp"
                                         android:text="@string/action_2"
-                                        app:iconPadding="8dp"
+                                        app:iconPadding="4dp"
                                         app:iconGravity="start"
                                         app:icon="@drawable/shopping"
-                                        style="?attr/materialIconButtonStyle"
+                                        app:rippleColor="@color/colorOrangeStrong"
+                                        android:textColor="@color/colorOrangeStrong"
+                                        android:backgroundTint="@color/white"
+                                        app:iconTint="@color/colorOrangeStrong"
+                                        style="?attr/materialIconButtonFilledStyle"
                                         />
                                 </LinearLayout>
-
                             </LinearLayout>
-
                         </com.google.android.material.card.MaterialCardView>
                     </LinearLayout>
+
+
                 </LinearLayout>
         </LinearLayout>
     </ScrollView>

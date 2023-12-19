@@ -134,8 +134,9 @@
 
             <Button
                 android:id="@+id/registerButton"
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_gravity="center_horizontal"
                 android:backgroundTint="#ffa900"
                 android:text="Registrarse" />

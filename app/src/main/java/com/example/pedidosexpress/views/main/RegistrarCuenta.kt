@@ -1,4 +1,4 @@
-package com.example.pedidosexpress.views.main.registro
+package com.example.pedidosexpress.views.main
 
 import android.content.Intent
 import android.os.Bundle

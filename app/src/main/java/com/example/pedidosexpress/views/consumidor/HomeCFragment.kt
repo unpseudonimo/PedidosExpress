@@ -1,4 +1,4 @@
-package com.example.pedidosexpress.views.consumidor.homeCosumidor
+package com.example.pedidosexpress.views.consumidor
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.viewmodel.CreationExtras

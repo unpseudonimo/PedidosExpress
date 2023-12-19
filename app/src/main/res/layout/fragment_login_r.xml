@@ -93,14 +93,14 @@
             <Button
                 android:id="@+id/btnIniciarR"
                 style="@style/Widget.Material3.Button.ElevatedButton"
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:backgroundTint="#ffa900"
-                android:onClick="login"
                 android:text="@string/iniciar_sesion"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="15sp"
+                android:onClick="login"
+                android:textColor="@color/black"
+                android:backgroundTint="#ffa900"/>
 
 
             <TextView

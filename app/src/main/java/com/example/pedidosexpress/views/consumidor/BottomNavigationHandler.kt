@@ -3,9 +3,6 @@ import android.app.Activity
 import android.content.Intent
 import android.view.MenuItem
 import com.example.pedidosexpress.R
-import com.example.pedidosexpress.views.consumidor.CuentaConsumidor
-import com.example.pedidosexpress.views.consumidor.CarritoConsumidor.Pedidos
-import com.example.pedidosexpress.views.consumidor.homeCosumidor.HomeConsumidor
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class BottomNavigationHandler(private val activity: Activity) {

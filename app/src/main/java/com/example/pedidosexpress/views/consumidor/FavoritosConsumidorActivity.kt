@@ -1,11 +1,16 @@
 package com.example.pedidosexpress.views.consumidor
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pedidosexpress.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
 
 class FavoritosConsumidorActivity : AppCompatActivity() {
+
 
     data class Producto(val nombre: String, var esFavorito: Boolean)
 
@@ -19,8 +24,19 @@ class FavoritosConsumidorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favoritos_consumidor)
 
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+
+
         val ivFavorito1: ImageView = findViewById(R.id.ivFavorito1)
         val ivFavorito2: ImageView = findViewById(R.id.ivFavorito2)
+
+        bottomNavigationView.setOnNavigationItemSelectedListener { item: MenuItem ->
+            handleNavigation(
+                item
+            )
+        }
+        // Configurar el fragmento de inicio al inicio
+        loadFragment(HomeCFragment())
 
         // Escucha el clic en la imagen de favorito y actualiza la lista y la interfaz
         ivFavorito1.setOnClickListener {
@@ -37,6 +53,39 @@ class FavoritosConsumidorActivity : AppCompatActivity() {
 
         // Actualiza la interfaz inicialmente
         actualizarInterfaz()
+    }
+
+    fun handleNavigation(item: MenuItem): Boolean {
+        val itemId = item.itemId
+        if (itemId == HomeConsumidor.MENU_HOME) {
+            startActivity(Intent(this@FavoritosConsumidorActivity, HomeConsumidor::class.java))
+            return true
+        }
+        if (itemId == HomeConsumidor.MENU_CARRITO) {
+            // Navegar a la otra actividad (puedes cambiar SecondActivity.class)
+            startActivity(Intent(this@FavoritosConsumidorActivity, Carrito::class.java))
+            return true
+        }
+        return if (itemId == HomeConsumidor.MENU_USUARIO) {
+            // Navegar a la otra actividad (puedes cambiar SecondActivity.class)
+            startActivity(Intent(this@FavoritosConsumidorActivity, CuentaConsumidor::class.java))
+            true
+        } else {
+            // Agrega más casos según sea necesario para otros ítems del menú
+            false
+        }
+    }
+
+    private fun loadFragment(fragment: HomeCFragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.home_item, fragment)
+            .commit()
+    }
+
+    companion object {
+        val MENU_HOME = R.id.home_item
+        val MENU_CARRITO = R.id.orders_item
+        val MENU_USUARIO = R.id.user_item
     }
 
     private fun toggleFavorito(posicion: Int) {

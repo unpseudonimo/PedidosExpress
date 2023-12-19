@@ -1,4 +1,4 @@
-package com.example.pedidosexpress.views.consumidor.homeCosumidor
+package com.example.pedidosexpress.views.consumidor
 
 import android.os.Bundle
 import android.view.LayoutInflater

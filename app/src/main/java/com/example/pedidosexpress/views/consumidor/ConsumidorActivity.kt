@@ -15,9 +15,8 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.pedidosexpress.R
-import com.example.pedidosexpress.views.consumidor.homeCosumidor.HomeConsumidor
-import com.example.pedidosexpress.views.main.recuperacion.RecuperarCuenta
-import com.example.pedidosexpress.views.main.registro.RegistrarCuenta
+import com.example.pedidosexpress.views.main.RecuperarCuenta
+import com.example.pedidosexpress.views.main.RegistrarCuenta
 import com.google.android.material.textfield.TextInputLayout
 import org.json.JSONException
 import org.json.JSONObject

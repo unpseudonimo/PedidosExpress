@@ -7,8 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pedidosexpress.R
-import com.example.pedidosexpress.views.main.recuperacion.RecuperarCuenta
-import com.example.pedidosexpress.views.main.registro.RegistrarCuenta
+import com.example.pedidosexpress.views.main.RecuperarCuenta
+import com.example.pedidosexpress.views.main.RegistrarCuenta
 
 class RepartidorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

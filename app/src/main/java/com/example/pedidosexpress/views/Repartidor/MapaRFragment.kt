@@ -1,4 +1,4 @@
-package com.example.pedidosexpress.views.repartidor.homeRepartidor
+package com.example.pedidosexpress.views.Repartidor
 
 import android.os.Bundle
 import android.view.LayoutInflater

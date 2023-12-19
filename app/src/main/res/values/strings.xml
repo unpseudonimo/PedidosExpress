@@ -9,7 +9,7 @@
     <string name="description">DESCRIPCCION</string>
     <string name="price">PRECIO</string>
     <string name="action_1">Favorito</string>
-    <string name="action_2">Agregar &#10; al carrito</string>
+    <string name="action_2">Agregar</string>
     <string name="iniciar_sesion">Iniciar sesión</string>
     <string name="Username">Nombre de usuario</string>
     <string name="Password">Contraseña</string>

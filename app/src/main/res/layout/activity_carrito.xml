@@ -10,13 +10,11 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:layout_margin="12dp">
 
         <!-- Agregué un espacio al inicio para btnback -->
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.1" />
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnback"
@@ -42,11 +40,7 @@
             android:textSize="16sp"
             android:textColor="@color/black"/>
 
-        <!-- Agregué un espacio al final para btnpedidos -->
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.1" />
+
     </LinearLayout>
 
     <ScrollView

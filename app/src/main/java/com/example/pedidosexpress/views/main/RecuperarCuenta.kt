@@ -1,4 +1,4 @@
-package com.example.pedidosexpress.views.main.recuperacion
+package com.example.pedidosexpress.views.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

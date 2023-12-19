@@ -1,19 +1,15 @@
 package com.example.pedidosexpress.views.main
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import com.example.pedidosexpress.R
-import com.example.pedidosexpress.views.consumidor.ConsumidorActivity
 import com.example.pedidosexpress.views.consumidor.LoginCFragment
-import com.example.pedidosexpress.views.consumidor.homeCosumidor.MapaCFragment
 import com.example.pedidosexpress.views.repartidor.LoginRFragment
-import com.example.pedidosexpress.views.repartidor.RepartidorActivity
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             builder.setTitle("Confirmar Salida")
             builder.setMessage("¿Estás seguro de que deseas salir de la aplicación?")
             builder.setPositiveButton("Sí") { dialog, which ->
-                finish() // Cierra la actividad
+                finishAffinity() // Cierra la actividad
             }
             builder.setNegativeButton("No") { dialog, which ->
                 dialog.dismiss() // Cierra el diálogo

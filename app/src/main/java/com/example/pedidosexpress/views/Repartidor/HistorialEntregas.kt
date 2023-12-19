@@ -1,4 +1,4 @@
-package com.example.pedidosexpress.views.repartidor.EntregasRepartidor
+package com.example.pedidosexpress.views.Repartidor
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

@@ -42,12 +42,12 @@
     </fragment>
     <activity
         android:id="@+id/homeRepartidor"
-        android:name="com.example.pedidosexpress.views.repartidor.homeRepartidor.HomeRepartidor"
+        android:name="com.example.pedidosexpress.views.Repartidor.HomeRepartidor"
         android:label="homerepartidor"
         tools:layout="@layout/homerepartidor" />
     <activity
         android:id="@+id/homeConsumidor"
-        android:name="com.example.pedidosexpress.views.consumidor.homeCosumidor.HomeConsumidor"
+        android:name="com.example.pedidosexpress.views.consumidor.HomeConsumidor"
         android:label="HomeConsumidor" />
     <fragment
         android:id="@+id/recuperarCuentaFragment"
@@ -61,7 +61,7 @@
         tools:layout="@layout/fragment_registro" />
     <activity
         android:id="@+id/carrito"
-        android:name="com.example.pedidosexpress.views.consumidor.CarritoConsumidor.Carrito"
+        android:name="com.example.pedidosexpress.views.consumidor.Carrito"
         android:label="activity_carrito"
         tools:layout="@layout/activity_carrito" />
 </navigation>

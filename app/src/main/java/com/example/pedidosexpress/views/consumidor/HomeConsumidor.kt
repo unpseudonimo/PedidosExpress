@@ -1,16 +1,10 @@
-package com.example.pedidosexpress.views.consumidor.homeCosumidor
+package com.example.pedidosexpress.views.consumidor
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.add
-import androidx.fragment.app.commit
 import com.example.pedidosexpress.R
-import com.example.pedidosexpress.views.consumidor.CarritoConsumidor.Carrito
-import com.example.pedidosexpress.views.consumidor.CuentaConsumidor
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeConsumidor : AppCompatActivity() {
