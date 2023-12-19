@@ -11,7 +11,6 @@ import androidx.fragment.app.commit
 import com.example.pedidosexpress.R
 import com.example.pedidosexpress.views.consumidor.CarritoConsumidor.Carrito
 import com.example.pedidosexpress.views.consumidor.CuentaConsumidor
-import com.example.pedidosexpress.views.repartidor.RepartidorActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeConsumidor : AppCompatActivity() {
@@ -19,10 +18,6 @@ class HomeConsumidor : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.homeconsumidor) // Establece el layout o interfaz de la actividad
 
-        supportFragmentManager.commit {
-            setReorderingAllowed(true)
-            add<MapaCFragment>(R.id.FragmentContainer)
-        }
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
@@ -39,7 +34,6 @@ class HomeConsumidor : AppCompatActivity() {
     fun handleNavigation(item: MenuItem): Boolean {
         val itemId = item.itemId
         if (itemId == MENU_HOME) {
-            // Navegar a la otra actividad (puedes cambiar SecondActivity.class)
             startActivity(Intent(this@HomeConsumidor, HomeConsumidor::class.java))
             return true
         }
@@ -64,6 +58,7 @@ class HomeConsumidor : AppCompatActivity() {
             .commit()
     }
 
+    /*
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.menu_main, menu)
@@ -92,7 +87,7 @@ class HomeConsumidor : AppCompatActivity() {
         } else {
             super.onOptionsItemSelected(item)
         }
-    }
+    }*/
 
     companion object {
         val MENU_HOME = R.id.home_item

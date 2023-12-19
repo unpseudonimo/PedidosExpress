@@ -7,62 +7,15 @@
     tools:context=".views.consumidor.homeCosumidor.HomeConsumidor">
 
     <LinearLayout
-        android:id="@+id/CoontainerBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/ContainerMenuandSearch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center">
-
-        <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/toggleButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingEnd="35dp">
-
-            <Button
-                android:id="@+id/button1"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Entregar" />
-
-            <Button
-                android:id="@+id/button2"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Llevar" />
-        </com.google.android.material.button.MaterialButtonToggleGroup>
-
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/ebtnSelectDir"
-            style="?attr/materialIconButtonFilledTonalStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:backgroundTint="@color/colorOrangeStrong"
-            android:contentDescription="@string/SeleecionDeDireccionEnTiempo"
-            android:text="@string/SelectDireccion"
-            app:icon="@drawable/arrow_down_24">
-
-        </com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>
-
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/ContainerMenuandSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@id/FragmentContainer"
+        app:layout_constraintBottom_toTopOf="@id/Inicio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/CoontainerBtn">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/ibtnMenuDrawer"
@@ -83,38 +36,493 @@
                 android:id="@+id/search_bar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/searchbar_hint" />
+                android:hint="@string/searchbar_hint"
+                android:backgroundTint="@color/colorOrangeStrong"/>
         </com.google.android.material.appbar.AppBarLayout>
-
-
     </LinearLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
+        android:id="@+id/Inicio"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/searchbar_scrolling_view_behavior">
-
-    </androidx.core.widget.NestedScrollView>
-
-    <com.google.android.material.search.SearchView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:hint="@string/searchbar_hint"
-        app:layout_anchor="@id/search_bar"
-        tools:ignore="NotSibling">
-
-    </com.google.android.material.search.SearchView>
-
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/FragmentContainer"
-        android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ContainerMenuandSearch"
-        android:background="@color/colorOrangeStrong"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <HorizontalScrollView
+                android:id="@+id/Ofertas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/Vistaofertas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/Oferta1"
+                        android:layout_width="300dp"
+                        android:layout_height="200dp"
+                        android:layout_margin="8dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <!-- Media -->
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:srcCompat="@drawable/oferta"
+                                android:scaleType="centerCrop"
+                                android:contentDescription="@string/content_description_media"
+                                />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/Oferta2"
+                        android:layout_width="300dp"
+                        android:layout_height="200dp"
+                        android:layout_margin="8dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <!-- Media -->
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:srcCompat="@drawable/oferta"
+                                android:scaleType="centerCrop"
+                                android:contentDescription="@string/content_description_media"
+                                />
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <HorizontalScrollView
+                android:id="@+id/Carrusel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/VistaCarrusel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/categoria"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="8dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <!-- Media -->
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:srcCompat="@drawable/categoria"
+                                android:scaleType="centerCrop"
+                                android:contentDescription="@string/content_description_media"
+                                />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/categoria2"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="8dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <!-- Media -->
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:srcCompat="@drawable/categoria"
+                                android:scaleType="centerCrop"
+                                android:contentDescription="@string/content_description_media"
+                                />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/categoria3"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="8dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <!-- Media -->
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:srcCompat="@drawable/categoria"
+                                android:scaleType="centerCrop"
+                                android:contentDescription="@string/content_description_media"
+                                />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/categoria4"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="8dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <!-- Media -->
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:srcCompat="@drawable/categoria"
+                                android:scaleType="centerCrop"
+                                android:contentDescription="@string/content_description_media"
+                                />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+                <LinearLayout
+                    android:id="@+id/OfertaProductos"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/Producto1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <!-- Media -->
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:srcCompat="@drawable/producto"
+                                    android:scaleType="centerCrop"
+                                    android:contentDescription="@string/content_description_media"
+                                    />
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:padding="16dp">
+                                    <!-- Title, secondary and supporting text -->
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/title"
+                                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                                        />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:text="@string/secondary_text"
+                                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                                        android:textColor="?android:attr/textColorSecondary"
+                                        />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="16dp"
+                                        android:text="@string/supporting_text"
+                                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                                        android:textColor="?android:attr/textColorSecondary"
+                                        />
+                                </LinearLayout>
+                                <!-- Buttons -->
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="8dp"
+                                    android:orientation="horizontal">
+                                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginEnd="8dp"
+                                        android:src="@drawable/ic_favourites_24px"
+                                        android:text="@string/action_1"
+                                        style="?attr/materialIconButtonStyle"
+                                        />
+                                    <com.google.android.material.button.MaterialButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:text="@string/action_2"
+                                        app:iconPadding="8dp"
+                                        app:iconGravity="start"
+                                        app:icon="@drawable/shopping"
+                                        style="?attr/materialIconButtonStyle"
+                                        />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/Producto2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <!-- Media -->
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:srcCompat="@drawable/producto"
+                                    android:scaleType="centerCrop"
+                                    android:contentDescription="@string/content_description_media"
+                                    />
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:padding="16dp">
+                                    <!-- Title, secondary and supporting text -->
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/title"
+                                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                                        />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:text="@string/secondary_text"
+                                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                                        android:textColor="?android:attr/textColorSecondary"
+                                        />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="16dp"
+                                        android:text="@string/supporting_text"
+                                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                                        android:textColor="?android:attr/textColorSecondary"
+                                        />
+                                </LinearLayout>
+                                <!-- Buttons -->
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="8dp"
+                                    android:orientation="horizontal">
+                                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginEnd="8dp"
+                                        android:src="@drawable/ic_favourites_24px"
+                                        android:text="@string/action_1"
+                                        style="?attr/materialIconButtonStyle"
+                                        />
+                                    <com.google.android.material.button.MaterialButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:text="@string/action_2"
+                                        app:iconPadding="8dp"
+                                        app:iconGravity="start"
+                                        app:icon="@drawable/shopping"
+                                        style="?attr/materialIconButtonStyle"
+                                        />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/Producto3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <!-- Media -->
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:srcCompat="@drawable/producto"
+                                    android:scaleType="centerCrop"
+                                    android:contentDescription="@string/content_description_media"
+                                    />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:padding="16dp">
+
+                                    <!-- Title, secondary and supporting text -->
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/title"
+                                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                                        />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:text="@string/secondary_text"
+                                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                                        android:textColor="?android:attr/textColorSecondary"
+                                        />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="16dp"
+                                        android:text="@string/supporting_text"
+                                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                                        android:textColor="?android:attr/textColorSecondary"
+                                        />
+
+                                </LinearLayout>
+
+                                <!-- Buttons -->
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="8dp"
+                                    android:orientation="horizontal">
+                                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginEnd="8dp"
+                                        android:src="@drawable/ic_favourites_24px"
+                                        android:text="@string/action_1"
+                                        style="?attr/materialIconButtonStyle"
+                                        />
+                                    <com.google.android.material.button.MaterialButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:text="@string/action_2"
+                                        app:iconPadding="8dp"
+                                        app:iconGravity="start"
+                                        app:icon="@drawable/shopping"
+                                        style="?attr/materialIconButtonStyle"
+                                        />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/Producto4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <!-- Media -->
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:srcCompat="@drawable/producto"
+                                    android:scaleType="centerCrop"
+                                    android:contentDescription="@string/content_description_media"
+                                    />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:padding="16dp">
+
+                                    <!-- Title, secondary and supporting text -->
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/title"
+                                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                                        />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:text="@string/secondary_text"
+                                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                                        android:textColor="?android:attr/textColorSecondary"
+                                        />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="16dp"
+                                        android:text="@string/supporting_text"
+                                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                                        android:textColor="?android:attr/textColorSecondary"
+                                        />
+
+                                </LinearLayout>
+
+                                <!-- Buttons -->
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="8dp"
+                                    android:orientation="horizontal">
+                                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginEnd="8dp"
+                                        android:src="@drawable/ic_favourites_24px"
+                                        android:text="@string/action_1"
+                                        style="?attr/materialIconButtonStyle"
+                                        />
+                                    <com.google.android.material.button.MaterialButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:text="@string/action_2"
+                                        app:iconPadding="8dp"
+                                        app:iconGravity="start"
+                                        app:icon="@drawable/shopping"
+                                        style="?attr/materialIconButtonStyle"
+                                        />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+                </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -127,6 +535,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Inicio"
         app:menu="@menu/menu_main" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

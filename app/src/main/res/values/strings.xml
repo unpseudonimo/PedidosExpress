@@ -8,8 +8,8 @@
     <string name="Logo">Logo 1</string>
     <string name="description">DESCRIPCCION</string>
     <string name="price">PRECIO</string>
-    <string name="action_1">Aceptar</string>
-    <string name="action_2">Cancelar</string>
+    <string name="action_1">Favorito</string>
+    <string name="action_2">Agregar &#10; al carrito</string>
     <string name="iniciar_sesion">Iniciar sesión</string>
     <string name="Username">Nombre de usuario</string>
     <string name="Password">Contraseña</string>
@@ -38,4 +38,7 @@
     <string name="prompt_password">Contraseña</string>
     <string name="action_sign_in_short">Iniciar sesión</string>
     <string name="action_sign_in">Iniciar sesión</string>
+    <string name="secondary_text">Descripcion</string>
+    <string name="supporting_text">Precio</string>
+    <string name="content_description_media">Imagen del producto</string>
 </resources>
