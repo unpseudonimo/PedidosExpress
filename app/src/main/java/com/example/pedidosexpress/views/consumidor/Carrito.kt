@@ -28,13 +28,6 @@ class Carrito : AppCompatActivity() {
         // Configurar el fragmento de inicio al inicio
         loadFragment(HomeCFragment())
 
-        val productosEnCarrito = mutableListOf(
-            Producto("Jabon Zest", "Limpieza refrescante para tu piel", R.drawable.placeholder_imagen_producto, 22.00),
-            // Agrega más productos si es necesario...
-        )
-
-        val carritoAdapter = CarritoAdapter(this, productosEnCarrito)
-        listViewCarrito.adapter = carritoAdapter
 
         btnpedidos.setOnClickListener {
             startActivity(Intent(this@Carrito, Pedidos::class.java))

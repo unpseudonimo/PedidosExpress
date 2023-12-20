@@ -28,8 +28,8 @@ class FavoritosRepartidorActivity : AppCompatActivity() {
         tvFavoritosTitle.text = "Mis Favoritos"
 
         // Configuración de imágenes de favoritos (puedes cargar tus imágenes aquí)
-        ivFavorito1.setImageResource(R.drawable.ic_favorito_1)
-        ivFavorito2.setImageResource(R.drawable.ic_favorito_2)
+        //ivFavorito1.setImageResource(R.drawable.ic_favorito_1)
+        //ivFavorito2.setImageResource(R.drawable.ic_favorito_2)
 
     }
 }

@@ -37,7 +37,7 @@ class FavoritosConsumidorActivity : AppCompatActivity() {
         }
         // Configurar el fragmento de inicio al inicio
         loadFragment(HomeCFragment())
-
+/*
         // Escucha el clic en la imagen de favorito y actualiza la lista y la interfaz
         ivFavorito1.setOnClickListener {
             // Supongamos que el primer producto está en la posición 0
@@ -52,7 +52,7 @@ class FavoritosConsumidorActivity : AppCompatActivity() {
         }
 
         // Actualiza la interfaz inicialmente
-        actualizarInterfaz()
+        actualizarInterfaz()*/
     }
 
     fun handleNavigation(item: MenuItem): Boolean {
@@ -93,6 +93,7 @@ class FavoritosConsumidorActivity : AppCompatActivity() {
         listaProductos[posicion].esFavorito = !listaProductos[posicion].esFavorito
     }
 
+    /*
     private fun actualizarInterfaz() {
         // Actualiza la interfaz según el estado de favorito de cada producto
         val ivFavorito1: ImageView = findViewById(R.id.ivFavorito1)
@@ -113,5 +114,5 @@ class FavoritosConsumidorActivity : AppCompatActivity() {
         }
 
         // Puedes repetir el patrón para más productos según sea necesario
-    }
+    }*/
 }
