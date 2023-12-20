@@ -58,21 +58,6 @@
                 android:text="Favoritos"
                 android:textColor="@color/black" />
 
-            <TextView
-                android:id="@+id/notificacion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginTop="10dp"
-                android:background="?android:selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:minHeight="48dp"
-                android:onClick="createAccount"
-                android:padding="8dp"
-                android:text="Notoficaciones"
-                android:textColor="@color/black" />
-
 
             <TextView
                 android:id="@+id/pagos"
@@ -89,50 +74,6 @@
                 android:text="Pagos y targetas"
                 android:textColor="@color/black" />
 
-            <TextView
-                android:id="@+id/soporte"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginTop="10dp"
-                android:background="?android:selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:minHeight="48dp"
-                android:onClick="createAccount"
-                android:padding="8dp"
-                android:text="Soporte"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/btnmapa"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginTop="10dp"
-                android:background="?android:selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:minHeight="48dp"
-                android:onClick="createAccount"
-                android:padding="8dp"
-                android:text="Mapa"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/recomendacion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginTop="10dp"
-                android:background="?android:selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:minHeight="48dp"
-                android:onClick="createAccount"
-                android:padding="8dp"
-                android:text="Recomendaciones"
-                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/ajustes"
@@ -161,7 +102,7 @@
                 android:minHeight="48dp"
                 android:onClick="createAccount"
                 android:padding="8dp"
-                android:text="Log out"
+                android:text="Cerrar sesion"
                 android:textColor="@color/red" />
 
         </LinearLayout>
