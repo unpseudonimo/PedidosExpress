@@ -1,4 +1,4 @@
-package com.example.pedidosexpress.views.repartidor
+package com.example.pedidosexpress.views.Repartidor
 
 import android.annotation.SuppressLint
 import android.content.Intent
