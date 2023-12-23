@@ -1,6 +1,5 @@
 package com.example.pedidosexpress.views.Repartidor
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -10,7 +9,7 @@ import androidx.fragment.app.commit
 import com.example.pedidosexpress.R
 import com.example.pedidosexpress.views.consumidor.BottomNavigationHandler
 import com.example.pedidosexpress.views.main.MainActivity
-import com.example.pedidosexpress.views.main.RegistroFragment
+import com.example.pedidosexpress.views.main.RegistrarCuenta
 
 class CuentaRepartidor : AppCompatActivity() {
     private lateinit var btnIniciarSesionConsumidor: Button
@@ -18,12 +17,10 @@ class CuentaRepartidor : AppCompatActivity() {
 
     private lateinit var bottomNavigationHandler: BottomNavigationHandler
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.cuenta_repartidor) // Establece el layout de la actividad
         // Inicializa el botón después de setContentView
-        btnIniciarSesionConsumidor = findViewById<Button>(R.id.btnIniciarSesionConsumidor)
         btnRegistrarCuenta = findViewById<Button>(R.id.btnRegistrarCuenta)
 
         bottomNavigationHandler = BottomNavigationHandler(this)
@@ -31,11 +28,11 @@ class CuentaRepartidor : AppCompatActivity() {
         btnIniciarSesionConsumidor.setOnClickListener {
             startActivity(Intent(this@CuentaRepartidor,  MainActivity::class.java))
         }
-        btnRegistrarCuenta.setOnClickListener {
+       /* btnRegistrarCuenta.setOnClickListener {
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
-                add<RegistroFragment>(R.id.FragmentContainer)
+                add<RegistrarCuenta>(R.id.FragmentContainer)
             }
-        }
+        }*/
     }
 }

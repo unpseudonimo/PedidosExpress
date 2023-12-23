@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -16,7 +14,6 @@ import com.android.volley.toolbox.StringRequest
 import com.example.pedidosexpress.R
 import com.example.pedidosexpress.views.main.MainActivity
 import com.example.pedidosexpress.views.main.RegistrarCuenta
-import com.example.pedidosexpress.views.main.RegistroFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import org.json.JSONException
@@ -92,7 +89,7 @@ class LoginCFragment : Fragment() {
         return sharedPreferences.getString(PREFS_USER_ID_KEY, "" ) ?: "" // Valor predeterminado vacío si no se encuentra el nombre del usuario
     }
     private fun loginToServer(username: String, password: String) {
-        val url = "http://192.168.1.193:5000/login" // Ajusta la URL según tu servidor
+        val url = "http://192.168.1.80:5000//login" // Ajusta la URL según tu servidor
 
         // Crear una solicitud de cadena (StringRequest) utilizando Volley
         val request: StringRequest = object : StringRequest(
