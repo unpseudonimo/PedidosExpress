@@ -32,7 +32,7 @@
             android:exported="true"/>
         <activity android:name=".views.consumidor.CuentaConsumidor"
             android:exported="true"/>
-        <activity android:name=".views.Repartidor.CuentaRepartidor"
+        <activity android:name=".views.repartidor.CuentaRepartidor"
             android:exported="true"/>
         <activity android:name=".views.consumidor.FavoritosConsumidorActivity"
             android:exported="true"/>

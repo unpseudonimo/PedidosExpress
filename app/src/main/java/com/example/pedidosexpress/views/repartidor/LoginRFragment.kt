@@ -1,4 +1,4 @@
-package com.example.pedidosexpress.views.Repartidor
+package com.example.pedidosexpress.views.repartidor
 
 import android.content.Intent
 import android.os.Bundle

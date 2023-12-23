@@ -1,15 +1,12 @@
-package com.example.pedidosexpress.views.Repartidor
+package com.example.pedidosexpress.views.repartidor
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.add
-import androidx.fragment.app.commit
 import com.example.pedidosexpress.R
 import com.example.pedidosexpress.views.consumidor.BottomNavigationHandler
 import com.example.pedidosexpress.views.main.MainActivity
-import com.example.pedidosexpress.views.main.RegistrarCuenta
 //
 class CuentaRepartidor : AppCompatActivity() {
     private lateinit var btnIniciarSesionConsumidor: Button

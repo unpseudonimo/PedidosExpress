@@ -1,4 +1,4 @@
-package com.example.pedidosexpress.views.Repartidor
+package com.example.pedidosexpress.views.repartidor
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.viewmodel.CreationExtras

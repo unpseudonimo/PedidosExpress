@@ -42,7 +42,7 @@
     </fragment>
     <activity
         android:id="@+id/homeRepartidor"
-        android:name="com.example.pedidosexpress.views.Repartidor.HomeRepartidor"
+        android:name="com.example.pedidosexpress.views.repartidor.HomeRepartidor"
         android:label="homerepartidor"
         tools:layout="@layout/homerepartidor" />
     <activity
