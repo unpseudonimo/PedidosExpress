@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
 }
-
+//hola prueba
 android {
     namespace = "com.example.pedidosexpress"
     compileSdk = 34
