@@ -26,7 +26,7 @@ class LoginRFragment : Fragment() {
         btnBack.setOnClickListener {val intent = Intent(requireContext(), MainActivity::class.java)
             startActivity(intent)
         }
-
+//
         return view
     }
 }

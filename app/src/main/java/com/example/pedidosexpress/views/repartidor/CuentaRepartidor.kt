@@ -10,7 +10,7 @@ import com.example.pedidosexpress.R
 import com.example.pedidosexpress.views.consumidor.BottomNavigationHandler
 import com.example.pedidosexpress.views.main.MainActivity
 import com.example.pedidosexpress.views.main.RegistrarCuenta
-
+//
 class CuentaRepartidor : AppCompatActivity() {
     private lateinit var btnIniciarSesionConsumidor: Button
     private lateinit var btnRegistrarCuenta: Button
