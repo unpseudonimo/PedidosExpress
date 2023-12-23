@@ -24,10 +24,10 @@ class ProductsFragment : Fragment() {
 
         // Crea un adaptador personalizado
         val productAdapter =
-            ProductAdapter(requireContext(), R.layout.lista_prodcutos, productList)
+        //    ProductoAdapter(requireContext(), R.layout.lista_prodcutos, productList)
 
         // Establece el adaptador en el ListView
-        productListView.adapter = productAdapter
+      //  productListView.adapter = productAdapter
 
         return view
     }
