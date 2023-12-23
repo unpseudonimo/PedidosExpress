@@ -31,13 +31,13 @@
             android:exported="true"/>
         <activity android:name=".views.consumidor.CuentaConsumidor"
             android:exported="true"/>
-        <activity android:name=".views.repartidor.CuentaRepartidor"
+        <activity android:name=".views.Repartidor.CuentaRepartidor"
             android:exported="true"/>
         <activity android:name=".views.consumidor.FavoritosConsumidorActivity"
             android:exported="true"/>
         <activity android:name=".views.consumidor.Pedidos"
             android:exported="true"/>
-        <activity android:name=".views.consumidor.HistorialConsumidorActivity"
+        <activity android:name=".views.main.RegistrarCuenta"
             android:exported="true"/>
     </application>
 

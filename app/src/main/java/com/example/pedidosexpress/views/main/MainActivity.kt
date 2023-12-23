@@ -7,8 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import com.example.pedidosexpress.R
+import com.example.pedidosexpress.views.Repartidor.LoginRFragment
 import com.example.pedidosexpress.views.consumidor.LoginCFragment
-import com.example.pedidosexpress.views.repartidor.LoginRFragment
 
 
 class MainActivity : AppCompatActivity() {

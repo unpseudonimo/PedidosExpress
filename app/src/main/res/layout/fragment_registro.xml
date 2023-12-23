@@ -105,26 +105,30 @@
                 android:text="¿Cual sera tu función?"
                 android:textColor="@color/black" />
 
-            <CheckBox
-                android:id="@+id/checkBoxConsumidor"
-                android:layout_width="160dp"
+            <RadioGroup
+                android:id="@+id/roleRadioGroup"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:padding="8dp"
-                android:text="Soy Consumidor"
-                android:textColor="@color/black" />
+                android:gravity="center">
 
-            <CheckBox
-                android:id="@+id/checkBoxAbarrotes"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:padding="8dp"
-                android:text="Soy Abarrotero"
-                android:textColor="@color/black" />
+                <RadioButton
+                    android:id="@+id/checkBoxConsumidor"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
 
+                    android:text="Soy Consumidor"
+                    android:textColor="@color/black" />
+
+                <RadioButton
+                    android:id="@+id/checkBoxAbarrotes"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:text="Soy Abarrotero"
+                    android:textColor="@color/black" />
+            </RadioGroup>
             <CheckBox
                 android:id="@+id/checkTerminos"
+                android:textColorHint="@color/colorOrangeStrong"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

@@ -3,19 +3,25 @@ package com.example.pedidosexpress.views.main
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.pedidosexpress.R
 import com.example.pedidosexpress.views.consumidor.CuentaConsumidor
+import com.example.pedidosexpress.views.consumidor.LoginCFragment
 import org.json.JSONException
 import org.json.JSONObject
+
 
 class RegistrarCuenta : AppCompatActivity() {
     private var usernameEditText: EditText? = null
@@ -23,6 +29,9 @@ class RegistrarCuenta : AppCompatActivity() {
     private var emailEditText: EditText? = null
     private var registerButton: Button? = null
     private val loginButton: Button? = null
+    private var checkBoxConsumidor: RadioButton? = null
+    private var checkBoxAbarrotes: RadioButton? = null
+    private var roleRadioGroup: RadioGroup? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_registro)
@@ -30,24 +39,34 @@ class RegistrarCuenta : AppCompatActivity() {
         passwordEditText = findViewById(R.id.passwordEditText)
         emailEditText = findViewById(R.id.emaildEditText)
         registerButton = findViewById(R.id.registerButton)
+        checkBoxAbarrotes = findViewById(R.id.checkBoxAbarrotes)
+        checkBoxConsumidor = findViewById(R.id.checkBoxConsumidor)
+        roleRadioGroup = findViewById(R.id.roleRadioGroup)
+
+        roleRadioGroup?.setOnCheckedChangeListener { group, checkedId ->
+            when (checkedId) {
+                R.id.checkBoxConsumidor -> checkBoxConsumidor?.isChecked = true
+                R.id.checkBoxAbarrotes -> checkBoxAbarrotes?.isChecked = true
+            }
+        }
         // Realiza las configuraciones necesarias para la actividad RepartidorActivity si las tienes.
         val btnback = findViewById<ImageView>(R.id.btnback)
         registerButton?.setOnClickListener(View.OnClickListener {
-            val url = "https://curso-web-owl.tk/emmanuel_prueba/movil/registro_user.php"
-            val request: StringRequest = object : StringRequest(
-                Method.POST, url,
+
+            val url = "http://192.168.1.193:5000/registrar"
+            val request: JsonObjectRequest = object : JsonObjectRequest(
+                Method.POST, url, null,
                 Response.Listener { response ->
                     try {
-                        val jsonResponse = JSONObject(response)
-                        val success = jsonResponse.getBoolean("success")
-                        val message = jsonResponse.getString("message")
+                        val success = response.getBoolean("success")
+                        val message = response.getString("message")
                         if (success) {
                             // Registro exitoso, puedes mostrar un mensaje al usuario
                             Toast.makeText(this@RegistrarCuenta, message, Toast.LENGTH_SHORT).show()
 
                             // Agregar un retraso de 2 segundos (2000 milisegundos) antes de cambiar de actividad
                             Handler().postDelayed({ // Código que se ejecutará después del retraso
-                                val intent = Intent(this@RegistrarCuenta, CuentaConsumidor::class.java)
+                                val intent = Intent(this@RegistrarCuenta, LoginCFragment::class.java)
                                 startActivity(intent)
 
                                 // Asegúrate de cerrar la actividad actual si no quieres que el usuario pueda regresar a ella con el botón "Atrás"
@@ -59,19 +78,29 @@ class RegistrarCuenta : AppCompatActivity() {
                         }
                     } catch (e: JSONException) {
                         e.printStackTrace()
-                        // Error en el formato de la respuesta JSON
+                        // Manejar error en el formato de respuesta JSON
                     }
                 },
-                Response.ErrorListener { // Manejar errores de la solicitud
-                    Toast.makeText(this@RegistrarCuenta, "Error en la solicitud", Toast.LENGTH_SHORT)
-                        .show()
+                Response.ErrorListener { error ->
+                    Log.e("RegistroCuenta", "Error en la solicitud al servidor: ${error.localizedMessage}")
+                    Toast.makeText(this@RegistrarCuenta, "Error en la solicitud", Toast.LENGTH_SHORT).show()
                 }) {
-                override fun getParams(): Map<String, String>? {
+                override fun getBodyContentType(): String {
+                    return "application/json; charset=utf-8"
+                }
+
+                override fun getBody(): ByteArray {
                     val params: MutableMap<String, String> = HashMap()
-                    params["username"] = usernameEditText?.getText().toString()
-                    params["password"] = passwordEditText?.getText().toString()
-                    params["email"] = emailEditText?.getText().toString()
-                    return params
+                    params["username"] = usernameEditText?.text.toString()
+                    params["password"] = passwordEditText?.text.toString()
+                    params["email"] = emailEditText?.text.toString()
+                    // Agregar el rol seleccionado al JSON
+                    params["rol"] = when (roleRadioGroup?.checkedRadioButtonId) {
+                        R.id.checkBoxConsumidor -> "usuario"
+                        R.id.checkBoxAbarrotes -> "repartidor"
+                        else -> ""
+                    }
+                    return JSONObject(params as Map<*, *>).toString().toByteArray()
                 }
             }
             val queue = Volley.newRequestQueue(this@RegistrarCuenta)

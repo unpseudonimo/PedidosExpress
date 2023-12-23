@@ -44,7 +44,7 @@ class CuentaConsumidor : AppCompatActivity() {
         }
 
         btnhistpedidos.setOnClickListener {
-            startActivity(Intent(this@CuentaConsumidor, HistorialConsumidorActivity::class.java))
+            startActivity(Intent(this@CuentaConsumidor, Pedidos::class.java))
         }
 
     }

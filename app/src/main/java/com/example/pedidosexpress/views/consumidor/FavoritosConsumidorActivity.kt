@@ -26,10 +26,10 @@ class FavoritosConsumidorActivity : AppCompatActivity() {
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
-
+/*
         val ivFavorito1: ImageView = findViewById(R.id.ivFavorito1)
         val ivFavorito2: ImageView = findViewById(R.id.ivFavorito2)
-
+*/
         bottomNavigationView.setOnNavigationItemSelectedListener { item: MenuItem ->
             handleNavigation(
                 item

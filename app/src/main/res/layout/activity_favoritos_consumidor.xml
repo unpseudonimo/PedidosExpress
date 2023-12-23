@@ -34,7 +34,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <!-- Lista de elementos favoritos (puedes usar RecyclerView para una lista dinámica) -->
+            <!-- Lista de elementos favoritos (puedes usar RecyclerView para una lista dinámica)
             <ImageView
                 android:id="@+id/ivFavorito1"
                 android:layout_width="102dp"
@@ -50,7 +50,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 android:contentDescription="Favorito 2"
-                android:src="@drawable/ic_favorito_2" />
+                android:src="@drawable/ic_favorito_2" />-->
 
             <!-- Puedes agregar más elementos según sea necesario -->
 
