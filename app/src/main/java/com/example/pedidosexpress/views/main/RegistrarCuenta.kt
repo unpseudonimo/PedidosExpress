@@ -50,7 +50,7 @@ class RegistrarCuenta : AppCompatActivity() {
         val btnback = findViewById<ImageView>(R.id.btnback)
         registerButton?.setOnClickListener(View.OnClickListener {
 
-            val url = "http://192.168.1.80:5000//registrar"
+            val url = "http://192.168.1.193:5000//registrar"
             val request: JsonObjectRequest = object : JsonObjectRequest(
                 Method.POST, url, null,
                 Response.Listener { response ->
