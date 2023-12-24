@@ -36,7 +36,7 @@ class ProductoAdapter(private val productos: List<Producto>) : RecyclerView.Adap
         holder.precioProducto.text = "Precio: ${producto.precioProducto}"
 
         // Construye la URL de la imagen utilizando el ID del producto
-        val imageUrl = "http://192.168.1.193:5000/obtener_imagen/${producto.idProducto}"
+        val imageUrl = "http://192.168.1.80:5000/obtener_imagen/${producto.idProducto}"
 
         // Utiliza Picasso para cargar imágenes desde la URL
         Picasso.get().load(imageUrl).into(holder.imagenProducto)
