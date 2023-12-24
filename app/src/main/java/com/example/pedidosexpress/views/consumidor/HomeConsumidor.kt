@@ -29,7 +29,7 @@ class HomeConsumidor : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.193:5000")
+            .baseUrl("http://192.168.1.80:5000")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
