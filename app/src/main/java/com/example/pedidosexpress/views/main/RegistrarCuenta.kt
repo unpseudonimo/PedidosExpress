@@ -6,7 +6,6 @@ import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RadioButton
@@ -17,8 +16,6 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.pedidosexpress.R
-import com.example.pedidosexpress.views.consumidor.CuentaConsumidor
-import com.example.pedidosexpress.views.consumidor.LoginCFragment
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -53,7 +50,7 @@ class RegistrarCuenta : AppCompatActivity() {
         val btnback = findViewById<ImageView>(R.id.btnback)
         registerButton?.setOnClickListener(View.OnClickListener {
 
-            val url = "http://192.168.1.80:5000//registrar"
+            val url = "http://192.168.1.193:5000//registrar"
             val request: JsonObjectRequest = object : JsonObjectRequest(
                 Method.POST, url, null,
                 Response.Listener { response ->
@@ -66,7 +63,7 @@ class RegistrarCuenta : AppCompatActivity() {
 
                             // Agregar un retraso de 2 segundos (2000 milisegundos) antes de cambiar de actividad
                             Handler().postDelayed({ // Código que se ejecutará después del retraso
-                                val intent = Intent(this@RegistrarCuenta, LoginCFragment::class.java)
+                                val intent = Intent(this@RegistrarCuenta, login::class.java)
                                 startActivity(intent)
 
                                 // Asegúrate de cerrar la actividad actual si no quieres que el usuario pueda regresar a ella con el botón "Atrás"

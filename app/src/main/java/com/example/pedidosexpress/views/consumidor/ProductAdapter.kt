@@ -8,30 +8,41 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.example.pedidosexpress.R
 
-class ProductAdapter(context: Context, resource: Int, objects: List<ProductsFragment.Product>) :
-    ArrayAdapter<ProductsFragment.Product>(context, resource, objects) {
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val inflater = LayoutInflater.from(context)
-        val itemView = inflater.inflate(R.layout.lista_prodcutos, parent, false)
+import com.squareup.picasso.Picasso
 
-        // Obtén el producto en la posición actual
-        val product = getItem(position)
 
-        // Configura los elementos de la vista con los datos del producto
-        val productName: TextView = itemView.findViewById(R.id.nombre_Producto)
-        val productPrice: TextView = itemView.findViewById(R.id.precioProducto)
-        val productImage: ImageView = itemView.findViewById(R.id.imageProducto)
-        val addToCartButton: Button = itemView.findViewById(R.id.btnagregar)
+class ProductoAdapter(private val productos: List<Producto>) : RecyclerView.Adapter<ProductoAdapter.ViewHolder>() {
 
-        productName.text = product?.name
-        productPrice.text = product?.price
-        productImage.setImageResource(product?.imageResId ?: 0)
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val imagenProducto: ImageView = itemView.findViewById(R.id.imagenProducto)
+        val nombreProducto: TextView = itemView.findViewById(R.id.nombreProducto)
+        val descripcionProducto: TextView = itemView.findViewById(R.id.descripcionProducto)
+        val precioProducto: TextView = itemView.findViewById(R.id.precioProducto)
+    }
 
-        // Configura la lógica del botón (agregar al carrito) según tus necesidades
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_producto, parent, false)
+        return ViewHolder(view)
+    }
 
-        return itemView
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val producto = productos[position]
+        holder.nombreProducto.text = producto.nombreProducto
+        holder.descripcionProducto.text = producto.descripcionProducto
+        holder.precioProducto.text = "Precio: ${producto.precioProducto}"
+
+        // Construye la URL de la imagen utilizando el ID del producto
+        val imageUrl = "http://192.168.1.193:5000/obtener_imagen/${producto.idProducto}"
+
+        // Utiliza Picasso para cargar imágenes desde la URL
+        Picasso.get().load(imageUrl).into(holder.imagenProducto)
+    }
+
+    override fun getItemCount(): Int {
+        return productos.size
     }
 }

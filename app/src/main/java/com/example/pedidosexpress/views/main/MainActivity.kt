@@ -8,7 +8,6 @@ import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import com.example.pedidosexpress.R
 import com.example.pedidosexpress.views.repartidor.LoginRFragment
-import com.example.pedidosexpress.views.consumidor.LoginCFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         btnIniciarSesionConsumidor.setOnClickListener {
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
-                add<LoginCFragment>(R.id.FragmentContainer)
+                add<login>(R.id.FragmentContainer)
             }
         }
 

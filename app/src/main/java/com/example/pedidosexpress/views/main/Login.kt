@@ -1,4 +1,4 @@
-package com.example.pedidosexpress.views.consumidor
+package com.example.pedidosexpress.views.main
 
 import android.content.Context
 import android.content.Intent
@@ -12,19 +12,18 @@ import androidx.fragment.app.Fragment
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.example.pedidosexpress.R
-import com.example.pedidosexpress.views.main.MainActivity
-import com.example.pedidosexpress.views.main.RegistrarCuenta
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import org.json.JSONException
 import org.json.JSONObject
 import android.util.Log;
 import com.android.volley.toolbox.Volley
+import com.example.pedidosexpress.views.consumidor.HomeConsumidor
 import com.example.pedidosexpress.views.repartidor.HomeRepartidor
 import com.google.android.material.button.MaterialButton
 
 
-class LoginCFragment : Fragment() {
+class login : Fragment() {
     private lateinit var usernameEditText: TextInputEditText
     private lateinit var passwordEditText: TextInputEditText
     private lateinit var btnLogin: MaterialButton
@@ -89,7 +88,7 @@ class LoginCFragment : Fragment() {
         return sharedPreferences.getString(PREFS_USER_ID_KEY, "" ) ?: "" // Valor predeterminado vacío si no se encuentra el nombre del usuario
     }
     private fun loginToServer(username: String, password: String) {
-        val url = "http://192.168.1.80:5000//login" // Ajusta la URL según tu servidor
+        val url = "http://192.168.1.193:5000//login" // Ajusta la URL según tu servidor
 
         // Crear una solicitud de cadena (StringRequest) utilizando Volley
         val request: StringRequest = object : StringRequest(
@@ -129,7 +128,7 @@ class LoginCFragment : Fragment() {
                 }
             },
             Response.ErrorListener { error ->
-                Log.e("LoginCFragment", "Error en la solicitud al servidor: ${error.localizedMessage}")
+                Log.e("login", "Error en la solicitud al servidor: ${error.localizedMessage}")
                 Toast.makeText(requireContext(), "Error en la solicitud", Toast.LENGTH_SHORT).show()
             }) {
 
