@@ -25,11 +25,11 @@ class CuentaRepartidor : AppCompatActivity() {
         btnIniciarSesionConsumidor.setOnClickListener {
             startActivity(Intent(this@CuentaRepartidor,  MainActivity::class.java))
         }
-       /* btnRegistrarCuenta.setOnClickListener {
-            supportFragmentManager.commit {
-                setReorderingAllowed(true)
-                add<RegistrarCuenta>(R.id.FragmentContainer)
-            }
-        }*/
+        /* btnRegistrarCuenta.setOnClickListener {
+             supportFragmentManager.commit {
+                 setReorderingAllowed(true)
+                 add<RegistrarCuenta>(R.id.FragmentContainer)
+             }
+         }*/
     }
 }

@@ -51,7 +51,7 @@
                 android:textStyle="bold"
                 android:backgroundTint="@color/colorOrangeStrong"
                 android:textColor="@color/black"
-            />
+                />
 
             <Button
                 android:id="@+id/btnIniciarSesionRepartidor"
