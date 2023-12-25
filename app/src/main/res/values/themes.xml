@@ -4,7 +4,7 @@
         <!-- Agrega el atributo para definir el fondo blanco -->
         <item name="android:windowBackground">#FFFFFF</item>
         <!-- Personalización de la barra de estado -->
-        <item name="android:statusBarColor">#FFFFFF</item> <!-- Naranja -->
+        <item name="android:statusBarColor">@color/colorOrangeStrong</item> <!-- Naranja -->
     </style>
 
     <style name="Theme.PedidosExpress" parent="Base.Theme.PedidosExpress" />

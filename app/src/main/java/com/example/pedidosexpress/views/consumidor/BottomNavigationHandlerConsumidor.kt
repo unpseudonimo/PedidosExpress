@@ -5,7 +5,7 @@ import android.view.MenuItem
 import com.example.pedidosexpress.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class BottomNavigationHandler(private val activity: Activity) {
+class BottomNavigationHandlerConsumidor(private val activity: Activity) {
 
     private val bottomNavigationView: BottomNavigationView =
         activity.findViewById(R.id.bottom_navigation)

@@ -9,13 +9,15 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/FragmentContainer"
+        android:name="com.example.pedidosexpress.views.repartidor.MapaRFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:name="com.example.pedidosexpress.views.repartidor.MapaRFragment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/ibtnMenuDrawer"
@@ -26,9 +28,11 @@
         android:contentDescription="Abrir menú"
         android:src="@drawable/menu"
         app:layout_constraintBottom_toBottomOf="@+id/FragmentContainer"
+        app:layout_constraintHorizontal_bias="0.567"
         app:layout_constraintLeft_toLeftOf="@id/FragmentContainer"
         app:layout_constraintRight_toLeftOf="@id/ebtnSelectDir"
-        app:layout_constraintTop_toTopOf="@id/FragmentContainer" />
+        app:layout_constraintTop_toTopOf="@id/FragmentContainer"
+        app:layout_constraintVertical_bias="0.262" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/ebtnSelectDir"
