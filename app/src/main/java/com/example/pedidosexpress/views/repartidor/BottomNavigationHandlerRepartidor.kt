@@ -1,11 +1,11 @@
-package com.example.pedidosexpress.views.consumidor
+package com.example.pedidosexpress.views.repartidor
 import android.app.Activity
 import android.content.Intent
 import android.view.MenuItem
 import com.example.pedidosexpress.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class BottomNavigationHandlerConsumidor(private val activity: Activity) {
+class BottomNavigationHandlerRepartidor(private val activity: Activity) {
 
     private val bottomNavigationView: BottomNavigationView =
         activity.findViewById(R.id.bottom_navigation)
@@ -20,15 +20,15 @@ class BottomNavigationHandlerConsumidor(private val activity: Activity) {
         val itemId = item.itemId
         when (itemId) {
             R.id.inicio_item -> {
-                startActivity(HomeConsumidor::class.java)
+                startActivity(HomeRepartidor::class.java)
                 return true
             }
-            R.id.carrito_item -> {
-                startActivity(Carrito::class.java)
+            R.id.entregas_item -> {
+                startActivity(HistorialEntregas::class.java)
                 return true
             }
             R.id.cuenta_item -> {
-                startActivity(CuentaConsumidor::class.java)
+                startActivity(CuentaRepartidor::class.java)
                 return true
             }
         }
