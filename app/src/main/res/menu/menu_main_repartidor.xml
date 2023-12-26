@@ -9,9 +9,9 @@
         android:title="Inicio"/>
 
     <item
-        android:icon="@drawable/shopping"
-        android:id="@+id/carrito_item"
-        android:title="Carrito" />
+        android:icon="@drawable/pedidos"
+        android:id="@+id/entregas_item"
+        android:title="Entregas" />
 
     <item
         android:icon="@drawable/user"

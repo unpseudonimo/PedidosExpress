@@ -9,26 +9,13 @@ import com.example.pedidosexpress.views.consumidor.BottomNavigationHandlerConsum
 
 class HomeRepartidor : AppCompatActivity() {
 
-    private lateinit var bottomNavigationHandlerConsumidor: BottomNavigationHandlerConsumidor
+    private lateinit var bottomNavigationHandlerConsumidor: BottomNavigationHandlerRepartidor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.homerepartidor) // Establece el layout o interfaz de la actividad
 
-        bottomNavigationHandlerConsumidor = BottomNavigationHandlerConsumidor(this)
+        bottomNavigationHandlerConsumidor = BottomNavigationHandlerRepartidor(this)
 
-        supportFragmentManager.commit {
-            setReorderingAllowed(true)
-            add<MapaRFragment>(R.id.FragmentContainer)
-        }
-
-        loadFragment(HomeRFragment())
-    }
-
-
-    private fun loadFragment(fragment: HomeRFragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.home_item, fragment)
-            .commit()
     }
 }

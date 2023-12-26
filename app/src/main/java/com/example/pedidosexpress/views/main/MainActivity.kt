@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main) // Establece el layout de la actividad
 
         //Declaracion e inicializacion de variables
-        val btnIniciarSesionConsumidor = findViewById<Button>(R.id.btnIniciarSesionConsumidor)
+        val btnIniciarSesionConsumidor = findViewById<Button>(R.id.btnIniciarSesion)
 
         val btnSalir = findViewById<Button>(R.id.btnSalir)
 
