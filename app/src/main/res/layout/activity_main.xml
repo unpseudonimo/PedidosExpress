@@ -40,47 +40,17 @@
                 android:textSize="25sp"/>
 
             <Button
-                android:id="@+id/btnIniciarSesionConsumidor"
+                android:id="@+id/btnIniciarSesion"
                 style="@style/Widget.Material3.Button.ElevatedButton"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:onClick="login"
                 android:layout_marginTop="30dp"
-                android:text="Consumidor"
-                android:textStyle="bold"
-                android:backgroundTint="@color/colorOrangeStrong"
-                android:textColor="@color/black"
-            />
-
-            <Button
-                android:id="@+id/btnIniciarSesionRepartidor"
-                style="@style/Widget.Material3.Button.ElevatedButton"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:onClick="login"
-                android:layout_marginTop="30dp"
-                android:text="Repartidor"
-                android:textStyle="bold"
+                android:text="Inicia sesion"
                 android:backgroundTint="@color/colorOrangeStrong"
                 android:textColor="@color/black"
                 />
-
-            <Button
-                android:id="@+id/btnIniciarSesionNegocio"
-                style="@style/Widget.Material3.Button.ElevatedButton"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:onClick="login"
-                android:layout_marginTop="30dp"
-                android:text="Negocio"
-                android:textStyle="bold"
-                android:backgroundTint="@color/colorOrangeStrong"
-                android:textColor="@color/black"
-                />
-
 
 
             <Button
@@ -92,7 +62,6 @@
                 android:onClick="login"
                 android:layout_marginTop="30dp"
                 android:text="Salir"
-                android:textStyle="bold"
                 android:backgroundTint="@color/common_google_signin_btn_text_dark_focused"
                 android:textColor="@color/white"
                 />

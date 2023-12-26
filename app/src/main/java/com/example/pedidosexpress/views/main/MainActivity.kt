@@ -7,8 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import com.example.pedidosexpress.R
-import com.example.pedidosexpress.views.consumidor.LoginCFragment
-import com.example.pedidosexpress.views.repartidor.LoginRFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -19,30 +17,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main) // Establece el layout de la actividad
 
         //Declaracion e inicializacion de variables
-        val btnIniciarSesionConsumidor = findViewById<Button>(R.id.btnIniciarSesionConsumidor)
-        val btnIniciarSesionRepartidor = findViewById<Button>(R.id.btnIniciarSesionRepartidor)
-        val btnIniciarSesionNegocio = findViewById<Button>(R.id.btnIniciarSesionNegocio)
+        val btnIniciarSesionConsumidor = findViewById<Button>(R.id.btnIniciarSesion)
+
         val btnSalir = findViewById<Button>(R.id.btnSalir)
 
         // Manejar clics en los botones para mostrar fragmentos
         btnIniciarSesionConsumidor.setOnClickListener {
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
-                add<LoginCFragment>(R.id.FragmentContainer)
-            }
-        }
-
-        btnIniciarSesionRepartidor.setOnClickListener {
-            supportFragmentManager.commit {
-                setReorderingAllowed(true)
-                add<LoginRFragment>(R.id.FragmentContainer)
-            }
-        }
-
-        btnIniciarSesionNegocio.setOnClickListener {
-            supportFragmentManager.commit {
-                setReorderingAllowed(true)
-                add<LoginRFragment>(R.id.FragmentContainer)
+                add<login>(R.id.FragmentContainer)
             }
         }
 

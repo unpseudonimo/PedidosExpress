@@ -5,7 +5,7 @@ import android.view.MenuItem
 import com.example.pedidosexpress.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class BottomNavigationHandler(private val activity: Activity) {
+class BottomNavigationHandlerConsumidor(private val activity: Activity) {
 
     private val bottomNavigationView: BottomNavigationView =
         activity.findViewById(R.id.bottom_navigation)
@@ -19,15 +19,15 @@ class BottomNavigationHandler(private val activity: Activity) {
     private fun handleNavigation(item: MenuItem): Boolean {
         val itemId = item.itemId
         when (itemId) {
-            R.id.home_item -> {
+            R.id.inicio_item -> {
                 startActivity(HomeConsumidor::class.java)
                 return true
             }
-            R.id.orders_item -> {
-                startActivity(Pedidos::class.java)
+            R.id.carrito_item -> {
+                startActivity(Carrito::class.java)
                 return true
             }
-            R.id.user_item -> {
+            R.id.cuenta_item -> {
                 startActivity(CuentaConsumidor::class.java)
                 return true
             }

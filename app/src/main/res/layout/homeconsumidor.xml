@@ -8,37 +8,31 @@
 
     <LinearLayout
         android:id="@+id/ContainerMenuandSearch"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:gravity="center"
         app:layout_constraintBottom_toTopOf="@id/Inicio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/ibtnMenuDrawer"
-            style="?attr/materialIconButtonFilledTonalStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:backgroundTint="@color/colorOrangeStrong"
-            android:src="@drawable/menu"/>
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/ContainerSearchbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/ibtnMenuDrawer"
+                style="?attr/materialIconButtonFilledTonalStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:contentDescription="@string/title"
+                android:src="@drawable/menu" />
 
             <com.google.android.material.search.SearchBar
                 android:id="@+id/search_bar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/searchbar_hint"
-                android:backgroundTint="@color/colorOrangeStrong"/>
-        </com.google.android.material.appbar.AppBarLayout>
+                android:layout_height="wrap_content"
+                android:hint="@string/searchbar_hint" />
     </LinearLayout>
 
     <ScrollView
@@ -76,7 +70,6 @@
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                app:srcCompat="@drawable/oferta"
                                 android:scaleType="centerCrop"
                                 android:contentDescription="@string/content_description_media"
                                 />
@@ -96,7 +89,6 @@
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                app:srcCompat="@drawable/oferta"
                                 android:scaleType="centerCrop"
                                 android:contentDescription="@string/content_description_media"
                                 />
@@ -117,7 +109,6 @@
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                app:srcCompat="@drawable/oferta"
                                 android:scaleType="centerCrop"
                                 android:contentDescription="@string/content_description_media"
                                 />
@@ -149,7 +140,6 @@
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                app:srcCompat="@drawable/categoria"
                                 android:scaleType="centerCrop"
                                 android:contentDescription="@string/content_description_media"
                                 />
@@ -169,7 +159,6 @@
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                app:srcCompat="@drawable/categoria"
                                 android:scaleType="centerCrop"
                                 android:contentDescription="@string/content_description_media"
                                 />
@@ -189,7 +178,6 @@
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                app:srcCompat="@drawable/categoria"
                                 android:scaleType="centerCrop"
                                 android:contentDescription="@string/content_description_media"
                                 />
@@ -209,7 +197,6 @@
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                app:srcCompat="@drawable/categoria"
                                 android:scaleType="centerCrop"
                                 android:contentDescription="@string/content_description_media"
                                 />
@@ -241,7 +228,6 @@
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    app:srcCompat="@drawable/producto"
                                     android:scaleType="centerCrop"
                                     android:contentDescription="@string/content_description_media"
                                     />
@@ -286,9 +272,6 @@
                                         android:layout_height="wrap_content"
                                         android:src="@drawable/ic_favourites_24px"
                                         android:text="@string/action_1"
-                                        app:rippleColor="@color/white"
-                                        app:backgroundTint="@color/colorOrangeStrong"
-                                        app:iconTint="@color/colorOrangeStrong"
                                         style="?attr/materialIconButtonFilledStyle"
                                         />
                                     <com.google.android.material.button.MaterialButton
@@ -298,10 +281,6 @@
                                         app:iconPadding="4dp"
                                         app:iconGravity="start"
                                         app:icon="@drawable/shopping"
-                                        app:rippleColor="@color/colorOrangeStrong"
-                                        android:textColor="@color/colorOrangeStrong"
-                                        android:backgroundTint="@color/white"
-                                        app:iconTint="@color/colorOrangeStrong"
                                         style="?attr/materialIconButtonFilledStyle"
                                         />
                                 </LinearLayout>
@@ -321,7 +300,6 @@
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    app:srcCompat="@drawable/producto"
                                     android:scaleType="centerCrop"
                                     android:contentDescription="@string/content_description_media"
                                     />
@@ -407,7 +385,6 @@
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    app:srcCompat="@drawable/producto"
                                     android:scaleType="centerCrop"
                                     android:contentDescription="@string/content_description_media"
                                     />
@@ -487,7 +464,6 @@
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    app:srcCompat="@drawable/producto"
                                     android:scaleType="centerCrop"
                                     android:contentDescription="@string/content_description_media"
                                     />
@@ -554,9 +530,17 @@
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
                     </LinearLayout>
-
-
                 </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
@@ -566,9 +550,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
-        app:backgroundTint="@color/white"
-        app:itemRippleColor="#ffa900"
-        app:itemTextColor="@color/black"
+        android:focusedByDefault="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
