@@ -23,48 +23,65 @@
             android:padding="16dp">
 
             <ImageView
-                android:id="@+id/imageViewLogo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:src="@drawable/logo_1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:id="@+id/logoImageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/user" />
 
             <TextView
-                android:id="@+id/textViewTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bienvenido a Pedidos Express"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageViewLogo" />
+                android:layout_gravity="center"
+                android:text="REPORTIDOR" />
 
-            <Button
-                android:id="@+id/btnIniciarSesion"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Iniciar Sesión"
-                android:textStyle="bold"
-                android:textAllCaps="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textViewTitle"
-                style="@style/Widget.MaterialComponents.Button.TextButton" />
 
-            <Button
-                android:id="@+id/btnRegistrarCuenta"
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/pagos"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Registrar Cuenta"
-                android:textStyle="bold"
-                android:textAllCaps="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnIniciarSesion"
-                style="@style/Widget.MaterialComponents.Button.TextButton" />
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:background="?android:selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:minHeight="48dp"
+                android:onClick="createAccount"
+                android:padding="8dp"
+                android:text="Pagos y targetas"
+                android:textColor="@color/black" />
+
+
+            <TextView
+                android:id="@+id/ajustes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:background="?android:selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:minHeight="48dp"
+                android:onClick="createAccount"
+                android:padding="8dp"
+                android:text="Ajustes de perfil"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:background="?android:selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:minHeight="48dp"
+                android:onClick="createAccount"
+                android:padding="8dp"
+                android:text="Cerrar sesion"
+                android:textColor="@color/red" />
 
         </LinearLayout>
     </ScrollView>
@@ -78,6 +95,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_main" />
+        app:menu="@menu/menu_main_repartidor" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
