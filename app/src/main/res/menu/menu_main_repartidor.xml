@@ -9,7 +9,7 @@
         android:title="Inicio"/>
 
     <item
-        android:icon="@drawable/pedidos"
+        android:icon="@drawable/delivery_2"
         android:id="@+id/entregas_item"
         android:title="Entregas" />
 

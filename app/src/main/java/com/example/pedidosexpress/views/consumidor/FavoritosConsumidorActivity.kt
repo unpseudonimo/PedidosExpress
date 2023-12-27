@@ -7,19 +7,12 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pedidosexpress.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class FavoritosConsumidorActivity : AppCompatActivity() {
 
     private lateinit var bottomNavigationHandler: BottomNavigationHandlerConsumidor
-
-    data class Producto(val nombre: String, var esFavorito: Boolean)
-
-    private val listaProductos = mutableListOf(
-        Producto("Producto 1", false),
-        Producto("Producto 2", false)
-        // Agrega más productos según sea necesario
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,55 +20,12 @@ class FavoritosConsumidorActivity : AppCompatActivity() {
 
 
         bottomNavigationHandler = BottomNavigationHandlerConsumidor(this)
+        val btnBack: FloatingActionButton = findViewById<FloatingActionButton>(R.id.btnback)
 
-        /*
-                val ivFavorito1: ImageView = findViewById(R.id.ivFavorito1)
-                val ivFavorito2: ImageView = findViewById(R.id.ivFavorito2)
-        */
-/*
-        // Escucha el clic en la imagen de favorito y actualiza la lista y la interfaz
-        ivFavorito1.setOnClickListener {
-            // Supongamos que el primer producto está en la posición 0
-            toggleFavorito(0)
-            actualizarInterfaz()
+        // Agrega un evento de clic al botón de retroceso
+        btnBack.setOnClickListener {
+            // Simula el comportamiento del botón de retroceso del sistema
+            onBackPressed()
         }
-
-        ivFavorito2.setOnClickListener {
-            // Supongamos que el segundo producto está en la posición 1
-            toggleFavorito(1)
-            actualizarInterfaz()
-        }
-
-        // Actualiza la interfaz inicialmente
-        actualizarInterfaz()*/
     }
-
-
-    private fun toggleFavorito(posicion: Int) {
-        // Cambia el estado de favorito del producto en la lista
-        listaProductos[posicion].esFavorito = !listaProductos[posicion].esFavorito
-    }
-
-    /*
-    private fun actualizarInterfaz() {
-        // Actualiza la interfaz según el estado de favorito de cada producto
-        val ivFavorito1: ImageView = findViewById(R.id.ivFavorito1)
-        val ivFavorito2: ImageView = findViewById(R.id.ivFavorito2)
-
-        // Supongamos que el primer producto está en la posición 0
-        if (listaProductos[0].esFavorito) {
-            ivFavorito1.setImageResource(R.drawable.ic_favorito)
-        } else {
-            ivFavorito1.setImageResource(R.drawable.ic_no_favorito)
-        }
-
-        // Supongamos que el segundo producto está en la posición 1
-        if (listaProductos[1].esFavorito) {
-            ivFavorito2.setImageResource(R.drawable.ic_favorito)
-        } else {
-            ivFavorito2.setImageResource(R.drawable.ic_no_favorito)
-        }
-
-        // Puedes repetir el patrón para más productos según sea necesario
-    }*/
 }

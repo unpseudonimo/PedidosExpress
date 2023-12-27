@@ -13,24 +13,6 @@
         android:layout_alignParentTop="true"
         android:layout_margin="12dp">
 
-        <!-- Agregué un espacio al inicio para btnback -->
-
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnback"
-            style="?attr/materialIconButtonFilledTonalStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorOrangeStrong"
-            android:contentDescription="@string/title"
-            android:src="@drawable/back" />
-
-        <!-- Agregué un espacio entre los botones para separarlos -->
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnpedidos"
             android:layout_width="wrap_content"
@@ -39,8 +21,6 @@
             android:text="Pedidos"
             android:textSize="16sp"
             android:textColor="@color/black"/>
-
-
     </LinearLayout>
 
     <ScrollView
