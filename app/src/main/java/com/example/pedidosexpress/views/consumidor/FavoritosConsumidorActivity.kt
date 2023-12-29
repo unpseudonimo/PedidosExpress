@@ -14,6 +14,14 @@ class FavoritosConsumidorActivity : AppCompatActivity() {
 
     private lateinit var bottomNavigationHandler: BottomNavigationHandlerConsumidor
 
+    data class Producto(val nombre: String, var esFavorito: Boolean)
+
+    private val listaProductos = mutableListOf(
+        Producto("Producto 1", false),
+        Producto("Producto 2", false)
+        // Agrega más productos según sea necesario
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favoritos_consumidor)
@@ -27,5 +35,9 @@ class FavoritosConsumidorActivity : AppCompatActivity() {
             // Simula el comportamiento del botón de retroceso del sistema
             onBackPressed()
         }
+    }
+    private fun toggleFavorito(posicion: Int) {
+        // Cambia el estado de favorito del producto en la lista
+        listaProductos[posicion].esFavorito = !listaProductos[posicion].esFavorito
     }
 }

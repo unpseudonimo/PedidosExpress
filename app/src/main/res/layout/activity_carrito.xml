@@ -13,6 +13,24 @@
         android:layout_alignParentTop="true"
         android:layout_margin="12dp">
 
+        <!-- Agregué un espacio al inicio para btnback -->
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnback"
+            style="?attr/materialIconButtonFilledTonalStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorOrangeStrong"
+            android:contentDescription="@string/title"
+            android:src="@drawable/back" />
+
+        <!-- Agregué un espacio entre los botones para separarlos -->
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnpedidos"
             android:layout_width="wrap_content"
@@ -21,25 +39,52 @@
             android:text="Pedidos"
             android:textSize="16sp"
             android:textColor="@color/black"/>
+
+
     </LinearLayout>
 
     <ScrollView
+        android:id="@+id/ProductosCarrito"
+        android:layout_width="match_parent"
+        android:layout_height="424dp"
+        android:layout_below="@id/toolbar">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/Pagos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottom_navigation"
-        android:layout_below="@id/toolbar"
-        >
+        android:layout_below="@id/ProductosCarrito"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal">
 
-        <ListView
-            android:id="@+id/listViewCarrito"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="-1dp"
-            android:clipToPadding="false"
-            android:divider="@android:color/darker_gray"
-            android:dividerHeight="0.5dp"
-            android:padding="8dp" />
-    </ScrollView>
+        <TextView
+            android:layout_width="106dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/total"
+            android:text="total a pagar: $" />
+
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"/>
+        <Button
+            android:id="@+id/pago"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="pago"
+            android:layout_marginLeft="10dp"/>
+
+    </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pedidosexpress.R
 
-class PagosConsumidorActivity : AppCompatActivity() {
+class   PagosConsumidorActivity : AppCompatActivity() {
 
     private lateinit var btnRealizarPago: Button
     private lateinit var tvMensajePago: TextView

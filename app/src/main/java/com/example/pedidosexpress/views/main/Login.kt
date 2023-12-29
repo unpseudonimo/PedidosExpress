@@ -72,7 +72,7 @@ class login : Fragment() {
 
         return view
     }
-    private fun saveUsernameToSharedPreferences(username: String, role: String) {
+    fun saveUsernameToSharedPreferences(username: String, role: String) {
         // Obtener el objeto SharedPreferences
         val sharedPreferences = requireContext().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
 
@@ -83,12 +83,16 @@ class login : Fragment() {
         editor.apply()
     }
 
-    private fun getUsernameFromSharedPreferences(): String {
-        val sharedPreferences = requireContext().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
-        return sharedPreferences.getString(PREFS_USER_ID_KEY, "" ) ?: "" // Valor predeterminado vacío si no se encuentra el nombre del usuario
+    companion object {
+        private const val PREFS_USER_ID_KEY = "user_id"
+        private const val PREFS_USER_ROLE_KEY = "user_rol"
+        fun getUsernameFromSharedPreferences(context: Context): String {
+            val sharedPreferences = context.getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
+            return sharedPreferences.getString(PREFS_USER_ID_KEY, "") ?: ""
+        }
     }
     private fun loginToServer(username: String, password: String) {
-        val url = "http://192.168.1.80:5000//login" // Ajusta la URL según tu servidor
+        val url = "http://192.168.1.193:5000//login" // Ajusta la URL según tu servidor
 
         // Crear una solicitud de cadena (StringRequest) utilizando Volley
         val request: StringRequest = object : StringRequest(

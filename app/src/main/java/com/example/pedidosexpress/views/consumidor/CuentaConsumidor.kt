@@ -1,5 +1,6 @@
 package com.example.pedidosexpress.views.consumidor
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -12,6 +13,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class CuentaConsumidor : AppCompatActivity() {
 
     private lateinit var bottomNavigationHandler: BottomNavigationHandlerConsumidor
+
+    private val PREFS_USER_ID_KEY = "user_id"
+    private val PREFS_USER_ROLE_KEY = "user_rol"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,5 +38,16 @@ class CuentaConsumidor : AppCompatActivity() {
         btnhistpedidos.setOnClickListener {
             startActivity(Intent(this, Pedidos::class.java))
         }
+    }
+
+    private fun clearSharedPreferences() {
+        // Obtener el objeto SharedPreferences
+        val sharedPreferences = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
+
+        // Editar SharedPreferences para eliminar los valores almacenados
+        val editor = sharedPreferences.edit()
+        editor.remove(PREFS_USER_ID_KEY)
+        editor.remove(PREFS_USER_ROLE_KEY)
+        editor.apply()
     }
 }
