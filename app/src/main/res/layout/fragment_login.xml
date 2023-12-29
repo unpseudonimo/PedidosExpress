@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".views.main.login"
     android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".views.main.login">
 
 
     <ScrollView
@@ -17,8 +17,8 @@
             android:name=".login"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:gravity="center"
+            android:orientation="vertical"
             android:padding="16dp">
 
             <ImageView
@@ -27,46 +27,46 @@
                 android:layout_height="157dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="32dp"
-                android:src="@drawable/logo_1"
                 android:contentDescription="@string/Logo"
+                android:src="@drawable/logo_1"
                 tools:ignore="ContentDescription" />
 
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/usernameTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="@string/Username"
                 app:boxCornerRadiusBottomEnd="30dp"
                 app:boxCornerRadiusBottomStart="30dp"
                 app:boxCornerRadiusTopEnd="30dp"
                 app:boxCornerRadiusTopStart="30dp"
                 app:boxStrokeColor="@color/colorOrangeStrong"
-                app:hintTextColor="@color/colorOrangeStrong"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:hint="@string/Username">
+                app:hintTextColor="@color/colorOrangeStrong">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/usernameEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:hintEnabled="false"
-                    />
+                    app:hintEnabled="false" />
             </com.google.android.material.textfield.TextInputLayout>
-
 
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/passwordTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="@string/Password"
                 app:boxCornerRadiusBottomEnd="30dp"
                 app:boxCornerRadiusBottomStart="30dp"
                 app:boxCornerRadiusTopEnd="30dp"
                 app:boxCornerRadiusTopStart="30dp"
-                app:endIconMode="password_toggle"
                 app:boxStrokeColor="@color/colorOrangeStrong"
-                app:hintTextColor="@color/colorOrangeStrong"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:hint="@string/Password">
+                app:endIconMode="password_toggle"
+                app:hintTextColor="@color/colorOrangeStrong">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/passwordEditText"
                     android:layout_width="match_parent"
@@ -86,36 +86,33 @@
                 android:minHeight="48dp"
                 android:onClick="createAccount"
                 android:padding="8dp"
-                android:text="@string/Crear_cuenta"
-                android:textColor="@color/black" />
-
+                android:text="@string/Crear_cuenta" />
 
 
             <Button
-                android:id="@+id/btnConsumidor"
+                android:id="@+id/btnIniciarSesion"
                 style="@style/Widget.Material3.Button.ElevatedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="@string/iniciar_sesion"
-                android:textSize="15sp"
+                android:backgroundTint="#ffa900"
                 android:onClick="login"
+                android:text="@string/iniciar_sesion"
                 android:textColor="@color/black"
-                android:backgroundTint="#ffa900"/>
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/forgotPasswordLink"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:layout_marginTop="30dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
                 android:background="?android:selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="forgotPassword"
                 android:padding="8dp"
-                android:text="@string/missingPassword"
-                android:textColor="@color/black" />
+                android:text="@string/missingPassword" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btnback"
@@ -129,4 +126,4 @@
         </LinearLayout>
     </ScrollView>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

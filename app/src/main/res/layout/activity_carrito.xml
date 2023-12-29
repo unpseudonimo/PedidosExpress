@@ -9,34 +9,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_vertical"
+        android:gravity="right"
         android:layout_alignParentTop="true"
         android:layout_margin="12dp">
 
-        <!-- Agregué un espacio al inicio para btnback -->
-
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnback"
-            style="?attr/materialIconButtonFilledTonalStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorOrangeStrong"
-            android:contentDescription="@string/title"
-            android:src="@drawable/back" />
-
-        <!-- Agregué un espacio entre los botones para separarlos -->
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnpedidos"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/colorOrangeStrong"
+            style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+            app:icon="@drawable/pedidos"
             android:text="Pedidos"
+            app:iconPadding="10dp"
+            app:iconGravity="end"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:backgroundTint="@color/colorOrangeStrong"
             android:textSize="16sp"
             android:textColor="@color/black"/>
 
@@ -60,6 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottom_navigation"
+        android:gravity="center_vertical"
         android:layout_below="@id/ProductosCarrito"
         android:layout_marginLeft="10dp"
         android:orientation="horizontal">
@@ -68,7 +55,7 @@
             android:layout_width="106dp"
             android:layout_height="wrap_content"
             android:layout_above="@+id/total"
-            android:text="total a pagar: $" />
+            android:text="Total a pagar: $" />
 
         <TextView
             android:id="@+id/total"
@@ -77,11 +64,14 @@
             android:text="0"
             android:layout_marginStart="2dp"
             android:layout_marginEnd="2dp"/>
-        <Button
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Material3.Button"
             android:id="@+id/pago"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="pago"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/red"
+            android:text="Pagar"
             android:layout_marginLeft="10dp"/>
 
     </LinearLayout>

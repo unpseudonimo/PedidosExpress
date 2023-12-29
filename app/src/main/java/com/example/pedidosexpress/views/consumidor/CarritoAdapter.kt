@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -17,7 +16,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import okhttp3.MediaType
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
@@ -42,11 +41,6 @@ class CarritoAdapter(private val CarritoAdap: MutableList<CarritoData>, private 
     }
     fun getProductos(): List<CarritoData> {
         return CarritoAdap
-    }
-
-    fun eliminarTodosLosProductos() {
-        CarritoAdap.clear()
-        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -111,14 +105,14 @@ class CarritoAdapter(private val CarritoAdap: MutableList<CarritoData>, private 
             }else{
                 // Enviar la solicitud al servidor antes de mostrar el diálogo
                 CoroutineScope(Dispatchers.Main).launch {
-                try {
-                    respuestaServidor = enviarProductoAlServidor(cantidadActualizada, estado, producto.idProducto)
-                } catch (e: Exception) {
-                    Toast.makeText(it.context, respuestaServidor, Toast.LENGTH_SHORT).show()
+                    try {
+                        respuestaServidor = enviarProductoAlServidor(cantidadActualizada, estado, producto.idProducto)
+                    } catch (e: Exception) {
+                        Toast.makeText(it.context, respuestaServidor, Toast.LENGTH_SHORT).show()
+                    }
+                    // Mostrar un cuadro de diálogo para confirmar la eliminación
+                    mostrarDialogoEliminarProducto(holder.itemView, producto)
                 }
-                // Mostrar un cuadro de diálogo para confirmar la eliminación
-                mostrarDialogoEliminarProducto(holder.itemView, producto)
-            }
             }
         }
     }
@@ -131,32 +125,32 @@ class CarritoAdapter(private val CarritoAdap: MutableList<CarritoData>, private 
         val url = "http://192.168.1.80:5000/carritoCantidad"
         val json = Gson().toJson(mapOf("cantidad" to cantidad,"estado" to estado,"idProducto" to idProducto))
         return withContext(Dispatchers.IO) {
-                val request = Request.Builder()
-                    .url(url)
-                    .post(RequestBody.create(MediaType.parse("application/json"), json))
-                    .build()
+            val request = Request.Builder()
+                .url(url)
+                .post(RequestBody.create(MediaType.parse("application/json"), json))
+                .build()
 
-                val response = OkHttpClient().newCall(request).execute()
+            val response = OkHttpClient().newCall(request).execute()
 
-                // Manejar respuesta exitosa
-                if (response.isSuccessful) {
-                    val responseBody = response.body()?.string()
-                    // Manejar el cuerpo de la respuesta (si es necesario)
-                    println("Respuesta exitosa: $responseBody")
-                    // Intentar analizar el JSON y extraer el mensaje
-                    try {
-                        val jsonResponse = JSONObject(responseBody)
-                        return@withContext jsonResponse.optString("mensaje", "Respuesta del servidor sin mensaje")
-                    } catch (e: JSONException) {
-                        return@withContext "Error al analizar la respuesta del servidor"
-                    }
-                } else {
-                    // Manejar error en la solicitud
-                    val errorBody = response.body()?.string()
-                    println("Error en la solicitud: $errorBody")
-                    return@withContext "Error en la solicitud al servidor"
+            // Manejar respuesta exitosa
+            if (response.isSuccessful) {
+                val responseBody = response.body()?.string()
+                // Manejar el cuerpo de la respuesta (si es necesario)
+                println("Respuesta exitosa: $responseBody")
+                // Intentar analizar el JSON y extraer el mensaje
+                try {
+                    val jsonResponse = JSONObject(responseBody)
+                    return@withContext jsonResponse.optString("mensaje", "Respuesta del servidor sin mensaje")
+                } catch (e: JSONException) {
+                    return@withContext "Error al analizar la respuesta del servidor"
                 }
+            } else {
+                // Manejar error en la solicitud
+                val errorBody = response.body()?.string()
+                println("Error en la solicitud: $errorBody")
+                return@withContext "Error en la solicitud al servidor"
             }
+        }
     }
     // Método para eliminar el producto del carrito y actualizar la vista
     fun eliminarProducto(producto: CarritoData) {
@@ -169,7 +163,7 @@ class CarritoAdapter(private val CarritoAdap: MutableList<CarritoData>, private 
     }
     // Método para mostrar un cuadro de diálogo de confirmación para eliminar el producto
     private fun mostrarDialogoEliminarProducto(itemView: View, producto: CarritoData) {
-        val builder = AlertDialog.Builder(itemView.context)
+        val builder = MaterialAlertDialogBuilder(itemView.context)
         builder.setTitle("Eliminar Producto")
         builder.setMessage("¿Seguro que deseas eliminar este producto del carrito?")
 

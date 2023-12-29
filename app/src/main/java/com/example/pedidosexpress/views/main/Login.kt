@@ -35,12 +35,12 @@ class login : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_login_c, container, false)
+        val view = inflater.inflate(R.layout.fragment_login, container, false)
 
         // Inicializar las variables
         usernameEditText = view.findViewById(R.id.usernameEditText)
         passwordEditText = view.findViewById(R.id.passwordEditText)
-        btnLogin = view.findViewById(R.id.btnConsumidor)
+        btnLogin = view.findViewById(R.id.btnIniciarSesion)
         // Configurar el OnClickListener para el botón de login
         btnLogin.setOnClickListener {
             val username = usernameEditText.text.toString()
@@ -56,7 +56,7 @@ class login : Fragment() {
             loginToServer(username, password)
         }
 
-        val btnBack: FloatingActionButton = view.findViewById(R.id.btnback)
+        val btnBack: FloatingActionButton = view.findViewById<FloatingActionButton>(R.id.btnback)
 
         // Configura un OnClickListener para el botón de retroceso
         btnBack.setOnClickListener {val intent = Intent(requireContext(), MainActivity::class.java)
@@ -92,7 +92,7 @@ class login : Fragment() {
         }
     }
     private fun loginToServer(username: String, password: String) {
-        val url = "http://192.168.1.193:5000//login" // Ajusta la URL según tu servidor
+        val url = "http://192.168.1.80:5000//login" // Ajusta la URL según tu servidor
 
         // Crear una solicitud de cadena (StringRequest) utilizando Volley
         val request: StringRequest = object : StringRequest(

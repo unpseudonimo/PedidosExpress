@@ -6,6 +6,5 @@
         <!-- Personalización de la barra de estado -->
         <item name="android:statusBarColor">@color/colorOrangeStrong</item> <!-- Naranja -->
     </style>
-
     <style name="Theme.PedidosExpress" parent="Base.Theme.PedidosExpress" />
 </resources>

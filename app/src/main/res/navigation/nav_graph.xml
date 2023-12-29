@@ -14,7 +14,7 @@
         android:id="@+id/loginCFragment"
         android:name="com.example.pedidosexpress.views.consumidor.LoginCFragment"
         android:label="fragment_login_c"
-        tools:layout="@layout/fragment_login_c">
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginCFragment_to_homeConsumidor3"
             app:destination="@id/homeConsumidor" />

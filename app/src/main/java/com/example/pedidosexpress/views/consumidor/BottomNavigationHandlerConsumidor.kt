@@ -1,8 +1,11 @@
 package com.example.pedidosexpress.views.consumidor
+
 import android.app.Activity
 import android.content.Intent
 import android.view.MenuItem
 import com.example.pedidosexpress.R
+import com.example.pedidosexpress.views.main.MainActivity
+import com.example.pedidosexpress.views.main.login
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class BottomNavigationHandlerConsumidor(private val activity: Activity) {
@@ -29,12 +32,29 @@ class BottomNavigationHandlerConsumidor(private val activity: Activity) {
             R.id.inicio_item, R.id.carrito_item, R.id.cuenta_item -> {
                 // Guarda el ítem seleccionado actual
                 sharedPreferences.edit().putInt("selected_item_id", itemId).apply()
-                startActivity(getDestinationActivity(itemId))
+                val intent = Intent(activity, getDestinationActivity(itemId))
+                startActivity(intent)
+                return true
+            }
+            R.id.cuenta_item -> {
+                // Lógica específica para el ítem de usuario
+                val username = login.getUsernameFromSharedPreferences(activity.applicationContext)
+                if (username.isEmpty()) {
+                    // Si el userId está vacío, muestra un mensaje para iniciar sesión
+                    // Puedes redirigir a la pantalla de inicio de sesión aquí
+                    val intent = Intent(activity, MainActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    // Usuario logeado, permite acceder a la actividad CuentaConsumidor
+                    val intent = Intent(activity, CuentaConsumidor::class.java)
+                    startActivity(intent)
+                }
                 return true
             }
         }
         return false
     }
+
 
     private fun getDestinationActivity(itemId: Int): Class<*> {
         return when (itemId) {
@@ -45,7 +65,8 @@ class BottomNavigationHandlerConsumidor(private val activity: Activity) {
         }
     }
 
-    private fun startActivity(cls: Class<*>) {
-        activity.startActivity(Intent(activity, cls))
+    private fun startActivity(intent: Intent) {
+        activity.startActivity(intent)
     }
+
 }

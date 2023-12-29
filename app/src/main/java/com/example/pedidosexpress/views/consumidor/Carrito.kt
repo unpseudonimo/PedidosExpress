@@ -5,16 +5,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.widget.Button
-import android.widget.ListView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pedidosexpress.R
-import com.example.pedidosexpress.model.Producto
 import com.example.pedidosexpress.views.main.login
-import com.google.android.material.bottomnavigation.BottomNavigationView
+
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,13 +21,12 @@ import java.math.BigDecimal
 import java.math.RoundingMode
 
 class Carrito : AppCompatActivity(), CarritoAdapter.OnCantidadChangeListener {
-
     private lateinit var bottomNavigationHandler: BottomNavigationHandlerConsumidor
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var totalTextView: TextView
-    private lateinit var apiService: ApiService
     private lateinit var PagoBTN: Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,12 +42,13 @@ class Carrito : AppCompatActivity(), CarritoAdapter.OnCantidadChangeListener {
         totalTextView = findViewById(R.id.total)
         PagoBTN=findViewById(R.id.pago)
 
+
         val retrofit = Retrofit.Builder()
             .baseUrl("http://192.168.1.80:5000")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val username = login.getUsernameFromSharedPreferences(this@Carrito)
-        apiService = retrofit.create(ApiService::class.java)
+        val apiService = retrofit.create(ApiService::class.java)
 
         val call = apiService.obtenerCarito(username)
 
@@ -85,14 +82,13 @@ class Carrito : AppCompatActivity(), CarritoAdapter.OnCantidadChangeListener {
 
 
         btnpedidos.setOnClickListener {
-            enviarDatosCompraAlServidor()
             startActivity(Intent(this@Carrito, Pedidos::class.java))
         }
         PagoBTN.setOnClickListener{
             startActivity(Intent(this@Carrito,MapaConsumidor::class.java))
         }
-    }
 
+    }
     override fun onCantidadChanged(producto: CarritoData) {
         // Aquí actualizas el total basándote en la nueva cantidad
         updateTotal()
@@ -108,46 +104,4 @@ class Carrito : AppCompatActivity(), CarritoAdapter.OnCantidadChangeListener {
         totalTextView.text = totalFormateado
     }
 
-    private fun enviarDatosCompraAlServidor() {
-        val call = apiService.procesarCompra(obtenerProductosEnCarrito())
-
-        call.enqueue(object : Callback<Void> {
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                if (response.isSuccessful) {
-                    Toast.makeText(
-                        this@Carrito,
-                        "Compra procesada con éxito",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                    // Limpiar el carrito después de procesar la compra
-                    (recyclerView.adapter as CarritoAdapter).eliminarTodosLosProductos()
-                    updateTotal()
-                } else {
-                    Log.e("Carrito", "Error en el servidor: ${response.message()}")
-                    Toast.makeText(this@Carrito, "Error en el servidor", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
-
-            override fun onFailure(call: Call<Void>, t: Throwable) {
-                Log.e("Carrito", "Error: ${t.message}")
-                Toast.makeText(this@Carrito, "Error en la conexión", Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
-
-    private fun obtenerProductosEnCarrito(): List<CarritoData> {
-        val adapter = recyclerView.adapter as CarritoAdapter
-        return adapter.getProductos().map { producto ->
-            CarritoData(
-                producto.idProducto,
-                producto.nombreProducto,
-                producto.descripcionProducto,
-                producto.imagenProducto,
-                producto.precioProducto,
-                producto.cantidadEnCarrito.toInt()
-            )
-        }
-    }
 }

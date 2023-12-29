@@ -39,7 +39,7 @@ class ProductoAdapter(private val productos: List<Producto>,private val userId: 
 
     }
     private suspend fun enviarProductoAlServidor(producto: Producto) {
-        val url = "http://192.168.1.193:5000/carrito"
+        val url = "http://192.168.1.80:5000/carrito"
         val json = Gson().toJson(producto)
 
         try {
@@ -74,7 +74,7 @@ class ProductoAdapter(private val productos: List<Producto>,private val userId: 
 
 
         // Construye la URL de la imagen utilizando el ID del producto
-        val imageUrl = "http://192.168.1.193:5000/obtener_imagen/${producto.idProducto}"
+        val imageUrl = "http://192.168.1.80:5000/obtener_imagen/${producto.idProducto}"
 
         // Utiliza Picasso para cargar imágenes desde la URL
         Picasso.get().load(imageUrl).into(holder.imagenProducto)
