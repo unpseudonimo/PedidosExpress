@@ -1,50 +1,62 @@
 package com.example.pedidosexpress.views.repartidor
 
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.pedidosexpress.R
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.example.pedidosexpress.views.consumidor.ApiService
+import com.example.pedidosexpress.views.main.Pedido
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class HistorialEntregas : AppCompatActivity() {
 
-    private lateinit var bottomNavigationHandler: BottomNavigationHandlerRepartidor
+    private lateinit var recyclerViewProductos: RecyclerView
+    private lateinit var pedidoAdapter: PedidoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_historialentregas)
 
-        bottomNavigationHandler = BottomNavigationHandlerRepartidor(this)
+        recyclerViewProductos = findViewById(R.id.recyclerViewProductos)
 
-        val btnBack: FloatingActionButton = findViewById(R.id.btnback)
-        val btnDetalle: Button = findViewById(R.id.btnDetallepedido)
+        // Configurar el RecyclerView y el adaptador
+        recyclerViewProductos.layoutManager = LinearLayoutManager(this)
+        pedidoAdapter = PedidoAdapter(mutableListOf()) // Puedes iniciar con una lista vacía
+        recyclerViewProductos.adapter = pedidoAdapter
 
-        // Agrega un evento de clic al botón de retroceso
-        btnBack.setOnClickListener {
-            // Simula el comportamiento del botón de retroceso del sistema
-            onBackPressed()
-        }
-
-        // Agrega un evento de clic al botón "Detalle de Pedido"
-        btnDetalle.setOnClickListener {
-            // Llama a la función que muestra el cuadro de diálogo
-            mostrarDetallePedidoDialog()
-        }
+        // Obtener la lista de pedidos desde el servidor
+        obtenerHistorialDesdeServidor()
     }
 
-    // Función para mostrar el cuadro de diálogo de detalle del pedido
-    private fun mostrarDetallePedidoDialog() {
-        // Construye el cuadro de diálogo con MaterialAlertDialogBuilder
-        MaterialAlertDialogBuilder(this)
-            .setTitle("Detalle del Pedido")
-            .setMessage("Aquí puedes mostrar información detallada sobre el pedido.")
-            .setPositiveButton("Aceptar") { dialog, which ->
-                // Maneja el clic en el botón "Aceptar" si es necesario
+    private fun obtenerHistorialDesdeServidor() {
+        val retrofit = Retrofit.Builder()
+            .baseUrl("URL_DE_TU_SERVIDOR_FLASK") // Reemplazar con la URL correcta
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val apiService = retrofit.create(ApiService::class.java)
+
+        val call = apiService.obtenerHistorialEntregas()
+
+        call.enqueue(object : Callback<List<Pedido>> {
+            override fun onResponse(call: Call<List<Pedido>>, response: Response<List<Pedido>>) {
+                if (response.isSuccessful) {
+                    val historial = response.body()
+                    // Actualizar el adaptador con la nueva lista de pedidos
+                    pedidoAdapter.actualizarPedidos(historial.orEmpty())
+                } else {
+                    // Manejar errores de la respuesta HTTP
+                }
             }
-            .setNegativeButton("Cancelar") { dialog, which ->
-                // Maneja el clic en el botón "Cancelar" si es necesario
+
+            override fun onFailure(call: Call<List<Pedido>>, t: Throwable) {
+                // Manejar errores de la solicitud HTTP
             }
-            .show() // Muestra el cuadro de diálogo
+        })
     }
 }

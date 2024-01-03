@@ -135,7 +135,7 @@ override fun onMapReady(googleMap: GoogleMap) {
     // Obtener la ubicación y enviar datos al servidor
     fun enviarDatosAlServidor(nombre: String, ubicacion: Location) {
 
-        val url = "http://192.168.1.193:5000/UbicacionEntrega"
+        val url = "http://192.168.1.80:5000/UbicacionEntrega"
 
         val jsonObject = JSONObject()
         jsonObject.put("nombre", nombre)

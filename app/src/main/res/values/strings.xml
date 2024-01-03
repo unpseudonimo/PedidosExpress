@@ -41,4 +41,13 @@
     <string name="secondary_text">Descripcion</string>
     <string name="supporting_text">Precio</string>
     <string name="content_description_media">Imagen del producto</string>
+
+
+
+    <!-- En res/values/strings.xml -->
+    <string name="label_pedido_id">ID del Pedido</string>
+    <string name="label_nombre_producto">Nombre del Producto</string>
+    <string name="label_precio">Precio</string>
+    <string name="label_estado">Estado</string>
+
 </resources>
