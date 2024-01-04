@@ -3,7 +3,6 @@ package com.example.pedidosexpress.views.consumidor
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pedidosexpress.R
 import com.example.pedidosexpress.views.main.login
+import com.google.gson.Gson
+
 
 import retrofit2.Call
 import retrofit2.Callback
@@ -19,10 +20,13 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.math.BigDecimal
 import java.math.RoundingMode
+import java.net.HttpURLConnection
+import java.net.URL
+import java.nio.charset.Charset
 
 class Carrito : AppCompatActivity(), CarritoAdapter.OnCantidadChangeListener {
     private lateinit var bottomNavigationHandler: BottomNavigationHandlerConsumidor
-
+    private lateinit var username: String
     private lateinit var recyclerView: RecyclerView
     private lateinit var totalTextView: TextView
     private lateinit var PagoBTN: Button
@@ -47,7 +51,7 @@ class Carrito : AppCompatActivity(), CarritoAdapter.OnCantidadChangeListener {
             .baseUrl("http://192.168.1.80:5000")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        val username = login.getUsernameFromSharedPreferences(this@Carrito)
+        username = login.getUsernameFromSharedPreferences(this@Carrito)
         val apiService = retrofit.create(ApiService::class.java)
 
         val call = apiService.obtenerCarito(username)
@@ -85,7 +89,34 @@ class Carrito : AppCompatActivity(), CarritoAdapter.OnCantidadChangeListener {
             startActivity(Intent(this@Carrito, Pedidos::class.java))
         }
         PagoBTN.setOnClickListener{
-            startActivity(Intent(this@Carrito,MapaConsumidor::class.java))
+            // URL fija que quieres abrir
+            val url1 = "http://192.168.1.80:5000/verProductos"
+            val url = "http://192.168.1.80:5000/realizar_pago"
+            val json = Gson().toJson(username)
+            val jsonString = json.toString()
+            Thread {
+                try {
+                    val url = URL(url)
+                    val connection = url.openConnection() as HttpURLConnection
+                    connection.requestMethod = "POST"
+                    connection.setRequestProperty("Content-Type", "application/json")
+                    connection.doOutput = true
+                    val os = connection.outputStream
+                    os.write(jsonString.toByteArray(Charset.forName("UTF-8")))
+                    os.close()
+                    val responseCode = connection.responseCode
+                    // Manejar la respuesta del servidor según sea necesario
+                    runOnUiThread {
+                        val intent = Intent(this@Carrito, WebViewActivity::class.java)
+                        intent.putExtra("url", url1)
+                        intent.putExtra("pagoExitosoUrl", "http://192.168.1.80:5000/pago_exitoso")  // URL a esperar para pago exitoso
+                        startActivity(intent)
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }.start()
+            //startActivity(Intent(this@Carrito,MapaConsumidor::class.java))
         }
 
     }

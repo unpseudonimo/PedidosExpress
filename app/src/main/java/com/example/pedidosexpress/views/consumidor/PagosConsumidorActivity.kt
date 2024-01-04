@@ -1,33 +1,50 @@
 package com.example.pedidosexpress.views.consumidor
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
 import com.example.pedidosexpress.R
+import com.google.gson.Gson
+import com.squareup.picasso.Picasso
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
 
-class   PagosConsumidorActivity : AppCompatActivity() {
+class PagosConsumidorActivity(private val productosCompra: List<PagosData>,private val userId: String) : RecyclerView.Adapter<PagosConsumidorActivity.ViewHolder>() {
 
-    private lateinit var btnRealizarPago: Button
-    private lateinit var tvMensajePago: TextView
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val imagenProducto: ImageView = itemView.findViewById(R.id.imagenProducto)
+        val nombreProducto: TextView = itemView.findViewById(R.id.nombreProducto)
+        val precioProducto: TextView = itemView.findViewById(R.id.precioProducto)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pagos_consumidor)
-
-        // Inicializar vistas
-        btnRealizarPago = findViewById(R.id.btnRealizarPago)
-        tvMensajePago = findViewById(R.id.tvMensajePago)
-
-        // Configurar el evento de clic del botón
-        btnRealizarPago.setOnClickListener {
-            realizarPago()
-        }
     }
 
-    private fun realizarPago() {
-        // Aquí puedes agregar lógica para realizar un pago
-        // Por ejemplo, cambiar el texto del TextView
-        tvMensajePago.text = "¡Pago realizado con éxito!"
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.activity_pagos_consumidor, parent, false)
+        return ViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val producto = productosCompra[position]
+        holder.nombreProducto.text = producto.nombreProducto
+        holder.precioProducto.text = "Precio: ${producto.precioProducto}"
+
+
+        // Construye la URL de la imagen utilizando el ID del producto
+        val imageUrl = "http://192.168.1.80:5000/obtener_imagen/${producto.idProducto}"
+
+        // Utiliza Picasso para cargar imágenes desde la URL
+        Picasso.get().load(imageUrl).into(holder.imagenProducto)
+    }
+    override fun getItemCount(): Int {
+        return productosCompra.size
     }
 }

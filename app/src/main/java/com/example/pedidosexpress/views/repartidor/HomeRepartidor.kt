@@ -2,13 +2,14 @@ package com.example.pedidosexpress.views.repartidor
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View  // Asegúrate de importar View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pedidosexpress.R
+import com.example.pedidosexpress.views.common.Pedido
 import com.example.pedidosexpress.views.consumidor.ApiService
 import com.example.pedidosexpress.views.consumidor.Producto
-import com.example.pedidosexpress.views.main.Pedido
 import com.example.pedidosexpress.views.main.login
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,7 +17,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class HomeRepartidor : AppCompatActivity() {
+class HomeRepartidor : AppCompatActivity(), OnDetallePedidoClickListener {
 
     private lateinit var bottomNavigationHandlerRepartidor: BottomNavigationHandlerRepartidor
     private lateinit var apiService: ApiService
@@ -48,6 +49,9 @@ class HomeRepartidor : AppCompatActivity() {
         // Obtener el nombre del repartidor desde SharedPreferences
         val nombreRepartidor = login.getUsernameFromSharedPreferences(this)
 
+        // Establecer el listener en el adaptador
+        pedidoAdapter.setOnDetallePedidoClickListener(this)
+
         // Obtener los pedidos del repartidor directamente usando el nombre
         obtenerPedidosRepartidor(nombreRepartidor)
     }
@@ -55,52 +59,60 @@ class HomeRepartidor : AppCompatActivity() {
     private fun obtenerPedidosRepartidor(nombreRepartidor: String) {
         val call = apiService.verPedidosRepartidor(nombreRepartidor)
 
-        call.enqueue(object : Callback<List<Map<String, Any>>> {
+        call.enqueue(object : Callback<List<Pedido>> {
             override fun onResponse(
-                call: Call<List<Map<String, Any>>>,
-                response: Response<List<Map<String, Any>>>
+                call: Call<List<Pedido>>,
+                response: Response<List<Pedido>>
             ) {
                 if (response.isSuccessful) {
-                    val pedidosMapList = response.body()
+                    val pedidosList = response.body()
 
-                    if (!pedidosMapList.isNullOrEmpty()) {
-                        // Mapear la lista de Map<String, Any> a una lista de objetos Pedido
-                        val pedidos = pedidosMapList.map { pedidoMap ->
-                            Pedido(
-                                pedidoMap["_id"]?.let { it as Map<String, Any> }?.get("\$oid")
-                                    ?.toString() ?: "",
-                                pedidoMap["nombre_cliente"]?.toString() ?: "",
-                                pedidoMap["nombre_repartidor"]?.toString() ?: "",
-                                (pedidoMap["productos"] as? List<Map<String, Any>>)?.map { productoMap ->
-                                    Producto(
-                                        (productoMap["id_producto"] as? Int) ?: 0,
-                                        productoMap["nombre_producto"]?.toString() ?: "",
-                                        (productoMap["precio_producto"] as? Double) ?: 0.0,
-                                        (productoMap["cantidad"] as? Int) ?: 0
-                                    )
-                                } ?: emptyList(),
-                                (pedidoMap["total"] as? Double) ?: 0.0,
-                                pedidoMap["estado"]?.toString() ?: ""
-                            )
+                    if (!pedidosList.isNullOrEmpty()) {
+                        // Imprimir registros antes de actualizar el adaptador
+                        for (pedido in pedidosList) {
+                            Log.d("HomeRepartidor", "Pedido ID: ${pedido._id as? String ?: "ID no disponible"}")
+                            Log.d("HomeRepartidor", "Nombre Cliente: ${pedido.nombre_cliente}")
+                            Log.d("HomeRepartidor", "Nombre Repartidor: ${pedido.nombre_repartidor}")
+                            Log.d("HomeRepartidor", "Productos: ${pedido.productos}")
+                            Log.d("HomeRepartidor", "Total: ${pedido.total}")
+                            Log.d("HomeRepartidor", "Estado: ${pedido.estado}")
                         }
 
-                        // Actualizar la interfaz de usuario con la lista de pedidos
-                        pedidoAdapter.actualizarPedidos(pedidos)
+                        pedidoAdapter.actualizarPedidos(pedidosList)
                         Log.d("HomeRepartidor", "Pedidos actualizados correctamente")
                     } else {
-                        // Manejar el caso en que no hay pedidos para mostrar
                         Log.d("HomeRepartidor", "No hay pedidos para mostrar")
                     }
                 } else {
-                    // Manejar errores de la respuesta HTTP
-                    Log.e("HomeRepartidor", "Error en la respuesta HTTP")
+                    Log.e("HomeRepartidor", "Error en la respuesta HTTP: ${response.code()}")
+                    // Puedes imprimir el mensaje de error si está disponible
+                    response.errorBody()?.let {
+                        try {
+                            Log.e("HomeRepartidor", it.string())
+                        } catch (e: Exception) {
+                            Log.e("HomeRepartidor", "Error al obtener el mensaje de error")
+                        }
+                    }
                 }
             }
 
-            override fun onFailure(call: Call<List<Map<String, Any>>>, t: Throwable) {
-                // Manejar errores de la solicitud HTTP
+            override fun onFailure(call: Call<List<Pedido>>, t: Throwable) {
+                Log.e("HomeRepartidor", "Error en la solicitud HTTP", t)
             }
         })
     }
 
+    private fun obtenerIdPedido(id: Any?): String {
+        return when (id) {
+            is String -> id
+            is Map<*, *> -> id["_id"]?.toString() ?: "ID no disponible"
+            else -> "ID no disponible"
+        }
+    }
+
+    // Implementación de la interfaz OnDetallePedidoClickListener
+    override fun onDetallePedidoClick(view: View) {
+        // Maneja el evento de clic del botón "Ver Detalle" aquí
+        // Puedes acceder al pedido asociado al clic utilizando el adaptador
+    }
 }

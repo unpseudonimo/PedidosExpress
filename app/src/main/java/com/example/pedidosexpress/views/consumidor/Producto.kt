@@ -8,7 +8,8 @@ data class Producto(
     @SerializedName("imagen_producto") val imagenProducto: String,
     @SerializedName("precio_producto") val precioProducto: Double,
     @SerializedName("Cantidad_producto") var cantidadEnCarrito: Int,
-    @SerializedName("Username") var nombreUsuario: String
+    @SerializedName("Username") var nombreUsuario: String,
+    var esRecomendacion: Boolean = false
 )
 
 

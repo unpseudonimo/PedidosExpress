@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import okhttp3.Request
@@ -127,14 +128,14 @@ class CarritoAdapter(private val CarritoAdap: MutableList<CarritoData>, private 
         return withContext(Dispatchers.IO) {
             val request = Request.Builder()
                 .url(url)
-                .post(RequestBody.create(MediaType.parse("application/json"), json))
+                .post(RequestBody.create("application/json".toMediaTypeOrNull(), json))
                 .build()
 
             val response = OkHttpClient().newCall(request).execute()
 
             // Manejar respuesta exitosa
             if (response.isSuccessful) {
-                val responseBody = response.body()?.string()
+                val responseBody = response.body?.string()
                 // Manejar el cuerpo de la respuesta (si es necesario)
                 println("Respuesta exitosa: $responseBody")
                 // Intentar analizar el JSON y extraer el mensaje
@@ -146,7 +147,7 @@ class CarritoAdapter(private val CarritoAdap: MutableList<CarritoData>, private 
                 }
             } else {
                 // Manejar error en la solicitud
-                val errorBody = response.body()?.string()
+                val errorBody = response.body?.string()
                 println("Error en la solicitud: $errorBody")
                 return@withContext "Error en la solicitud al servidor"
             }

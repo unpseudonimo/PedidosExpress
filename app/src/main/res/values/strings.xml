@@ -49,5 +49,9 @@
     <string name="label_nombre_producto">Nombre del Producto</string>
     <string name="label_precio">Precio</string>
     <string name="label_estado">Estado</string>
+    <string name="label_nombre_cliente">Nombre del consumidor</string>
+    <string name="label_nombre_repartidor">Nombre del repartidor</string>
+    <string name="label_total">Total</string>
+    <string name="label_productos">Productos</string>
 
 </resources>

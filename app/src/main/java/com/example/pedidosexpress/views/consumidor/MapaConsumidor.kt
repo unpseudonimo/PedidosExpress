@@ -30,7 +30,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.nio.charset.Charset
 
-class MapaConsumidor : AppCompatActivity(), CarritoAdapter.OnCantidadChangeListener,
+class MapaConsumidor : AppCompatActivity(),
     OnMapReadyCallback {
     private lateinit var recyclerView: RecyclerView
     private lateinit var TotalTextView: TextView
@@ -41,7 +41,8 @@ class MapaConsumidor : AppCompatActivity(), CarritoAdapter.OnCantidadChangeListe
         setContentView(R.layout.activity_mapa_consumidor)
 //logica del mapa
         // Inicializar el fragmento de mapa
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
+        val mapFragment =
+            supportFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
 //listar los productos comprados y repartidor
@@ -52,28 +53,22 @@ class MapaConsumidor : AppCompatActivity(), CarritoAdapter.OnCantidadChangeListe
         TotalTextView = findViewById(R.id.Total)
         // Obtener el username y asignarlo a la propiedad de la clase
         username = login.getUsernameFromSharedPreferences(this@MapaConsumidor)
-
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.193:5000")
+            .baseUrl("http://192.168.1.80:5000")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+
         val apiService = retrofit.create(ApiService::class.java)
 
-        val call = apiService.obtenerCarito(username)
+        val call = apiService.procesarCompra(username)
 
-        call.enqueue(object : Callback<List<CarritoData>> {
-            override fun onResponse(call: Call<List<CarritoData>>, response: Response<List<CarritoData>>) {
+        call.enqueue(object : Callback<List<PagosData>> {
+            override fun onResponse(call: Call<List<PagosData>>, response: Response<List<PagosData>>) {
                 if (response.isSuccessful) {
-                    val productoscarrito = response.body()
-                    Log.d("Carrito", "Cantidad de productos recibidos: ${productoscarrito?.size}")
-                    if (productoscarrito != null) {
-                        // Calcular la suma de cantidad * precio
-                        val total = productoscarrito.sumByDouble { it.cantidadEnCarrito * it.precioProducto }
-                        val totalFormateado = BigDecimal(total).setScale(2, RoundingMode.HALF_EVEN).toString()
-                        TotalTextView.text = totalFormateado
-
-                        // Configurar el adaptador con la interfaz de cambio de cantidad
-                        val adapter = CarritoAdapter(productoscarrito.toMutableList(), this@MapaConsumidor)
+                    val pagosDataList  = response.body()
+                    if (pagosDataList  != null) {
+                        val userId = login.getUsernameFromSharedPreferences(applicationContext) // Asegúrate de tener acceso al contexto aquí
+                        val adapter = PagosConsumidorActivity(pagosDataList, userId)
                         recyclerView.adapter = adapter
                     }
                 } else {
@@ -81,54 +76,41 @@ class MapaConsumidor : AppCompatActivity(), CarritoAdapter.OnCantidadChangeListe
                 }
             }
 
-            override fun onFailure(call: Call<List<CarritoData>>, t: Throwable) {
+            override fun onFailure(call: Call<List<PagosData>>, t: Throwable) {
                 Log.e("MainActivity", "Error: ${t.message}")
             }
         })
+
     }
-    override fun onCantidadChanged(producto: CarritoData) {
-        // Aquí actualizas el total basándote en la nueva cantidad
-        updateTotal()
-    }
+    //funciones del mapa de googel
+    override fun onMapReady(googleMap: GoogleMap) {
+        map = googleMap
 
-    private fun updateTotal() {
-        val adapter = recyclerView.adapter as CarritoAdapter
-        val productos = adapter.getProductos()
+        // Habilitar la capa de mi ubicación en el mapa
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            map.isMyLocationEnabled = true
 
-        // Calcular la suma de cantidad * precio
-        val total = productos.sumByDouble { it.cantidadEnCarrito * it.precioProducto }
-        val totalFormateado = BigDecimal(total).setScale(2, RoundingMode.HALF_EVEN).toString()
-        TotalTextView.text = totalFormateado
-    }
-//funciones del mapa de googel
-override fun onMapReady(googleMap: GoogleMap) {
-    map = googleMap
-
-    // Habilitar la capa de mi ubicación en el mapa
-    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-        map.isMyLocationEnabled = true
-
-        // Obtener la última ubicación conocida del usuario
-        val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener { location: Location? ->
-                // Mover la cámara a la ubicación actual del usuario
-                location?.let {
-                    val latLng = LatLng(it.latitude, it.longitude)
-                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
-                    // Enviar datos al servidor Flask
-                    enviarDatosAlServidor(username, it)
+            // Obtener la última ubicación conocida del usuario
+            val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location: Location? ->
+                    // Mover la cámara a la ubicación actual del usuario
+                    location?.let {
+                        val latLng = LatLng(it.latitude, it.longitude)
+                        map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
+                        // Enviar datos al servidor Flask
+                        enviarDatosAlServidor(username, it)
+                    }
                 }
-            }
-    } else {
-        // Solicitar permisos de ubicación si no están otorgados
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-            REQUEST_LOCATION_PERMISSION
-        )
+        } else {
+            // Solicitar permisos de ubicación si no están otorgados
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                REQUEST_LOCATION_PERMISSION
+            )
+        }
     }
-}
     companion object {
         private const val REQUEST_LOCATION_PERMISSION = 1
     }

@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pedidosexpress.R
 import com.example.pedidosexpress.views.main.login
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
@@ -20,23 +21,48 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import okhttp3.Request
 
 
-class ProductoAdapter(private val productos: List<Producto>,private val userId: String) : RecyclerView.Adapter<ProductoAdapter.ViewHolder>() {
+class ProductoAdapter(private var productos: List<Producto>, private val userId: String) : RecyclerView.Adapter<ProductoAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imagenProducto: ImageView = itemView.findViewById(R.id.imagenProducto)
         val nombreProducto: TextView = itemView.findViewById(R.id.nombreProducto)
         val descripcionProducto: TextView = itemView.findViewById(R.id.descripcionProducto)
         val precioProducto: TextView = itemView.findViewById(R.id.precioProducto)
-        val btnCraito: Button= itemView.findViewById(R.id.btnAgregarCarrito)
+        val btnCraito: FloatingActionButton = itemView.findViewById(R.id.btnAgregarCarrito)
         val mostrarCantidad: TextView = itemView.findViewById(R.id.tvCantidad)
-        val CantidadMenos: TextView = itemView.findViewById(R.id.btnMenos)
-        val CantidadMas: TextView = itemView.findViewById(R.id.btnMas)
+        val CantidadMenos: FloatingActionButton = itemView.findViewById(R.id.btnMenos)
+        val CantidadMas: FloatingActionButton = itemView.findViewById(R.id.btnMas)
+        val btnFavorito: FloatingActionButton = itemView.findViewById(R.id.btnAgregarFavoritos)
 
+    }
+    private suspend fun enviarProductoFavorito(producto: Producto) {
+        val url = "http://192.168.1.80:5000/agregarFavorito"
+        val json = Gson().toJson(producto)
+
+        try {
+            withContext(Dispatchers.IO) {
+                val response = OkHttpClient().newCall(
+                    Request.Builder()
+                        .url(url)
+                        .post(RequestBody.create("application/json".toMediaTypeOrNull(), json))
+                        .build()
+                ).execute()
+
+                if (!response.isSuccessful) {
+                    // Manejar error en la solicitud
+                    throw Exception("Error en la solicitud: ${response.code}")
+                }
+            }
+        } catch (e: Exception) {
+            // Manejar excepción
+            Log.e("ProductoAdapter", "Error al enviar producto favorito", e)
+        }
     }
     private suspend fun enviarProductoAlServidor(producto: Producto) {
         val url = "http://192.168.1.80:5000/carrito"
@@ -47,7 +73,7 @@ class ProductoAdapter(private val productos: List<Producto>,private val userId: 
                 val response = OkHttpClient().newCall(
                     Request.Builder()
                         .url(url)
-                        .post(RequestBody.create(MediaType.parse("application/json"), json))
+                        .post(RequestBody.create("application/json".toMediaTypeOrNull(), json))
                         .build()
                 ).execute()
 
@@ -59,7 +85,22 @@ class ProductoAdapter(private val productos: List<Producto>,private val userId: 
             // Manejar excepción
         }
     }
+    fun actualizarProductos(nuevosProductos: List<Producto>) {
+        // Actualiza la lista de productos y notifica al adaptador sobre el cambio
+        productos = nuevosProductos
+        notifyDataSetChanged()
+    }
 
+    fun limpiarRecomendaciones() {
+        productos = productos.filter { !it.esRecomendacion }
+        notifyDataSetChanged()
+    }
+
+    // Método para agregar nuevas recomendaciones
+    fun agregarRecomendaciones(recomendaciones: List<Producto>) {
+        productos = productos + recomendaciones.map { it.copy(esRecomendacion = true) }
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_producto, parent, false)

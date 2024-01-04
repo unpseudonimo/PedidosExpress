@@ -41,6 +41,7 @@
             android:layout_height="match_parent" />
     </ScrollView>
 
+
     <LinearLayout
         android:id="@+id/Pagos"
         android:layout_width="match_parent"
@@ -73,6 +74,15 @@
             app:backgroundTint="@color/red"
             android:text="Pagar"
             android:layout_marginLeft="10dp"/>
+        <TextView
+            android:id="@+id/tvMensajePago"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            app:layout_constraintTop_toBottomOf="@+id/btnRealizarPago"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"/>
 
     </LinearLayout>
 

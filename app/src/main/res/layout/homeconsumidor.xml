@@ -17,22 +17,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!-- Barra de búsqueda -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilSearchProduct"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            app:hintEnabled="false">
 
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/ibtnMenuDrawer"
-                style="?attr/materialIconButtonFilledTonalStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:contentDescription="@string/title"
-                android:src="@drawable/menu" />
-
-            <com.google.android.material.search.SearchBar
-                android:id="@+id/search_bar"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSearchProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/searchbar_hint" />
+                android:hint="@string/searchbar_hint"
+                android:layout_marginTop="4dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <!-- Botón de búsqueda -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnSearch"
+            style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+            app:backgroundTint="@color/colorOrangeStrong"
+            android:src="@drawable/baseline_search_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:contentDescription="TODO"
+            android:layout_marginTop="1dp"/>
+        <!-- Botón para mostrar productos sugeridos -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnMostrar"
+            style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+            app:backgroundTint="@color/colorOrangeStrong"
+            android:src="@drawable/baseline_star_outline_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:contentDescription="TODO"
+            android:layout_marginTop="1dp"/>
     </LinearLayout>
 
     <ScrollView
@@ -48,21 +71,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
+            <!-- RecyclerView para los productos buscados -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </LinearLayout>
     </ScrollView>
-
-
+    <!-- Barra de navegación inferior -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"
