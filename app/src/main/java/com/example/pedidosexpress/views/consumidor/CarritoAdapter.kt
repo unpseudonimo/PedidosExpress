@@ -58,7 +58,7 @@ class CarritoAdapter(private val CarritoAdap: MutableList<CarritoData>, private 
 
 
         // Construye la URL de la imagen utilizando el ID del producto
-        val imageUrl = "http://192.168.1.80:5000/obtener_imagen/${producto.idProducto}"
+        val imageUrl = "http://192.168.1.70:5000/obtener_imagen/${producto.idProducto}"
 
         // Utiliza Picasso para cargar imágenes desde la URL
         Picasso.get().load(imageUrl).into(holder.imagenProducto)
@@ -123,7 +123,7 @@ class CarritoAdapter(private val CarritoAdap: MutableList<CarritoData>, private 
     }
     //cambiar cantidad del carrito servidor
     private suspend fun enviarProductoAlServidor(cantidad: Int,estado: String,idProducto: Int): String {
-        val url = "http://192.168.1.80:5000/carritoCantidad"
+        val url = "http://192.168.1.70:5000/carritoCantidad"
         val json = Gson().toJson(mapOf("cantidad" to cantidad,"estado" to estado,"idProducto" to idProducto))
         return withContext(Dispatchers.IO) {
             val request = Request.Builder()

@@ -54,7 +54,7 @@ class MapaConsumidor : AppCompatActivity(),
         // Obtener el username y asignarlo a la propiedad de la clase
         username = login.getUsernameFromSharedPreferences(this@MapaConsumidor)
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.80:5000")
+            .baseUrl("http://192.168.1.70:5000")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -117,7 +117,7 @@ class MapaConsumidor : AppCompatActivity(),
     // Obtener la ubicación y enviar datos al servidor
     fun enviarDatosAlServidor(nombre: String, ubicacion: Location) {
 
-        val url = "http://192.168.1.80:5000/UbicacionEntrega"
+        val url = "http://192.168.1.70:5000/UbicacionEntrega"
 
         val jsonObject = JSONObject()
         jsonObject.put("nombre", nombre)

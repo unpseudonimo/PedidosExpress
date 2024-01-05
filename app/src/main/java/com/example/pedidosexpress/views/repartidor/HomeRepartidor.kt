@@ -1,15 +1,15 @@
 package com.example.pedidosexpress.views.repartidor
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View  // Asegúrate de importar View
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pedidosexpress.R
 import com.example.pedidosexpress.views.common.Pedido
 import com.example.pedidosexpress.views.consumidor.ApiService
-import com.example.pedidosexpress.views.consumidor.Producto
 import com.example.pedidosexpress.views.main.login
 import retrofit2.Call
 import retrofit2.Callback
@@ -34,7 +34,7 @@ class HomeRepartidor : AppCompatActivity(), OnDetallePedidoClickListener {
 
         // Inicializar el servicio Retrofit
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.80:5000")
+            .baseUrl("http://192.168.1.70:5000")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -112,7 +112,32 @@ class HomeRepartidor : AppCompatActivity(), OnDetallePedidoClickListener {
 
     // Implementación de la interfaz OnDetallePedidoClickListener
     override fun onDetallePedidoClick(view: View) {
-        // Maneja el evento de clic del botón "Ver Detalle" aquí
-        // Puedes acceder al pedido asociado al clic utilizando el adaptador
+        // Obtener la posición del elemento en el RecyclerView
+        val viewHolder = recyclerViewPedidos.findContainingViewHolder(view)
+
+        // Verificar que el ViewHolder no sea nulo y sea una instancia de PedidoAdapter.PedidoViewHolder
+        if (viewHolder != null && viewHolder is PedidoAdapter.PedidoViewHolder) {
+            // Obtener la posición del ViewHolder en el adaptador
+            val position = viewHolder.adapterPosition
+
+            // Verificar que la posición sea válida
+            if (position != RecyclerView.NO_POSITION) {
+                // Obtener el pedido correspondiente a esa posición del adaptador
+                val pedido = pedidoAdapter.listaPedidos[position]
+
+                // Imprimir información del pedido (puedes eliminar esto en la versión final)
+                Log.d("HomeRepartidor", "Pedido ID: ${obtenerIdPedido(pedido._id)}")
+                Log.d("HomeRepartidor", "Nombre Cliente: ${pedido.nombre_cliente}")
+                Log.d("HomeRepartidor", "Nombre Repartidor: ${pedido.nombre_repartidor}")
+                Log.d("HomeRepartidor", "Productos: ${pedido.productos}")
+                Log.d("HomeRepartidor", "Total: ${pedido.total}")
+                Log.d("HomeRepartidor", "Estado: ${pedido.estado}")
+
+                // Aquí puedes abrir la actividad DetallePedido y pasar el ID del pedido
+                val intent = Intent(this, DetallePedido::class.java)
+                intent.putExtra("pedido_id", obtenerIdPedido(pedido._id))
+                startActivity(intent)
+            }
+        }
     }
 }

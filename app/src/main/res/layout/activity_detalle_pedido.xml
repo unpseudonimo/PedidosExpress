@@ -1,33 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.repartidor.DetallePedido">
 
-  <!-- Agrega tus elementos visuales y lógica aquí para mostrar los detalles del pedido -->
-
+  <!-- App bar con FloatingActionButton para retroceder -->
   <com.google.android.material.appbar.AppBarLayout
       android:id="@+id/toolbar"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintBottom_toTopOf="@id/scrollView">
+      app:layout_constraintTop_toTopOf="parent">
 
-    <!-- FloatingActionButton para retroceder -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnback"
         style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:src="@drawable/back"
         app:backgroundTint="@color/colorOrangeStrong" />
 
   </com.google.android.material.appbar.AppBarLayout>
 
-
+  <!-- ScrollView que contiene el contenido principal -->
   <ScrollView
       android:id="@+id/scrollView"
       android:layout_width="match_parent"
@@ -41,22 +39,78 @@
         android:id="@+id/ContainerContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:padding="20dp"
+        android:orientation="vertical">
 
-      <TextView
-          android:id="@+id/tvDetallePedido"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Detalles del Pedido"
-          android:layout_gravity="center"
-          android:textSize="18sp"
-          android:textStyle="bold"
-          android:layout_marginTop="16dp"/>
+        <!-- Nombre del cliente -->
+        <TextView
+            android:id="@+id/textViewCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre del Cliente"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
 
+        <!-- Dirección de entrega -->
+        <TextView
+            android:id="@+id/textViewDireccionEntrega"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dirección de Entrega"
+            android:textSize="16sp"
+            android:layout_below="@+id/textViewCliente"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Resumen de costo -->
+        <TextView
+            android:id="@+id/textViewResumenCosto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Resumen de Costo"
+            android:textSize="16sp"
+            android:layout_below="@+id/textViewDireccionEntrega"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Spinner para controlar el estado del pedido -->
+        <Spinner
+            android:id="@+id/spinnerEstadoPedido"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/textViewResumenCosto"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"/>
+
+        <!-- ToggleButton para confirmar recogida/entrega -->
+        <ToggleButton
+            android:id="@+id/toggleButtonConfirmacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOn="Recogido"
+            android:textOff="No Recogido"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerEstadoPedido"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Vista detallada de productos (usando RecyclerView) -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewProductos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toggleButtonConfirmacion"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Vista de mapa (usando Google Maps API) -->
+        <fragment
+            android:id="@+id/mapFragment"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/recyclerViewProductos"/>
     </LinearLayout>
-
   </ScrollView>
-  <!-- Puedes agregar más TextViews, ImageViews, etc., según tus necesidades -->
-
 </androidx.constraintlayout.widget.ConstraintLayout>

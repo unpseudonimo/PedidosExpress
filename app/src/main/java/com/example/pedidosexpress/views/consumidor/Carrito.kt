@@ -48,7 +48,7 @@ class Carrito : AppCompatActivity(), CarritoAdapter.OnCantidadChangeListener {
 
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.80:5000")
+            .baseUrl("http://192.168.1.70:5000")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         username = login.getUsernameFromSharedPreferences(this@Carrito)
@@ -90,8 +90,8 @@ class Carrito : AppCompatActivity(), CarritoAdapter.OnCantidadChangeListener {
         }
         PagoBTN.setOnClickListener{
             // URL fija que quieres abrir
-            val url1 = "http://192.168.1.80:5000/verProductos"
-            val url = "http://192.168.1.80:5000/realizar_pago"
+            val url1 = "http://192.168.1.70:5000/verProductos"
+            val url = "http://192.168.1.70:5000/realizar_pago"
             val json = Gson().toJson(username)
             val jsonString = json.toString()
             Thread {
@@ -109,7 +109,7 @@ class Carrito : AppCompatActivity(), CarritoAdapter.OnCantidadChangeListener {
                     runOnUiThread {
                         val intent = Intent(this@Carrito, WebViewActivity::class.java)
                         intent.putExtra("url", url1)
-                        intent.putExtra("pagoExitosoUrl", "http://192.168.1.80:5000/pago_exitoso")  // URL a esperar para pago exitoso
+                        intent.putExtra("pagoExitosoUrl", "http://192.168.1.70:5000/pago_exitoso")  // URL a esperar para pago exitoso
                         startActivity(intent)
                     }
                 } catch (e: Exception) {

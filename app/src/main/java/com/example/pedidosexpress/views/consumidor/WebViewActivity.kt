@@ -24,7 +24,7 @@ class WebViewActivity : AppCompatActivity() {
                 Log.d("WebViewActivity", "onPageFinished: $url")
 
                 // Verificar si la URL base coincide con la de pago exitoso
-                if (url != null && url.startsWith("http://192.168.1.80:5000/pago_exitoso")) {
+                if (url != null && url.startsWith("http://192.168.1.70:5000/pago_exitoso")) {
                     // Realizar acciones después de un pago exitoso
                     // Por ejemplo, cambiar a otra actividad
                     val intent = Intent(this@WebViewActivity, MapaConsumidor::class.java)

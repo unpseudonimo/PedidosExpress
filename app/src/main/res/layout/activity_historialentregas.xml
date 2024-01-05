@@ -7,29 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".views.repartidor.HistorialEntregas">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/scrollView">
-
-        <!-- FloatingActionButton para retroceder -->
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnback"
-            style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:src="@drawable/back"
-            app:backgroundTint="@color/colorOrangeStrong" />
-    </com.google.android.material.appbar.AppBarLayout>
-
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -54,7 +36,7 @@
 
             <!-- CardView para mostrar los productos -->
             <!-- Repite este CardView para cada compra -->
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardCompra2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -103,7 +85,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"/>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
     </ScrollView>
 

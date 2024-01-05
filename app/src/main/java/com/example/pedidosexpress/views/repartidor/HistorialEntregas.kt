@@ -14,7 +14,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class HistorialEntregas : AppCompatActivity() {
-
+    private lateinit var bottomNavigationHandlerRepartidor: BottomNavigationHandlerRepartidor
     private lateinit var recyclerViewProductos: RecyclerView
     private lateinit var pedidoAdapter: PedidoAdapter
 
@@ -22,6 +22,7 @@ class HistorialEntregas : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_historialentregas)
 
+        bottomNavigationHandlerRepartidor = BottomNavigationHandlerRepartidor(this)
         recyclerViewProductos = findViewById(R.id.recyclerViewProductos)
 
         // Configurar el RecyclerView y el adaptador
@@ -35,7 +36,7 @@ class HistorialEntregas : AppCompatActivity() {
 
     private fun obtenerHistorialDesdeServidor() {
         val retrofit = Retrofit.Builder()
-            .baseUrl("URL_DE_TU_SERVIDOR_FLASK") // Reemplazar con la URL correcta
+            .baseUrl("http://192.168.1.70:5000") // Reemplazar con la URL correcta
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -48,14 +49,19 @@ class HistorialEntregas : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val historial = response.body()
                     // Actualizar el adaptador con la nueva lista de pedidos
-                    pedidoAdapter.actualizarPedidos(historial.orEmpty())
+                    historial?.let {
+                        pedidoAdapter.actualizarPedidos(it)
+                    }
                 } else {
                     // Manejar errores de la respuesta HTTP
+                    // Por ejemplo, puedes imprimir el código de error:
+                    println("Error en la respuesta HTTP: ${response.code()}")
                 }
             }
 
             override fun onFailure(call: Call<List<Pedido>>, t: Throwable) {
                 // Manejar errores de la solicitud HTTP
+                t.printStackTrace()
             }
         })
     }

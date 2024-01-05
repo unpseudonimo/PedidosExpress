@@ -92,7 +92,7 @@ class login : Fragment() {
         }
     }
     private fun loginToServer(username: String, password: String) {
-        val url = "http://192.168.1.80:5000//login" // Ajusta la URL según tu servidor
+        val url = "http://192.168.1.70:5000//login" // Ajusta la URL según tu servidor
 
         // Crear una solicitud de cadena (StringRequest) utilizando Volley
         val request: StringRequest = object : StringRequest(

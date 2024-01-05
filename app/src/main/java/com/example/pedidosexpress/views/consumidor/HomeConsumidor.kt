@@ -70,7 +70,7 @@ class HomeConsumidor : AppCompatActivity() {
     }
     private fun cargarTodosLosProductos() {
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.80:5000")
+            .baseUrl("http://192.168.1.70:5000")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -101,7 +101,7 @@ class HomeConsumidor : AppCompatActivity() {
     }
     private fun buscarProducto(nombreProducto: String) {
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.80:5000")
+            .baseUrl("http://192.168.1.70:5000")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -135,7 +135,7 @@ class HomeConsumidor : AppCompatActivity() {
 
     private fun obtenerRecomendaciones(selectedProducto: String) {
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.80:5000")
+            .baseUrl("http://192.168.1.70:5000")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

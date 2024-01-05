@@ -1,5 +1,6 @@
 package com.example.pedidosexpress.views.repartidor
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +15,7 @@ interface OnDetallePedidoClickListener {
     fun onDetallePedidoClick(view: View)
 }
 
-class PedidoAdapter(private val listaPedidos: MutableList<Pedido>) :
+class PedidoAdapter(val listaPedidos: MutableList<Pedido>) :
     RecyclerView.Adapter<PedidoAdapter.PedidoViewHolder>() {
 
     private var onDetallePedidoClickListener: OnDetallePedidoClickListener? = null
@@ -65,6 +66,18 @@ class PedidoAdapter(private val listaPedidos: MutableList<Pedido>) :
             // Configurar el clic del botón para mostrar el detalle del pedido
             holder.btnVerDetalle.setOnClickListener {
                 onDetallePedidoClickListener?.onDetallePedidoClick(it)
+
+                // Obtener el contexto del botón (que debe ser un contexto de actividad)
+                val context = holder.itemView.context
+
+                // Crear un Intent para iniciar la actividad DetallePedido
+                val intent = Intent(context, DetallePedido::class.java)
+
+                // Pasar el ID del pedido a la actividad DetallePedido
+                intent.putExtra("pedido_id", pedido._id.toString())
+
+                // Iniciar la actividad DetallePedido
+                context.startActivity(intent)
             }
         }
     }
