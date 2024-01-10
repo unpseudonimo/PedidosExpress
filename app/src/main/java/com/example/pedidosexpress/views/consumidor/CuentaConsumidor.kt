@@ -14,9 +14,6 @@ class CuentaConsumidor : AppCompatActivity() {
 
     private lateinit var bottomNavigationHandler: BottomNavigationHandlerConsumidor
 
-    private val PREFS_USER_ID_KEY = "user_id"
-    private val PREFS_USER_ROLE_KEY = "user_rol"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.cuenta_consumidor)
@@ -26,6 +23,7 @@ class CuentaConsumidor : AppCompatActivity() {
         val btnfav = findViewById<Button>(R.id.btnFavoritos)
         val txtcerrarsesion = findViewById<TextView>(R.id.logout)
         val btnhistpedidos = findViewById<Button>(R.id.btnHistorial)
+        val btnpagos =findViewById<TextView>(R.id.pagos)
 
         btnfav.setOnClickListener {
             startActivity(Intent(this, FavoritosConsumidorActivity::class.java))
@@ -38,16 +36,14 @@ class CuentaConsumidor : AppCompatActivity() {
         btnhistpedidos.setOnClickListener {
             startActivity(Intent(this, Pedidos::class.java))
         }
+        btnpagos.setOnClickListener {
+
+            startActivity(Intent(this, MapaConsumidor::class.java) )
+        }
     }
 
     private fun clearSharedPreferences() {
         // Obtener el objeto SharedPreferences
         val sharedPreferences = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
-
-        // Editar SharedPreferences para eliminar los valores almacenados
-        val editor = sharedPreferences.edit()
-        editor.remove(PREFS_USER_ID_KEY)
-        editor.remove(PREFS_USER_ROLE_KEY)
-        editor.apply()
     }
 }

@@ -16,6 +16,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.pedidosexpress.R
+import com.example.pedidosexpress.views.consumidor.AppConfig
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -50,7 +51,7 @@ class RegistrarCuenta : AppCompatActivity() {
         val btnback = findViewById<ImageView>(R.id.btnback)
         registerButton?.setOnClickListener(View.OnClickListener {
 
-            val url = "http://192.168.1.70:5000//registrar"
+            val url = AppConfig.buildApiUrl("registrar")
             val request: JsonObjectRequest = object : JsonObjectRequest(
                 Method.POST, url, null,
                 Response.Listener { response ->
@@ -63,7 +64,7 @@ class RegistrarCuenta : AppCompatActivity() {
 
                             // Agregar un retraso de 2 segundos (2000 milisegundos) antes de cambiar de actividad
                             Handler().postDelayed({ // Código que se ejecutará después del retraso
-                                val intent = Intent(this@RegistrarCuenta, login::class.java)
+                                val intent = Intent(this@RegistrarCuenta, Login::class.java)
                                 startActivity(intent)
 
                                 // Asegúrate de cerrar la actividad actual si no quieres que el usuario pueda regresar a ella con el botón "Atrás"

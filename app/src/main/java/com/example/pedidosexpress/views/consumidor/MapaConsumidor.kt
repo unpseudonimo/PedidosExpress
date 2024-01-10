@@ -11,7 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.Manifest
 import com.example.pedidosexpress.R
-import com.example.pedidosexpress.views.main.login
+import com.example.pedidosexpress.model.PagosData
+import com.example.pedidosexpress.views.main.Login
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
@@ -34,6 +35,10 @@ class MapaConsumidor : AppCompatActivity(),
     OnMapReadyCallback {
     private lateinit var recyclerView: RecyclerView
     private lateinit var TotalTextView: TextView
+    private lateinit var EstadoPedido: TextView
+    private lateinit var EstadoRepatidor: TextView
+    private lateinit var direccion: TextView
+    private lateinit var telefono: TextView
     private lateinit var map: GoogleMap
     private lateinit var username: String
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,16 +50,22 @@ class MapaConsumidor : AppCompatActivity(),
             supportFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-//listar los productos comprados y repartidor
-        //lista de productos:
+// Lista de productos comprados y repartidor
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
+
         // Referencia al TextView del total
         TotalTextView = findViewById(R.id.Total)
+        EstadoPedido=findViewById(R.id.EstadoPedido)
+        EstadoRepatidor=findViewById(R.id.EstadoRepartidor)
+        direccion=findViewById(R.id.Direccion)
+        telefono=findViewById(R.id.Telefono)
+
         // Obtener el username y asignarlo a la propiedad de la clase
-        username = login.getUsernameFromSharedPreferences(this@MapaConsumidor)
+        username = Login.getUsernameFromSharedPreferences(this@MapaConsumidor)
+
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.70:5000")
+            .baseUrl(AppConfig.buildApiUrl(""))
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -65,10 +76,35 @@ class MapaConsumidor : AppCompatActivity(),
         call.enqueue(object : Callback<List<PagosData>> {
             override fun onResponse(call: Call<List<PagosData>>, response: Response<List<PagosData>>) {
                 if (response.isSuccessful) {
-                    val pagosDataList  = response.body()
-                    if (pagosDataList  != null) {
-                        val userId = login.getUsernameFromSharedPreferences(applicationContext) // Asegúrate de tener acceso al contexto aquí
-                        val adapter = PagosConsumidorActivity(pagosDataList, userId)
+                    val pagosDataList = response.body()
+                    if (pagosDataList != null) {
+                        Log.d("MainActivity", "Response: $pagosDataList")
+
+                        // Calcular y mostrar el total de la compra
+                        var totalCompra = 0.0
+                        for (pagosData in pagosDataList) {
+                            totalCompra += pagosData.totalCompra
+                        }
+                        TotalTextView.text ="$totalCompra"
+                        // Mostrar datos adicionales
+                        val primerPagosData = pagosDataList.firstOrNull()
+                        if (primerPagosData != null) {
+                            // Mostrar estado del pedido
+                            EstadoPedido.text = "Estado del pedido: ${primerPagosData.estadoPedido ?: ""}"
+
+                            // Mostrar estado del repartidor
+                            EstadoRepatidor.text = "Estado del repartidor: ${primerPagosData.estadoRepartidor ?: ""}"
+
+                            // Mostrar dirección
+                            direccion.text = "Dirección: ${primerPagosData.direccion ?: ""}"
+
+                            // Mostrar teléfono
+                            telefono.text = "Teléfono: ${primerPagosData.telefono ?: ""}"
+                        }
+                        // Obtener la lista de ProductoPagado
+                        val productoPagadoList = pagosDataList.flatMap { it.productoPagado.orEmpty() }
+                        // Configurar el adaptador con la nueva estructura de datos
+                        val adapter = PagosConsumidorActivity(productoPagadoList, username)
                         recyclerView.adapter = adapter
                     }
                 } else {
@@ -80,7 +116,6 @@ class MapaConsumidor : AppCompatActivity(),
                 Log.e("MainActivity", "Error: ${t.message}")
             }
         })
-
     }
     //funciones del mapa de googel
     override fun onMapReady(googleMap: GoogleMap) {
@@ -117,7 +152,7 @@ class MapaConsumidor : AppCompatActivity(),
     // Obtener la ubicación y enviar datos al servidor
     fun enviarDatosAlServidor(nombre: String, ubicacion: Location) {
 
-        val url = "http://192.168.1.70:5000/UbicacionEntrega"
+        val url = AppConfig.buildApiUrl("UbicacionEntrega")
 
         val jsonObject = JSONObject()
         jsonObject.put("nombre", nombre)

@@ -18,12 +18,13 @@ import org.json.JSONException
 import org.json.JSONObject
 import android.util.Log;
 import com.android.volley.toolbox.Volley
+import com.example.pedidosexpress.views.consumidor.AppConfig
 import com.example.pedidosexpress.views.consumidor.HomeConsumidor
 import com.example.pedidosexpress.views.repartidor.HomeRepartidor
 import com.google.android.material.button.MaterialButton
 
 
-class login : Fragment() {
+class Login : Fragment() {
     private lateinit var usernameEditText: TextInputEditText
     private lateinit var passwordEditText: TextInputEditText
     private lateinit var btnLogin: MaterialButton
@@ -92,8 +93,7 @@ class login : Fragment() {
         }
     }
     private fun loginToServer(username: String, password: String) {
-        val url = "http://192.168.1.70:5000//login" // Ajusta la URL según tu servidor
-
+        val url = AppConfig.buildApiUrl("login") // Ajusta la URL según tu servidor
         // Crear una solicitud de cadena (StringRequest) utilizando Volley
         val request: StringRequest = object : StringRequest(
             Method.POST, url,

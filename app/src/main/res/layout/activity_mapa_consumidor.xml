@@ -29,26 +29,65 @@
     <LinearLayout
         android:id="@+id/Pagos"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/bottom_navigation"
         android:layout_below="@id/ProductosCarrito"
         android:layout_marginLeft="2dp"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <TextView
+        <!-- Total Pagado -->
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/Total"
-            android:textSize="20sp"
-            android:text="total pagado: $" />
+            android:orientation="horizontal">
 
+            <TextView
+                android:id="@+id/TotalPagadoLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="Total pagado: " />
+
+            <TextView
+                android:id="@+id/Total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="0"
+                android:textColor="#FBD900" />
+        </LinearLayout>
+
+        <!-- Estado del Pedido -->
         <TextView
-            android:id="@+id/Total"
+            android:id="@+id/EstadoPedido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
-            android:textColor="#FBD900"
-            android:textSize="20sp"/>
+            android:textSize="16sp"
+            android:text="Estado del pedido: " />
+
+        <!-- Estado del Repartidor -->
+        <TextView
+            android:id="@+id/EstadoRepartidor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Estado del repartidor: " />
+
+        <!-- Dirección -->
+        <TextView
+            android:id="@+id/Direccion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Dirección: " />
+
+        <!-- Teléfono -->
+        <TextView
+            android:id="@+id/Telefono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Teléfono: " />
 
     </LinearLayout>
 

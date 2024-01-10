@@ -7,58 +7,45 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     app:cardElevation="4dp"
-    app:cardCornerRadius="8dp">
+    app:cardCornerRadius="16dp">
 
     <!-- Contenido del elemento del pedido -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="20dp">
 
         <!-- Añade aquí tus TextViews y otros elementos de diseño -->
         <TextView
-            android:id="@+id/tvPedidoId"
+            android:id="@+id/tvDireccionConsumidor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/label_pedido_id" />
-
-        <TextView
-            android:id="@+id/tvNombreCliente"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_nombre_cliente" />
-
-        <TextView
-            android:id="@+id/tvNombreRepartidor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_nombre_repartidor" />
-
-        <TextView
-            android:id="@+id/tvTotal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_total" />
+            android:text="@string/DireccionCliente" />
 
         <!-- Nuevo TextView para mostrar la lista de productos -->
         <TextView
-            android:id="@+id/tvProductos"
+            android:id="@+id/tvProductosPedido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_productos" />
 
         <TextView
-            android:id="@+id/tvEstado"
+            android:id="@+id/tvTotalPedido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/label_estado" />
+            android:text="@string/label_total" />
 
-        <Button
-            android:id="@+id/btnVerDetalle"
-            android:layout_width="wrap_content"
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:id="@+id/btnAceptarEntrega"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ver Detalle"/>
+            android:layout_gravity="center"
+            android:text="Aceptar Entrega"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/colorOrangeStrong"/>
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

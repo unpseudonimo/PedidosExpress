@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pedidosexpress.R
 import com.example.pedidosexpress.views.main.MainActivity
-import com.example.pedidosexpress.views.main.login
+import com.example.pedidosexpress.views.main.Login
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
@@ -52,7 +52,7 @@ class HomeConsumidor : AppCompatActivity() {
         btnRecomendacion = findViewById(R.id.btnMostrar)
 
         // Inicializa el adaptador con una lista vacía
-        adapter = ProductoAdapter(emptyList(), login.getUsernameFromSharedPreferences(applicationContext))
+        adapter = ProductoAdapter(emptyList(), Login.getUsernameFromSharedPreferences(applicationContext))
         recyclerView.adapter = adapter
 
         btnSearch.setOnClickListener {
@@ -70,7 +70,7 @@ class HomeConsumidor : AppCompatActivity() {
     }
     private fun cargarTodosLosProductos() {
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.70:5000")
+            .baseUrl(AppConfig.buildApiUrl(""))
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -101,7 +101,7 @@ class HomeConsumidor : AppCompatActivity() {
     }
     private fun buscarProducto(nombreProducto: String) {
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.70:5000")
+            .baseUrl(AppConfig.buildApiUrl(""))
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -135,7 +135,7 @@ class HomeConsumidor : AppCompatActivity() {
 
     private fun obtenerRecomendaciones(selectedProducto: String) {
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.70:5000")
+            .baseUrl(AppConfig.buildApiUrl(""))
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

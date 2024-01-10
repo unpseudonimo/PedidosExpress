@@ -75,8 +75,6 @@
         <activity
             android:name=".views.consumidor.PagosConsumidorActivity"
             android:exported="true" />
-        <activity android:name=".views.repartidor.DetallePedido"
-            android:exported="true"/>
     </application>
 
 </manifest>

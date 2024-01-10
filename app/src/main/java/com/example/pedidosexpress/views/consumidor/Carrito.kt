@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pedidosexpress.R
-import com.example.pedidosexpress.views.main.login
+import com.example.pedidosexpress.views.main.Login
 import com.google.gson.Gson
 
 
@@ -48,10 +48,10 @@ class Carrito : AppCompatActivity(), CarritoAdapter.OnCantidadChangeListener {
 
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.70:5000")
+            .baseUrl(AppConfig.buildApiUrl(""))
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        username = login.getUsernameFromSharedPreferences(this@Carrito)
+        username = Login.getUsernameFromSharedPreferences(this@Carrito)
         val apiService = retrofit.create(ApiService::class.java)
 
         val call = apiService.obtenerCarito(username)
@@ -90,8 +90,8 @@ class Carrito : AppCompatActivity(), CarritoAdapter.OnCantidadChangeListener {
         }
         PagoBTN.setOnClickListener{
             // URL fija que quieres abrir
-            val url1 = "http://192.168.1.70:5000/verProductos"
-            val url = "http://192.168.1.70:5000/realizar_pago"
+            val url1 = AppConfig.buildApiUrl("verProductos")
+            val url = AppConfig.buildApiUrl("realizar_pago")
             val json = Gson().toJson(username)
             val jsonString = json.toString()
             Thread {
@@ -109,14 +109,15 @@ class Carrito : AppCompatActivity(), CarritoAdapter.OnCantidadChangeListener {
                     runOnUiThread {
                         val intent = Intent(this@Carrito, WebViewActivity::class.java)
                         intent.putExtra("url", url1)
-                        intent.putExtra("pagoExitosoUrl", "http://192.168.1.70:5000/pago_exitoso")  // URL a esperar para pago exitoso
+                        val pagoExitosoUrl = AppConfig.buildApiUrl("pago_exitoso")
+                        intent.putExtra("pagoExitosoUrl", pagoExitosoUrl)  // URL a esperar para pago exitoso
                         startActivity(intent)
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }.start()
-            //startActivity(Intent(this@Carrito,MapaConsumidor::class.java))
+            startActivity(Intent(this@Carrito, MapaConsumidor::class.java))
         }
 
     }

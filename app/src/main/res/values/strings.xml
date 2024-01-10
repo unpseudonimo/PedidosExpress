@@ -1,4 +1,5 @@
 <resources>
+    <!-- reto de la cadena -->
     <string name="app_name">PEDIDOS EXPRESS</string>
     <string name="nav_bar">BARRA DE NAVEGACIÓN</string>
     <string name="home">HOME</string>
@@ -53,5 +54,6 @@
     <string name="label_nombre_repartidor">Nombre del repartidor</string>
     <string name="label_total">Total</string>
     <string name="label_productos">Productos</string>
+    <string name="DireccionCliente">Direccion de entrega</string>
 
 </resources>

@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         btnIniciarSesionConsumidor.setOnClickListener {
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
-                add<login>(R.id.FragmentContainer)
+                add<Login>(R.id.FragmentContainer)
             }
         }
 

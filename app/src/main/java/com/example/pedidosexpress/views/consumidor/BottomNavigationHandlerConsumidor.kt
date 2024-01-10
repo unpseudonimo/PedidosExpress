@@ -4,8 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.view.MenuItem
 import com.example.pedidosexpress.R
+import com.example.pedidosexpress.views.main.Login
 import com.example.pedidosexpress.views.main.MainActivity
-import com.example.pedidosexpress.views.main.login
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class BottomNavigationHandlerConsumidor(private val activity: Activity) {
@@ -38,7 +38,7 @@ class BottomNavigationHandlerConsumidor(private val activity: Activity) {
             }
             R.id.cuenta_item -> {
                 // Lógica específica para el ítem de usuario
-                val username = login.getUsernameFromSharedPreferences(activity.applicationContext)
+                val username = Login.getUsernameFromSharedPreferences(activity.applicationContext)
                 if (username.isEmpty()) {
                     // Si el userId está vacío, muestra un mensaje para iniciar sesión
                     // Puedes redirigir a la pantalla de inicio de sesión aquí
