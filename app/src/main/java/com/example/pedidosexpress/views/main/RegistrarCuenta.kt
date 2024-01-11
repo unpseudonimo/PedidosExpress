@@ -89,7 +89,7 @@ class RegistrarCuenta : AppCompatActivity() {
 
                 override fun getBody(): ByteArray {
                     val params: MutableMap<String, String> = HashMap()
-                    params["username"] = usernameEditText?.text.toString()
+                    params["nombre"] = usernameEditText?.text.toString()
                     params["password"] = passwordEditText?.text.toString()
                     params["email"] = emailEditText?.text.toString()
                     // Agregar el rol seleccionado al JSON

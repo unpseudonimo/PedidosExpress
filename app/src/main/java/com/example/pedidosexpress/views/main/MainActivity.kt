@@ -1,5 +1,6 @@
 package com.example.pedidosexpress.views.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -11,15 +12,11 @@ import com.example.pedidosexpress.R
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-        // Ocultamos la barra de navegación en esta clase
-        setContentView(R.layout.activity_main) // Establece el layout de la actividad
-
-        // Declaracion e inicializacion de variables
         val btnIniciarSesionConsumidor = findViewById<Button>(R.id.btnIniciarSesion)
         val btnSalir = findViewById<Button>(R.id.btnSalir)
 
-        // Manejar clics en los botones para mostrar fragmentos
         btnIniciarSesionConsumidor.setOnClickListener {
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
@@ -28,17 +25,27 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnSalir.setOnClickListener {
-            // Construye el cuadro de diálogo con MaterialAlertDialogBuilder
-            MaterialAlertDialogBuilder(this@MainActivity)
-                .setTitle("Confirmar Salida")
-                .setMessage("¿Estás seguro de que deseas salir de la aplicación?")
-                .setPositiveButton("Sí") { dialog, which ->
-                    finishAffinity() // Cierra la actividad
-                }
-                .setNegativeButton("No") { dialog, which ->
-                    dialog.dismiss() // Cierra el diálogo
-                }
-                .show()
+            showExitConfirmationDialog()
         }
+    }
+
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+        showExitConfirmationDialog()
+        // No llames a super.onBackPressed() aquí
+    }
+
+    private fun showExitConfirmationDialog() {
+        MaterialAlertDialogBuilder(this@MainActivity)
+            .setTitle("Confirmar Salida")
+            .setMessage("¿Estás seguro de que deseas salir de la aplicación?")
+            .setPositiveButton("Sí") { dialog, which ->
+                finishAffinity()
+                super.onBackPressed() // Mover la llamada aquí
+            }
+            .setNegativeButton("No") { dialog, which ->
+                dialog.dismiss()
+            }
+            .show()
     }
 }

@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pedidosexpress.R
+import com.example.pedidosexpress.views.main.Login
 import com.example.pedidosexpress.views.main.MainActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -30,8 +31,14 @@ class CuentaConsumidor : AppCompatActivity() {
         }
 
         txtcerrarsesion.setOnClickListener {
+            // Limpiar las preferencias compartidas al cerrar sesión
+            clearUserPreferences()
+
+            // Redirigir a la pantalla de inicio de sesión (MainActivity)
             startActivity(Intent(this, MainActivity::class.java))
-        }
+
+            // Finalizar la actividad actual
+            finish()        }
 
         btnhistpedidos.setOnClickListener {
             startActivity(Intent(this, Pedidos::class.java))
@@ -42,8 +49,14 @@ class CuentaConsumidor : AppCompatActivity() {
         }
     }
 
-    private fun clearSharedPreferences() {
+    private fun clearUserPreferences() {
         // Obtener el objeto SharedPreferences
         val sharedPreferences = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
+
+        // Editar SharedPreferences para limpiar las preferencias
+        val editor = sharedPreferences.edit()
+        editor.remove(Login.PREFS_USER_ID_KEY)
+        editor.remove(Login.PREFS_USER_ROLE_KEY)
+        editor.apply()
     }
 }

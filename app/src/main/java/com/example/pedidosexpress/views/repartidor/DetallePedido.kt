@@ -1,37 +1,50 @@
 package com.example.pedidosexpress.views.repartidor
 
 import android.os.Bundle
+import android.widget.LinearLayout
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pedidosexpress.R
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class DetallePedido : AppCompatActivity() {
-    // ... (código existente)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // ... (código existente)
+        setContentView(R.layout.activity_detalle_pedido)
 
         // Obtener datos del Intent
         val intent = intent
-        if (intent != null && intent.hasExtra("pedido_id")) {
-            val pedidoId = intent.getStringExtra("pedido_id")
+        if (intent != null) {
+            val direccion = intent.getStringExtra("Direccion") ?: "Dirección no disponible"
+            val total = intent.getDoubleExtra("Total", 0.0)
+            val productos = intent.getStringExtra("Productos") ?: ""
 
-            // Aquí puedes usar el ID del pedido para cargar los detalles del pedido desde tu fuente de datos
-            cargarDetallesPedido(pedidoId)
+            // Mostrar los detalles en los elementos visuales
+            mostrarDetallesPedido(direccion, total, productos)
         } else {
-            // Manejar el caso en que no se proporciona el ID del pedido
-            // ...
-            finish() // Cerrar la actividad si no hay datos válidos
+            // Manejar el caso en que no se proporcionan datos válidos
+            finish()
+        }
+
+        // Configurar el botón de retroceso
+        val btnBack: FloatingActionButton = findViewById(R.id.btnback)
+        btnBack.setOnClickListener {
+            onBackPressed() // Volver a la actividad anterior al hacer clic en el botón de retroceso
         }
     }
 
-    private fun cargarDetallesPedido(pedidoId: String?) {
-        // Aquí puedes implementar la lógica para cargar los detalles del pedido
-        // Puedes obtener información del pedido de tu fuente de datos (base de datos, API, etc.)
-        // y luego actualizar tus elementos visuales en consecuencia.
+    private fun mostrarDetallesPedido(direccion: String, total: Double, productos: String) {
+        val tvDetallePedido: TextView = findViewById(R.id.tvDetallePedido)
+        val tvDireccion: TextView = findViewById(R.id.tvDireccion)
+        val tvTotal: TextView = findViewById(R.id.tvTotal)
+        val tvProductos: TextView = findViewById(R.id.tvProductos)
 
-        // Ejemplo: Mostrar el ID del pedido en el TextView
+        // Mostrar los detalles en los TextViews
+        tvDetallePedido.text = "Detalles del Pedido"
+        tvDireccion.text = "Dirección: $direccion"
+        tvTotal.text = "Total: $total"
+        tvProductos.text = "Productos:\n$productos"
     }
 }
-

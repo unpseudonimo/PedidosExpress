@@ -1,11 +1,5 @@
 package com.example.pedidosexpress.model
 
-data class PedidoData(
-    val direccion_entrega: String,
-    val productos: List<ProductoData>,
-    val total: Double
-)
-
 data class PedidoAsignado(
     val direccion: String,
     val productos: List<ProductoDataAsignado>,

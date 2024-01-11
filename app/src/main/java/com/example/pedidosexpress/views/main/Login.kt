@@ -85,8 +85,20 @@ class Login : Fragment() {
     }
 
     companion object {
-        private const val PREFS_USER_ID_KEY = "user_id"
-        private const val PREFS_USER_ROLE_KEY = "user_rol"
+        const val PREFS_USER_ID_KEY = "user_id"
+        const val PREFS_USER_ROLE_KEY = "user_rol"
+
+        fun saveUsernameToSharedPreferences(context: Context, username: String, role: String) {
+            // Obtener el objeto SharedPreferences
+            val sharedPreferences = context.getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
+
+            // Editar SharedPreferences para almacenar el nombre del usuario
+            val editor = sharedPreferences.edit()
+            editor.putString(PREFS_USER_ID_KEY, username)
+            editor.putString(PREFS_USER_ROLE_KEY, role)
+            editor.apply()
+        }
+
         fun getUsernameFromSharedPreferences(context: Context): String {
             val sharedPreferences = context.getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
             return sharedPreferences.getString(PREFS_USER_ID_KEY, "") ?: ""
@@ -115,10 +127,18 @@ class Login : Fragment() {
                             "usuario" -> {
                                 val intent = Intent(requireContext(), HomeConsumidor::class.java)
                                 startActivity(intent)
+                                // Eliminar el fragmento actual después de iniciar sesión
+                                requireActivity().supportFragmentManager.beginTransaction().remove(this@Login).commit()
+                                // Finalizar MainActivity
+                                requireActivity().finish()
                             }
                             "repartidor" -> {
                                 val intent = Intent(requireContext(), HomeRepartidor::class.java)
                                 startActivity(intent)
+                                // Eliminar el fragmento actual después de iniciar sesión
+                                requireActivity().supportFragmentManager.beginTransaction().remove(this@Login).commit()
+                                // Finalizar MainActivity
+                                requireActivity().finish()
                             }
                         }
 
