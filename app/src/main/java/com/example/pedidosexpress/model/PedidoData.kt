@@ -3,7 +3,8 @@ package com.example.pedidosexpress.model
 data class PedidoAsignado(
     val direccion: String,
     val productos: List<ProductoDataAsignado>,
-    val total: Double
+    val total: Double,
+    val estado_pedido: String
 )
 
 data class ProductoDataAsignado(

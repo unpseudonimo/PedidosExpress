@@ -1,13 +1,20 @@
 package com.example.pedidosexpress.views.consumidor
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.LocationManager
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.MenuItem
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -35,23 +42,46 @@ class HomeConsumidor : AppCompatActivity() {
     private var productosBuscados: List<Producto> = emptyList()
     private var productosRecomendados: List<Producto> = emptyList()
 
-    @SuppressLint("MissingInflatedId")
+    private val CODIGO_DE_PERMISOS = 123
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.homeconsumidor) // Establece el layout o interfaz de la actividad
+        setContentView(R.layout.homeconsumidor)
+        // Obtén la instancia de BottomNavigationHandlerConsumidor
+        bottomNavigationHandler = BottomNavigationHandlerConsumidor.getInstance(this)
+
+        // Llama a clearSelectedItem desde cualquier parte de tu código
+        BottomNavigationHandlerConsumidor.clearSelectedItem()
 
         bottomNavigationHandler = BottomNavigationHandlerConsumidor(this)
 
-        //lista de productos:
+        // Verificar y solicitar permisos
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                    CODIGO_DE_PERMISOS
+                )
+            }
+        }
+
+        // Verificar y solicitar activación del GPS
+        verificarYActivarGPS()
+
+        // Resto del código de tu actividad
         recyclerView = findViewById(R.id.recyclerView)
         val layoutManager = GridLayoutManager(this, 2)
-        recyclerView.layoutManager=layoutManager
+        recyclerView.layoutManager = layoutManager
 
         etSearchProduct = findViewById(R.id.etSearchProduct)
         btnSearch = findViewById(R.id.btnSearch)
         btnRecomendacion = findViewById(R.id.btnMostrar)
 
-        // Inicializa el adaptador con una lista vacía
         adapter = ProductoAdapter(emptyList(), Login.getUsernameFromSharedPreferences(applicationContext))
         recyclerView.adapter = adapter
 
@@ -62,11 +92,38 @@ class HomeConsumidor : AppCompatActivity() {
 
         btnRecomendacion.setOnClickListener {
             val nombreProducto = etSearchProduct.text.toString()
-
-            // Llama a la función para obtener recomendaciones
             obtenerRecomendaciones(nombreProducto)
         }
         cargarTodosLosProductos()
+    }
+
+    private fun verificarYActivarGPS() {
+        val locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+            startActivity(intent)
+        }
+    }
+
+    override fun onBackPressed() {
+        if (!bottomNavigationHandler.onBackPressed()) {
+            super.onBackPressed()
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == CODIGO_DE_PERMISOS) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permiso otorgado, puedes realizar acciones relacionadas con la ubicación
+            } else {
+                // Permiso denegado, informar al usuario o manejar la situación de alguna manera
+            }
+        }
     }
     private fun cargarTodosLosProductos() {
         val retrofit = Retrofit.Builder()
@@ -168,4 +225,5 @@ class HomeConsumidor : AppCompatActivity() {
             }
         })
     }
+
 }

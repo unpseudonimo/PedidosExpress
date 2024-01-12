@@ -1,5 +1,6 @@
 package com.example.pedidosexpress.views.consumidor
 
+import com.example.pedidosexpress.model.CodigoEntregaRequest
 import com.example.pedidosexpress.model.PagosData
 import com.example.pedidosexpress.model.Pedido
 import com.example.pedidosexpress.model.PedidoAsignado
@@ -42,4 +43,8 @@ interface ApiService {
     // Nueva solicitud para confirmar un pedido asignado por un repartidor
     @PUT("/confirmar_pedido/{repartidor}")
     fun confirmarEntrega(@Path("repartidor") repartidor: String): Call<Void>
+
+    // Nuevo método para confirmar la entrega de un pedido asignado
+    @PUT("/entregar_pedido/{repartidor}")
+    fun entregarPedido(@Path("repartidor") repartidor: String, @Body codigoEntrega: CodigoEntregaRequest): Call<Void>
 }
