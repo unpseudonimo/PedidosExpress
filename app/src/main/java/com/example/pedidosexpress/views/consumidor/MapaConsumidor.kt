@@ -10,6 +10,7 @@ import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.Manifest
+import android.widget.Button
 import com.example.pedidosexpress.R
 import com.example.pedidosexpress.model.PagosData
 import com.example.pedidosexpress.views.main.Login
@@ -22,11 +23,15 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.math.BigDecimal
 import java.math.RoundingMode
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.MarkerOptions
 import org.json.JSONObject
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 import java.nio.charset.Charset
@@ -39,6 +44,7 @@ class MapaConsumidor : AppCompatActivity(),
     private lateinit var EstadoRepatidor: TextView
     private lateinit var direccion: TextView
     private lateinit var telefono: TextView
+    private lateinit var buscarRepartidor: Button
     private lateinit var map: GoogleMap
     private lateinit var username: String
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,9 +66,15 @@ class MapaConsumidor : AppCompatActivity(),
         EstadoRepatidor=findViewById(R.id.EstadoRepartidor)
         direccion=findViewById(R.id.Direccion)
         telefono=findViewById(R.id.Telefono)
-
+        buscarRepartidor=findViewById(R.id.BuscarRepartidor)
         // Obtener el username y asignarlo a la propiedad de la clase
         username = Login.getUsernameFromSharedPreferences(this@MapaConsumidor)
+
+        buscarRepartidor.setOnClickListener {
+            enviarDatosBuscarUbicacion(username)
+        }
+
+
 
         val retrofit = Retrofit.Builder()
             .baseUrl(AppConfig.buildApiUrl(""))
@@ -175,6 +187,90 @@ class MapaConsumidor : AppCompatActivity(),
 
                 val responseCode = connection.responseCode
                 // Manejar la respuesta del servidor según sea necesario
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }.start()
+    }
+
+    fun enviarDatosBuscarUbicacion(nombre: String) {
+
+        val url = AppConfig.buildApiUrl("obtenerUbicacion")
+
+        val jsonObject = JSONObject()
+        jsonObject.put("nombre", nombre)
+
+        val jsonString = jsonObject.toString()
+
+        Thread {
+            try {
+                val url = URL(url)
+                val connection = url.openConnection() as HttpURLConnection
+                connection.requestMethod = "POST"
+                connection.setRequestProperty("Content-Type", "application/json")
+                connection.doOutput = true
+
+                val os = connection.outputStream
+                os.write(jsonString.toByteArray(Charset.forName("UTF-8")))
+                os.close()
+
+                // Leer la respuesta del servidor
+                val inputStream = if (connection.responseCode == HttpURLConnection.HTTP_OK) {
+                    connection.inputStream
+                } else {
+                    connection.errorStream
+                }
+
+                val bufferedReader = BufferedReader(InputStreamReader(inputStream))
+                val responseStringBuilder = StringBuilder()
+
+                var line: String?
+                while (bufferedReader.readLine().also { line = it } != null) {
+                    responseStringBuilder.append(line).append("\n")
+                }
+
+                bufferedReader.close()
+
+                // Procesar la respuesta del servidor
+                val jsonResponse = JSONObject(responseStringBuilder.toString())
+                val mensaje = jsonResponse.getString("mensaje")
+
+                if (mensaje == "Usuario y ubicación encontrados") {
+                    val nombre = jsonResponse.getString("nombre")
+                    val ubicacion = jsonResponse.getJSONObject("ubicacion")
+                    val latitud = ubicacion.getDouble("latitud")
+                    val longitud = ubicacion.getDouble("longitud")
+
+                    // Guardar la ubicación del usuario
+                    val ubicacionUsuario = Location("Usuario")
+                    ubicacionUsuario.latitude = latitud
+                    ubicacionUsuario.longitude = longitud
+
+                    // Actualizar el mapa con las ubicaciones del usuario y del repartidor
+                    runOnUiThread {
+                        val latLngUsuario = LatLng(ubicacionUsuario.latitude, ubicacionUsuario.longitude)
+                        val latLngRepartidor = LatLng(latitud, longitud)
+
+                        // Limpiar marcadores existentes
+                        map.clear()
+
+                        // Agregar marcador para la ubicación del usuario
+                        map.addMarker(MarkerOptions().position(latLngUsuario).title("Ubicación del usuario").icon(
+                            BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)))
+
+                        // Agregar marcador para la ubicación del repartidor
+                        map.addMarker(MarkerOptions().position(latLngRepartidor).title(nombre).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)))
+
+                        // Mover la cámara al punto medio entre las dos ubicaciones
+                        val boundsBuilder = LatLngBounds.builder().include(latLngUsuario).include(latLngRepartidor)
+                        val bounds = boundsBuilder.build()
+                        val cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 50)
+                        map.moveCamera(cameraUpdate)
+                    }
+                } else {
+                    // ... (mismo código para manejar el caso en que el usuario o la ubicación no fueron encontrados)
+                }
 
             } catch (e: Exception) {
                 e.printStackTrace()

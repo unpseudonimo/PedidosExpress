@@ -8,86 +8,118 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="right"
         android:layout_alignParentTop="true"
-        android:layout_margin="12dp">
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:gravity="right"
+        android:orientation="horizontal">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnpedidos"
             style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
-            app:icon="@drawable/pedidos"
-            android:text="Pedidos"
-            app:iconPadding="10dp"
-            app:iconGravity="end"
             android:layout_width="wrap_content"
             android:layout_height="70dp"
             android:backgroundTint="@color/colorOrangeStrong"
+            android:text="Pedidos"
+            android:textColor="@color/black"
             android:textSize="16sp"
-            android:textColor="@color/black"/>
-
-
+            app:icon="@drawable/pedidos"
+            app:iconGravity="end"
+            app:iconPadding="10dp" />
     </LinearLayout>
 
-    <ScrollView
-        android:id="@+id/ProductosCarrito"
-        android:layout_width="match_parent"
-        android:layout_height="424dp"
-        android:layout_below="@id/toolbar">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </ScrollView>
-
-
-    <LinearLayout
-        android:id="@+id/Pagos"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/bottom_navigation"
-        android:gravity="center_vertical"
-        android:layout_below="@id/ProductosCarrito"
-        android:layout_marginLeft="10dp"
-        android:orientation="horizontal">
+        android:backgroundTint="@color/colorBackground2"
+        android:layout_below="@id/toolbar"
+        android:layout_above="@id/bottom_navigation"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp">
 
-        <TextView
-            android:layout_width="106dp"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/total"
-            android:text="Total a pagar: $" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
 
-        <TextView
-            android:id="@+id/total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:layout_marginStart="2dp"
-            android:layout_marginEnd="2dp"/>
-        <com.google.android.material.button.MaterialButton
-            style="@style/Widget.Material3.Button"
-            android:id="@+id/pago"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            app:backgroundTint="@color/red"
-            android:text="Pagar"
-            android:layout_marginLeft="10dp"/>
-        <TextView
-            android:id="@+id/tvMensajePago"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            app:layout_constraintTop_toBottomOf="@+id/btnRealizarPago"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="16dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/Pagos">
+                <ScrollView
+                    android:id="@+id/ProductosCarrito"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"/>
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Pagos"
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                android:gravity="center_vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="106dp"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/total"
+                    android:textSize="15sp"
+                    android:text="Total a pagar: $" />
+
+                <TextView
+                    android:id="@+id/total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"/>
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.Material3.Button"
+                    android:id="@+id/pago"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    app:backgroundTint="@color/red"
+                    android:text="Pagar"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="end"/>
+                <TextView
+                    android:id="@+id/tvMensajePago"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_marginTop="16dp"/>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
+        android:background="@color/white"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"

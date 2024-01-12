@@ -18,6 +18,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import android.util.Log;
 import com.android.volley.toolbox.Volley
+import com.example.pedidosexpress.adapters.PedidoAdapter
 import com.example.pedidosexpress.views.consumidor.AppConfig
 import com.example.pedidosexpress.views.consumidor.HomeConsumidor
 import com.example.pedidosexpress.views.repartidor.HomeRepartidor
@@ -85,20 +86,8 @@ class Login : Fragment() {
     }
 
     companion object {
-        const val PREFS_USER_ID_KEY = "user_id"
-        const val PREFS_USER_ROLE_KEY = "user_rol"
-
-        fun saveUsernameToSharedPreferences(context: Context, username: String, role: String) {
-            // Obtener el objeto SharedPreferences
-            val sharedPreferences = context.getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
-
-            // Editar SharedPreferences para almacenar el nombre del usuario
-            val editor = sharedPreferences.edit()
-            editor.putString(PREFS_USER_ID_KEY, username)
-            editor.putString(PREFS_USER_ROLE_KEY, role)
-            editor.apply()
-        }
-
+        private const val PREFS_USER_ID_KEY = "user_id"
+        private const val PREFS_USER_ROLE_KEY = "user_rol"
         fun getUsernameFromSharedPreferences(context: Context): String {
             val sharedPreferences = context.getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
             return sharedPreferences.getString(PREFS_USER_ID_KEY, "") ?: ""
@@ -127,18 +116,10 @@ class Login : Fragment() {
                             "usuario" -> {
                                 val intent = Intent(requireContext(), HomeConsumidor::class.java)
                                 startActivity(intent)
-                                // Eliminar el fragmento actual después de iniciar sesión
-                                requireActivity().supportFragmentManager.beginTransaction().remove(this@Login).commit()
-                                // Finalizar MainActivity
-                                requireActivity().finish()
                             }
                             "repartidor" -> {
                                 val intent = Intent(requireContext(), HomeRepartidor::class.java)
                                 startActivity(intent)
-                                // Eliminar el fragmento actual después de iniciar sesión
-                                requireActivity().supportFragmentManager.beginTransaction().remove(this@Login).commit()
-                                // Finalizar MainActivity
-                                requireActivity().finish()
                             }
                         }
 

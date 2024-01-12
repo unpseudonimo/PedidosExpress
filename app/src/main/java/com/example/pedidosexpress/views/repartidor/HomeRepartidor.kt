@@ -45,7 +45,7 @@ class HomeRepartidor : AppCompatActivity(), IOnDetallePedidoClickListener {
 
         // Configurar el RecyclerView y el adaptador
         recyclerViewPedidos.layoutManager = LinearLayoutManager(this)
-        pedidoAdapter = PedidoAdapter(mutableListOf(), this)
+        pedidoAdapter = PedidoAdapter(mutableListOf(), supportFragmentManager, this)
         recyclerViewPedidos.adapter = pedidoAdapter
 
         // Obtener el nombre del repartidor desde SharedPreferences

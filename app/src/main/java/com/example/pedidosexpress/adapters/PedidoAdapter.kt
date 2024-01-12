@@ -1,14 +1,20 @@
 package com.example.pedidosexpress.adapters
 
+import android.Manifest
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Location
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pedidosexpress.R
 import com.example.pedidosexpress.databinding.ItemPedidoBinding
 import com.example.pedidosexpress.interfaces.IOnDetallePedidoClickListener
 import com.example.pedidosexpress.model.CodigoEntregaRequest
@@ -16,25 +22,46 @@ import com.example.pedidosexpress.model.PedidoAsignado
 import com.example.pedidosexpress.views.consumidor.ApiService
 import com.example.pedidosexpress.views.consumidor.AppConfig
 import com.example.pedidosexpress.views.main.Login
+import com.example.pedidosexpress.views.repartidor.BottomSheetFragment
 import com.example.pedidosexpress.views.repartidor.DetallePedido
-import retrofit2.Response
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.net.HttpURLConnection
+import java.net.URL
+import java.nio.charset.Charset
+
 
 class PedidoAdapter(
     private val listaPedidoAsignado: MutableList<PedidoAsignado>,
+    private val fragmentManager: FragmentManager,
     private val onDetallePedidoClickListener: IOnDetallePedidoClickListener
 ) : RecyclerView.Adapter<PedidoAdapter.PedidoViewHolder>() {
 
-    class PedidoViewHolder(private val binding: ItemPedidoBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    class PedidoViewHolder(private val binding: ItemPedidoBinding,private val fragmentManager: FragmentManager) :
+        RecyclerView.ViewHolder(binding.root), OnMapReadyCallback {
 
         private var isPedidoConfirmado: Boolean = false
+        private lateinit var googleMap: GoogleMap
+        private lateinit var username: String
 
-        fun bind(pedidoAsignado: PedidoAsignado) {
+        fun bind(pedidoAsignado: PedidoAsignado,context: Context) {
+            // Obtener el username y asignarlo a la propiedad de la clase
+            username = Login.getUsernameFromSharedPreferences(context)
             binding.apply {
+                // Inicializar el fragmento de mapa
+                val mapView = fragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment
+                mapView.getMapAsync(this@PedidoViewHolder)
+
                 tvDireccionConsumidor.text = "Direccion: ${pedidoAsignado.direccion ?: "Dirección no disponible"}"
                 tvTotalPedido.text = "Total: ${pedidoAsignado.total}"
 
@@ -58,6 +85,11 @@ class PedidoAdapter(
                 btnAceptarEntrega.setOnClickListener {
                     val context = it.context
                     val nombreRepartidor = Login.getUsernameFromSharedPreferences(context)
+                    // Crea y muestra el BottomSheetDialogFragment
+                    val bottomSheetFragment = BottomSheetFragment()
+                    bottomSheetFragment.show(fragmentManager, bottomSheetFragment.tag)
+
+
 
                     if (isPedidoConfirmado) {
                         // Si el pedido ya está confirmado, solicitar código de entrega
@@ -162,17 +194,81 @@ class PedidoAdapter(
                 }
             })
         }
+        override fun onMapReady(gMap: GoogleMap) {
+            gMap?.let {
+                googleMap = it
+
+                // Activar la capa de ubicación en el mapa
+                if (ActivityCompat.checkSelfPermission(
+                        itemView.context,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) == PackageManager.PERMISSION_GRANTED
+                ) {
+                    googleMap.isMyLocationEnabled = true
+
+                    // Obtener la última ubicación conocida del usuario
+                    val fusedLocationClient =
+                        LocationServices.getFusedLocationProviderClient(itemView.context)
+                    fusedLocationClient.lastLocation
+                        .addOnSuccessListener { location: Location? ->
+                            // Centrar el mapa en la ubicación actual del usuario
+                            location?.let {
+                                val latLng = LatLng(it.latitude, it.longitude)
+                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
+                                // Enviar datos al servidor Flask
+                                enviarDatosAlServidor(username, it)
+                            }
+                        }
+                } else {
+                    // Manejar la situación si no se otorgan permisos de ubicación
+                    // Puedes solicitar permisos aquí o mostrar un mensaje al usuario
+                }
+            }
+        }
+
+        // Obtener la ubicación y enviar datos al servidor
+        fun enviarDatosAlServidor(nombre: String, ubicacion: Location) {
+            val url = AppConfig.buildApiUrl("UbicacionEntrega")
+
+            val jsonObject = JSONObject()
+            jsonObject.put("nombre", nombre)
+            jsonObject.put("latitud", ubicacion.latitude)
+            jsonObject.put("longitud", ubicacion.longitude)
+
+            val jsonString = jsonObject.toString()
+
+            Thread {
+                try {
+                    val url = URL(url)
+                    val connection = url.openConnection() as HttpURLConnection
+                    connection.requestMethod = "POST"
+                    connection.setRequestProperty("Content-Type", "application/json")
+                    connection.doOutput = true
+
+                    val os = connection.outputStream
+                    os.write(jsonString.toByteArray(Charset.forName("UTF-8")))
+                    os.close()
+
+                    val responseCode = connection.responseCode
+                    // Manejar la respuesta del servidor según sea necesario
+
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }.start()
+        }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PedidoViewHolder {
         val binding =
             ItemPedidoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PedidoViewHolder(binding)
+        return PedidoViewHolder(binding, fragmentManager)
     }
 
     override fun onBindViewHolder(holder: PedidoViewHolder, position: Int) {
         val pedidoAsignado = listaPedidoAsignado.getOrNull(position)
-        pedidoAsignado?.let { holder.bind(it) }
+        pedidoAsignado?.let { holder.bind(it, holder.itemView.context) }
     }
 
     override fun getItemCount(): Int = listaPedidoAsignado.size

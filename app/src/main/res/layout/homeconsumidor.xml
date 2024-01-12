@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground2"
     tools:context=".views.consumidor.HomeConsumidor">
 
     <LinearLayout
@@ -12,6 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toTopOf="@id/Inicio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,20 +23,28 @@
         <!-- Barra de búsqueda -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilSearchProduct"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            app:hintEnabled="false">
+            app:boxCornerRadiusBottomEnd="30dp"
+            app:boxCornerRadiusBottomStart="30dp"
+            app:boxCornerRadiusTopEnd="30dp"
+            app:boxCornerRadiusTopStart="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:hintEnabled="false"
+            app:boxStrokeColor="@color/colorOrangeStrong"
+            app:cursorColor="@color/colorOrangeStrong">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etSearchProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColorHint="@color/dark_gray"
                 android:hint="@string/searchbar_hint"
                 android:layout_marginTop="4dp"/>
         </com.google.android.material.textfield.TextInputLayout>
+
         <!-- Botón de búsqueda -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnSearch"
@@ -42,7 +53,7 @@
             android:src="@drawable/baseline_search_24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
+            android:layout_marginRight="5dp"
             android:contentDescription="TODO"
             android:layout_marginTop="1dp"/>
         <!-- Botón para mostrar productos sugeridos -->
@@ -53,7 +64,7 @@
             android:src="@drawable/baseline_star_outline_24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
+            android:layout_marginRight="5dp"
             android:contentDescription="TODO"
             android:layout_marginTop="1dp"/>
     </LinearLayout>
@@ -81,10 +92,12 @@
     <!-- Barra de navegación inferior -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
+        style="@style/Widget.MaterialComponents.BottomNavigationView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
         android:focusedByDefault="true"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

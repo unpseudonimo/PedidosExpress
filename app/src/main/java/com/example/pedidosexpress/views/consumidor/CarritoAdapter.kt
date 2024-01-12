@@ -17,6 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
@@ -32,8 +33,8 @@ class CarritoAdapter(private val CarritoAdap: MutableList<CarritoData>, private 
         val descripcionProducto: TextView = itemView.findViewById(R.id.descripcionProducto)
         val precioProducto: TextView = itemView.findViewById(R.id.precioProducto)
         val mostrarCantidad: TextView = itemView.findViewById(R.id.tvCantidad)
-        val CantidadMenos: TextView = itemView.findViewById(R.id.btnMenos)
-        val CantidadMas: TextView = itemView.findViewById(R.id.btnMas)
+        val CantidadMenos: FloatingActionButton = itemView.findViewById(R.id.btnMenos)
+        val CantidadMas: FloatingActionButton = itemView.findViewById(R.id.btnMas)
 
     }
     interface OnCantidadChangeListener {

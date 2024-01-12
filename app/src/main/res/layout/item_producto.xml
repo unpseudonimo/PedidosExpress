@@ -1,118 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:backgroundTint="@color/white"
+    android:layout_margin="5dp"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/imagenProducto"
-        android:layout_width="175dp"
-        android:layout_height="200dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:scaleType="fitCenter"
-        android:layout_marginTop="8dp"/>
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_margin="10dp">
 
-    <TextView
-        android:id="@+id/nombreProducto"
-        android:layout_width="0dp"
-        android:layout_height="35dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imagenProducto"
-        android:layout_marginTop="8dp"/>
+       <ImageView
+           android:id="@+id/imagenProducto"
+           android:layout_width="175dp"
+           android:layout_height="200dp"
+           android:backgroundTint="@color/white"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toTopOf="parent"
+           android:scaleType="fitCenter"/>
 
-    <TextView
-        android:id="@+id/descripcionProducto"
-        android:layout_width="0dp"
-        android:layout_height="35dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombreProducto"
-        android:layout_marginTop="8dp"/>
+       <TextView
+           android:id="@+id/nombreProducto"
+           android:layout_width="0dp"
+           android:layout_height="35dp"
+           android:textStyle="bold"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/imagenProducto"
+          />
 
-    <TextView
-        android:id="@+id/precioProducto"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descripcionProducto"
-        android:layout_marginTop="8dp"/>
+       <TextView
+           android:id="@+id/descripcionProducto"
+           android:layout_width="0dp"
+           android:layout_height="35dp"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/nombreProducto"
+           android:layout_marginTop="8dp"/>
 
-    <!-- Botón para agregar a favoritos -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnAgregarFavoritos"
-        style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="103dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="TODO"
-        android:src="@drawable/ic_favourites_24px"
-        app:backgroundTint="@color/colorOrangeStrong"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/precioProducto" />
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnAgregarCarrito"
-        style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
-        app:backgroundTint="@color/colorOrangeStrong"
-        android:src="@drawable/baseline_add_shopping_cart_24"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="TODO"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/precioProducto"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"/>
+       <TextView
+           android:id="@+id/precioProducto"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/descripcionProducto"
+           android:layout_marginTop="8dp"/>
 
-    <!-- Layout horizontal con botones para agregar al carrito -->
-    <LinearLayout
-        android:id="@+id/layoutAgregarCarrito"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAgregarCarrito"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent">
+       <!-- Botón para agregar a favoritos -->
+       <com.google.android.material.floatingactionbutton.FloatingActionButton
+           android:id="@+id/btnAgregarFavoritos"
+           style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="103dp"
+           android:layout_marginTop="8dp"
+           android:contentDescription="TODO"
+           android:src="@drawable/ic_favourites_24px"
+           app:backgroundTint="@color/colorOrangeStrong"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/precioProducto" />
 
-        <!-- Botón de menos para reducir la cantidad -->
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnMenos"
-            style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
-            app:backgroundTint="@color/colorOrangeStrong"
-            android:src="@drawable/baseline_remove_circle_outline_24"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:contentDescription="TODO"
-            android:text="-"/>
 
-        <!-- TextView para mostrar la cantidad actual -->
-        <TextView
-            android:id="@+id/tvCantidad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:text="0"
-            android:layout_marginTop="8dp"
-            android:textSize="30sp"/>
+       <com.google.android.material.floatingactionbutton.FloatingActionButton
+           android:id="@+id/btnAgregarCarrito"
+           style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+           app:backgroundTint="@color/colorOrangeStrong"
+           android:src="@drawable/baseline_add_shopping_cart_24"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:contentDescription="TODO"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/precioProducto"
+           android:layout_marginStart="20dp"
+           android:layout_marginTop="8dp"/>
 
-        <!-- Botón de más para aumentar la cantidad -->
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnMas"
-            style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
-            app:backgroundTint="@color/colorOrangeStrong"
-            android:src="@drawable/baseline_add_circle_outline_24"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="TODO" />
+       <!-- Layout horizontal con botones para agregar al carrito -->
+       <LinearLayout
+           android:id="@+id/layoutAgregarCarrito"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/btnAgregarCarrito"
+           android:layout_marginTop="8dp"
+           app:layout_constraintEnd_toEndOf="parent">
 
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+           <!-- Botón de menos para reducir la cantidad -->
+           <com.google.android.material.floatingactionbutton.FloatingActionButton
+               android:id="@+id/btnMenos"
+               style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+               app:backgroundTint="@color/colorOrangeStrong"
+               android:src="@drawable/baseline_remove_circle_outline_24"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="20dp"
+               android:contentDescription="TODO"
+               android:text="-"/>
+
+           <!-- TextView para mostrar la cantidad actual -->
+           <TextView
+               android:id="@+id/tvCantidad"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="5dp"
+               android:layout_marginEnd="5dp"
+               android:text="0"
+               android:layout_marginTop="8dp"
+               android:textSize="30sp"/>
+
+           <!-- Botón de más para aumentar la cantidad -->
+           <com.google.android.material.floatingactionbutton.FloatingActionButton
+               android:id="@+id/btnMas"
+               style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+               app:backgroundTint="@color/colorOrangeStrong"
+               android:src="@drawable/baseline_add_circle_outline_24"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:contentDescription="TODO" />
+
+       </LinearLayout>
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

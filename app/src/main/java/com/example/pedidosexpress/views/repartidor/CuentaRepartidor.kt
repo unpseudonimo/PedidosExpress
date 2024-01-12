@@ -15,6 +15,9 @@ class CuentaRepartidor : AppCompatActivity() {
     private lateinit var btnIniciarSesionConsumidor: Button
     private lateinit var bottomNavigationHandler: BottomNavigationHandlerRepartidor
 
+    private val PREFS_USER_ID_KEY = "user_id"
+    private val PREFS_USER_ROLE_KEY = "user_rol"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.cuenta_repartidor)
@@ -25,7 +28,7 @@ class CuentaRepartidor : AppCompatActivity() {
 
         txtcerrarsesion.setOnClickListener {
             // Limpiar las preferencias compartidas al cerrar sesión
-            clearUserPreferences()
+            clearSharedPreferences()
 
             // Redirigir a la pantalla de inicio de sesión (MainActivity)
             startActivity(Intent(this, MainActivity::class.java))
@@ -35,14 +38,14 @@ class CuentaRepartidor : AppCompatActivity() {
         }
     }
 
-    private fun clearUserPreferences() {
+    private fun clearSharedPreferences() {
         // Obtener el objeto SharedPreferences
         val sharedPreferences = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
 
-        // Editar SharedPreferences para limpiar las preferencias
+        // Editar SharedPreferences para eliminar los valores almacenados
         val editor = sharedPreferences.edit()
-        editor.remove(Login.PREFS_USER_ID_KEY)
-        editor.remove(Login.PREFS_USER_ROLE_KEY)
+        editor.remove(PREFS_USER_ID_KEY)
+        editor.remove(PREFS_USER_ROLE_KEY)
         editor.apply()
     }
 
