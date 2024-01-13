@@ -33,8 +33,8 @@ interface ApiService {
     fun obtenerFavorito(@Query("username") username: String): Call<List<Producto>>
 
     // Agregado el método para obtener el historial de entregas
-    @GET("/obtenerHistorialEntregas")
-    fun obtenerHistorialEntregas(): Call<List<Pedido>>
+    @GET("/historial_pedidos/")
+    fun obtenerHistorialPedidos(@Query("username") username: String): Call<List<Pedido>>
 
     // Nuevo método para obtener el ID del repartidor actual
     @GET("/ver_pedidos_asignados/{nombre_repartidor}")
