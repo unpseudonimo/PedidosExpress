@@ -4,11 +4,11 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+        android:layout_margin="5dp"
+    android:layout_gravity="center"
         android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
-        android:backgroundTint="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,89 +19,99 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             >
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/imgContainer"
-                android:layout_width="125dp"
-                android:layout_height="125dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                app:flow_horizontalAlign="center"
+                app:flow_verticalAlign="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lvInfoContainer"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:orientation="vertical">
+                app:layout_constraintBottom_toTopOf="@id/layoutAgregarCarrito">
                 <ImageView
+                    android:layout_gravity="center"
                     android:id="@+id/imagenProducto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
                     android:scaleType="centerCrop"/>
-            </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-            <TextView
-                android:id="@+id/nombreProducto"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/imgContainer"
-                app:layout_constraintTop_toTopOf="@+id/imgContainer"
-                android:layout_marginLeft="5dp" />
-
-            <TextView
-                android:id="@+id/descripcionProducto"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@+id/imgContainer"
-                app:layout_constraintTop_toBottomOf="@+id/nombreProducto"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="8dp"
-                />
-
-            <TextView
-                android:id="@+id/precioProducto"
+            <LinearLayout
+                android:id="@+id/lvInfoContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@+id/imgContainer"
-                app:layout_constraintTop_toBottomOf="@+id/descripcionProducto"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="8dp"
-               />
+                android:orientation="vertical"
+                android:padding="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/imgContainer"
+                >
+
+                <TextView
+                    android:id="@+id/nombreProducto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/descripcionProducto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:id="@+id/precioProducto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+            </LinearLayout>
 
             <!-- Layout horizontal con botones para agregar al carrito -->
             <LinearLayout
                 android:id="@+id/layoutAgregarCarrito"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:orientation="horizontal"
                 android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@id/precioProducto"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgContainer"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintEnd_toEndOf="parent"
+               >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cantidad en el carrito"
+                    android:textSize="15sp"
+                    android:layout_gravity="center"/>
 
                 <!-- Botón de menos para reducir la cantidad -->
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/btnMenos"
+                    app:fabCustomSize="@dimen/activity_horizontal_margin"
                     style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
-                    app:backgroundTint="@color/colorOrangeStrong"
                     android:src="@drawable/baseline_remove_circle_outline_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
                     android:contentDescription="TODO"
                     android:text="-"/>
 
                 <!-- TextView para mostrar la cantidad actual -->
                 <TextView
                     android:id="@+id/tvCantidad"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|center_horizontal"
                     android:text="0"
-                    android:layout_marginTop="8dp"
-                    android:textSize="30sp"/>
+                    android:textSize="15sp"/>
 
                 <!-- Botón de más para aumentar la cantidad -->
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/btnMas"
+                    app:fabCustomSize="@dimen/activity_horizontal_margin"
                     style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
-                    app:backgroundTint="@color/colorOrangeStrong"
                     android:src="@drawable/baseline_add_circle_outline_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

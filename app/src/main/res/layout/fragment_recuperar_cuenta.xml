@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".views.main.RecuperarCuentaFragment">
+    tools:context=".views.main.RecuperarCuenta">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -33,14 +33,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:background="?android:selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="forgotPassword"
                 android:padding="8dp"
-                android:text="Recuperación de contraseña"
-                android:textColor="@color/black" />
-
+                android:text="Recuperación de contraseña"/>
 
 
             <TextView
@@ -49,8 +46,7 @@
                 android:layout_gravity="center_horizontal"
                 android:background="?android:selectableItemBackground"
                 android:padding="8dp"
-                android:text="Ingresa tu correo electronico para recibir instrucciones de como restablecer tu contraseña."
-                android:textColor="@color/black" />
+                android:text="Ingresa tu correo electronico para recibir instrucciones de como restablecer tu contraseña."/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/RecuperEmailTextInputLayout"
@@ -58,8 +54,6 @@
                 app:boxCornerRadiusBottomStart="30dp"
                 app:boxCornerRadiusTopEnd="30dp"
                 app:boxCornerRadiusTopStart="30dp"
-                app:boxStrokeColor="@color/colorOrangeStrong"
-                app:hintTextColor="@color/colorOrangeStrong"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -78,7 +72,6 @@
                 android:layout_marginTop="32dp"
                 android:onClick="login"
                 android:text="Enviar"
-                android:textColor="@color/black"
                 android:backgroundTint="#ffa900"/>
 
             <TextView
@@ -92,8 +85,7 @@
                 android:focusable="true"
                 android:onClick="forgotPassword"
                 android:padding="8dp"
-                android:text="Vuelve a intentarlo"
-                android:textColor="@color/black" />
+                android:text="Vuelve a intentarlo"/>
         </LinearLayout>
     </ScrollView>
 

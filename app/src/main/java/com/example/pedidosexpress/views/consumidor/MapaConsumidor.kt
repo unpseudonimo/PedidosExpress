@@ -10,6 +10,7 @@ import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.Manifest
+import android.os.Handler
 import android.widget.Button
 import com.example.pedidosexpress.R
 import com.example.pedidosexpress.model.PagosData
@@ -44,9 +45,21 @@ class MapaConsumidor : AppCompatActivity(),
     private lateinit var EstadoRepatidor: TextView
     private lateinit var direccion: TextView
     private lateinit var telefono: TextView
-    private lateinit var buscarRepartidor: Button
     private lateinit var map: GoogleMap
+    private var cameraMoved = false
+    private val handler = Handler()
     private lateinit var username: String
+    private val buscarRepartidorRunnable = object : Runnable {
+        override fun run() {
+            // Llamada automática a la función para buscar la ubicación del repartidor
+            if (::map.isInitialized) {
+                enviarDatosBuscarUbicacion(username)
+            }
+
+            // Programar la próxima ejecución después de un intervalo de tiempo (por ejemplo, 10 segundos)
+            handler.postDelayed(this, 10000) // 10000 milisegundos = 10 segundos
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mapa_consumidor)
@@ -55,6 +68,8 @@ class MapaConsumidor : AppCompatActivity(),
         val mapFragment =
             supportFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
         mapFragment.getMapAsync(this)
+        // Llamada inicial para buscar la ubicación del repartidor
+        handler.post(buscarRepartidorRunnable)
 
 // Lista de productos comprados y repartidor
         recyclerView = findViewById(R.id.recyclerView)
@@ -64,15 +79,11 @@ class MapaConsumidor : AppCompatActivity(),
         TotalTextView = findViewById(R.id.Total)
         EstadoPedido=findViewById(R.id.EstadoPedido)
         EstadoRepatidor=findViewById(R.id.EstadoRepartidor)
-        direccion=findViewById(R.id.Direccion)
-        telefono=findViewById(R.id.Telefono)
-        buscarRepartidor=findViewById(R.id.BuscarRepartidor)
+
+
         // Obtener el username y asignarlo a la propiedad de la clase
         username = Login.getUsernameFromSharedPreferences(this@MapaConsumidor)
 
-        buscarRepartidor.setOnClickListener {
-            enviarDatosBuscarUbicacion(username)
-        }
 
 
 
@@ -107,11 +118,6 @@ class MapaConsumidor : AppCompatActivity(),
                             // Mostrar estado del repartidor
                             EstadoRepatidor.text = "Estado del repartidor: ${primerPagosData.estadoRepartidor ?: ""}"
 
-                            // Mostrar dirección
-                            direccion.text = "Dirección: ${primerPagosData.direccion ?: ""}"
-
-                            // Mostrar teléfono
-                            telefono.text = "Teléfono: ${primerPagosData.telefono ?: ""}"
                         }
                         // Obtener la lista de ProductoPagado
                         val productoPagadoList = pagosDataList.flatMap { it.productoPagado.orEmpty() }
@@ -147,6 +153,9 @@ class MapaConsumidor : AppCompatActivity(),
                         map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
                         // Enviar datos al servidor Flask
                         enviarDatosAlServidor(username, it)
+
+                        // Llamada inicial para buscar la ubicación del repartidor
+                        handler.post(buscarRepartidorRunnable)
                     }
                 }
         } else {
@@ -255,18 +264,19 @@ class MapaConsumidor : AppCompatActivity(),
                         // Limpiar marcadores existentes
                         map.clear()
 
-                        // Agregar marcador para la ubicación del usuario
-                        map.addMarker(MarkerOptions().position(latLngUsuario).title("Ubicación del usuario").icon(
-                            BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)))
-
                         // Agregar marcador para la ubicación del repartidor
                         map.addMarker(MarkerOptions().position(latLngRepartidor).title(nombre).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)))
 
-                        // Mover la cámara al punto medio entre las dos ubicaciones
-                        val boundsBuilder = LatLngBounds.builder().include(latLngUsuario).include(latLngRepartidor)
-                        val bounds = boundsBuilder.build()
-                        val cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 50)
-                        map.moveCamera(cameraUpdate)
+                        // Mover la cámara al punto medio entre las dos ubicaciones solo si no se ha movido antes
+                        if (!cameraMoved) {
+                            val boundsBuilder = LatLngBounds.builder().include(latLngUsuario).include(latLngRepartidor)
+                            val bounds = boundsBuilder.build()
+                            val cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 50)
+                            map.moveCamera(cameraUpdate)
+
+                            // Marcar que la cámara se ha movido
+                            cameraMoved = true
+                        }
                     }
                 } else {
                     // ... (mismo código para manejar el caso en que el usuario o la ubicación no fueron encontrados)

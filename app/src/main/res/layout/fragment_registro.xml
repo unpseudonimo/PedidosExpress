@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".views.main.RegistrarCuenta"
-    android:background="@color/white">
+    tools:context=".views.main.RegistrarCuenta">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -38,9 +37,7 @@
                 app:boxCornerRadiusBottomEnd="30dp"
                 app:boxCornerRadiusBottomStart="30dp"
                 app:boxCornerRadiusTopEnd="30dp"
-                app:boxCornerRadiusTopStart="30dp"
-                app:boxStrokeColor="@color/colorOrangeStrong"
-                app:hintTextColor="@color/colorOrangeStrong">
+                app:boxCornerRadiusTopStart="30dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/usernameEditText"
@@ -60,9 +57,7 @@
                 app:boxCornerRadiusBottomStart="30dp"
                 app:boxCornerRadiusTopEnd="30dp"
                 app:boxCornerRadiusTopStart="30dp"
-                app:boxStrokeColor="@color/colorOrangeStrong"
-                app:endIconMode="password_toggle"
-                app:hintTextColor="@color/colorOrangeStrong">
+                app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/passwordEditText"
@@ -80,9 +75,7 @@
                 app:boxCornerRadiusBottomEnd="30dp"
                 app:boxCornerRadiusBottomStart="30dp"
                 app:boxCornerRadiusTopEnd="30dp"
-                app:boxCornerRadiusTopStart="30dp"
-                app:boxStrokeColor="@color/colorOrangeStrong"
-                app:hintTextColor="@color/colorOrangeStrong">
+                app:boxCornerRadiusTopStart="30dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/emaildEditText"
@@ -102,9 +95,7 @@
                 android:gravity="center"
                 android:onClick="createAccount"
                 android:padding="8dp"
-                android:text="¿Cual sera tu función?"
-                android:textColor="@color/black" />
-
+                android:text="¿Cual sera tu función?"/>
             <RadioGroup
                 android:id="@+id/roleRadioGroup"
                 android:layout_width="match_parent"
@@ -116,33 +107,26 @@
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
 
-                    android:text="Soy Consumidor"
-                    android:textColor="@color/black" />
-
+                    android:text="Soy Consumidor"/>
                 <RadioButton
                     android:id="@+id/checkBoxAbarrotes"
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
-                    android:text="Soy Abarrotero"
-                    android:textColor="@color/black" />
+                    android:text="Soy Abarrotero"/>
             </RadioGroup>
             <CheckBox
                 android:id="@+id/checkTerminos"
-                android:textColorHint="@color/colorOrangeStrong"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:padding="8dp"
-                android:text="Acepta los terminos y condiciones"
-                android:textColor="@color/black" />
+                android:text="Acepta los terminos y condiciones"/>
 
             <Button
                 android:id="@+id/registerButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
                 android:layout_gravity="center_horizontal"
-                android:backgroundTint="#ffa900"
                 android:text="Registrarse" />
 
             <TextView
@@ -155,8 +139,7 @@
                 android:focusable="true"
                 android:onClick="forgotPassword"
                 android:padding="8dp"
-                android:text="¿Tienes una cuenta?"
-                android:textColor="@color/black" />
+                android:text="¿Tienes una cuenta?"/>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btnback"
@@ -164,7 +147,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:backgroundTint="@color/colorOrangeStrong"
                 android:contentDescription="@string/title"
                 android:src="@drawable/back" />
         </LinearLayout>

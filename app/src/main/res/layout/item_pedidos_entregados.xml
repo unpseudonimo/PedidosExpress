@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView
-    style="@style/Widget.Material3.CardView.Outlined"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardView"
@@ -15,33 +14,58 @@
         android:padding="16dp">
 
         <TextView
+            android:id="@+id/tvNombreConsumidor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre cliente: "
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/tvDireccionConsumidor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dirección: "
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/tvNombreConsumidor" />
 
         <TextView
-            android:id="@+id/tvTotalPedido"
+            android:id="@+id/tvTelefonoConsumidor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total: "
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tvProductos"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Productos: "
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Telefono: "
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvDireccionConsumidor" />
 
-        <!-- Puedes agregar más vistas según tus necesidades -->
+        <!-- LinearLayout para mostrar la lista de productos -->
+        <LinearLayout
+            android:id="@+id/llProductosPedido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTelefonoConsumidor">
+
+        <TextView
+            android:id="@+id/tvProductos"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Productos: " />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvEstadoPedido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estado: "
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

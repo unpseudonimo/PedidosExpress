@@ -23,9 +23,16 @@ class PedidoEntregadoAdapter : RecyclerView.Adapter<PedidoEntregadoAdapter.ViewH
         Log.d("PedidoEntregadoAdapter", "Pedido en posición $position: $pedido")
 
         // Configura tus vistas según la información del pedido
-        holder.tvDireccion.text = "Dirección: ${pedido.direccion}"
-        holder.tvTotal.text = "Total: ${pedido.total}"
-        holder.tvProductos.text = "Productos: ${pedido.productos.joinToString { it.nombre_producto }}"
+        holder.tvNombreUser.text = "Usuario: ${pedido.Username}"
+        holder.tvDireccion.text = "Ubicación de entrega: ${pedido.direccion}"
+        holder.tvTelefono.text = "Número de contacto: ${pedido.telefono}"
+        //holder.tvTotal.text = "Total: ${pedido.total}"
+        holder.tvProductos.text = "Productos: \n ${
+            pedido.productos.joinToString {
+                "${it.nombre_producto} ${it.Cantidad_producto} unidades"
+            }
+        }"
+        holder.tvEstadoPedido.text = "${pedido.estado_pedido}"
     }
 
     override fun getItemCount(): Int {
@@ -38,9 +45,12 @@ class PedidoEntregadoAdapter : RecyclerView.Adapter<PedidoEntregadoAdapter.ViewH
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val tvNombreUser: TextView = itemView.findViewById(R.id.tvNombreConsumidor)
         val tvDireccion: TextView = itemView.findViewById(R.id.tvDireccionConsumidor)
-        val tvTotal: TextView = itemView.findViewById(R.id.tvTotalPedido)
+        //val tvTotal: TextView = itemView.findViewById(R.id.tvTotalPedido)
         val tvProductos: TextView = itemView.findViewById(R.id.tvProductos)
+        val tvTelefono: TextView = itemView.findViewById(R.id.tvTelefonoConsumidor)
+        val tvEstadoPedido: TextView = itemView.findViewById(R.id.tvEstadoPedido)
         // Añade otras vistas según tus necesidades
     }
 }

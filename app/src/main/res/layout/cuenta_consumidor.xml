@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorBackground2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.consumidor.CuentaConsumidor">
@@ -40,26 +39,19 @@
 
             <Button
                 android:id="@+id/btnHistorial"
-                style="@style/Widget.Material3.Button.ElevatedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:backgroundTint="#ffa900"
                 android:onClick="login"
-                android:text="Historial de Pedidos"
-                android:textColor="@color/black" />
+                android:text="Historial de Pedidos"/>
 
             <Button
                 android:id="@+id/btnFavoritos"
-                style="@style/Widget.Material3.Button.ElevatedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:backgroundTint="#ffa900"
                 android:onClick="login"
-                android:text="Favoritos"
-                android:textColor="@color/black" />
-
+                android:text="Favoritos"/>
 
             <TextView
                 android:id="@+id/pagos"
@@ -97,15 +89,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_marginTop="10dp"
-                android:background="?android:selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
                 android:minHeight="48dp"
                 android:onClick="createAccount"
                 android:padding="8dp"
-                android:text="Cerrar sesion"
-                android:textColor="@color/red" />
-
+                android:text="Cerrar sesion"/>
         </LinearLayout>
     </ScrollView>
 
@@ -115,7 +104,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
         android:focusedByDefault="true"
-        android:background="@color/colorBackground2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

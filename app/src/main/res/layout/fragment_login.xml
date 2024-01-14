@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
-    tools:context=".views.main.login">
+    android:theme="@style/Theme.PedidosExpress"
+    android:background="@color/design_default_color_background"
+    tools:context=".views.main.Login">
 
 
     <ScrollView
@@ -41,11 +42,9 @@
                 app:boxCornerRadiusBottomEnd="30dp"
                 app:boxCornerRadiusBottomStart="30dp"
                 app:boxCornerRadiusTopEnd="30dp"
-                app:boxCornerRadiusTopStart="30dp"
-                app:boxStrokeColor="@color/colorOrangeStrong"
-                app:hintTextColor="@color/colorOrangeStrong">
+                app:boxCornerRadiusTopStart="30dp">
 
-                <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/usernameEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -63,9 +62,7 @@
                 app:boxCornerRadiusBottomStart="30dp"
                 app:boxCornerRadiusTopEnd="30dp"
                 app:boxCornerRadiusTopStart="30dp"
-                app:boxStrokeColor="@color/colorOrangeStrong"
-                app:endIconMode="password_toggle"
-                app:hintTextColor="@color/colorOrangeStrong">
+                app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/passwordEditText"
@@ -91,14 +88,11 @@
 
             <Button
                 android:id="@+id/btnIniciarSesion"
-                style="@style/Widget.Material3.Button.ElevatedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:backgroundTint="#ffa900"
                 android:onClick="login"
                 android:text="@string/iniciar_sesion"
-                android:textColor="@color/black"
                 android:textSize="15sp" />
 
             <TextView
@@ -120,7 +114,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:backgroundTint="@color/colorOrangeStrong"
                 android:contentDescription="@string/title"
                 android:src="@drawable/back" />
         </LinearLayout>

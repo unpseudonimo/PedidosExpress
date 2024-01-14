@@ -25,18 +25,14 @@
         android:layout_height="wrap_content"
         android:text="Precio: $18.00"
         android:paddingTop="20dp"
-        android:textSize="16sp"
-        android:textColor="@color/black"/>
+        android:textSize="16sp"/>
+
     <Button
         android:id="@+id/btnagregar"
-        style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="agregar al carrito"
         android:textSize="15sp"
-        android:onClick="agregar"
-        android:textColor="@color/black"
-        android:backgroundTint="#ffa900"/>
-
+        android:onClick="agregar"/>
 </LinearLayout>

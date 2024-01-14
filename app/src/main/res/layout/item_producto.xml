@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:backgroundTint="@color/white"
-    android:layout_margin="2dp"
+    android:layout_margin="5dp"
     android:orientation="vertical">
 
     <!-- Botón para agregar a favoritos -->
@@ -14,17 +13,24 @@
     <androidx.constraintlayout.widget.ConstraintLayout
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:layout_margin="5dp">
+       android:layout_margin="7dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/imgContainer"
+            android:layout_width="145dp"
+            android:layout_height="145dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
        <ImageView
            android:id="@+id/imagenProducto"
-           android:layout_width="175dp"
-           android:layout_height="200dp"
-           android:backgroundTint="@color/white"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintTop_toTopOf="parent"
+           android:layout_width="160dp"
+           android:layout_height="160dp"
+           android:layout_gravity="center"
            android:scaleType="fitCenter"/>
+
+        </com.google.android.material.card.MaterialCardView>
 
        <TextView
            android:id="@+id/nombreProducto"
@@ -34,7 +40,7 @@
            android:textSize="13sp"
            app:layout_constraintStart_toStartOf="parent"
            app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintTop_toBottomOf="@+id/imagenProducto"
+           app:layout_constraintTop_toBottomOf="@+id/imgContainer"
           />
 
        <TextView
@@ -68,7 +74,6 @@
            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                android:id="@+id/btnAgregarCarrito"
                style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
-               app:backgroundTint="@color/colorOrangeStrong"
                app:icon="@drawable/baseline_add_shopping_cart_24"
                android:text="Agregar producto"
                android:textSize="10sp"
@@ -79,14 +84,13 @@
 
        </LinearLayout>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAgregarFavoritos"
-            style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+            style="@style/Widget.Material3.Button.IconButton"
+            app:icon="@drawable/ic_favourites_24px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="TODO"
-            android:src="@drawable/ic_favourites_24px"
-            app:backgroundTint="@color/colorOrangeStrong"
             tools:layout_editor_absoluteX="116dp"
             tools:layout_editor_absoluteY="1dp"
             app:layout_constraintTop_toTopOf="parent"

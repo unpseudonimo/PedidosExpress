@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pedidosexpress.R
 import com.example.pedidosexpress.model.ProductoData
 import com.example.pedidosexpress.views.main.Login
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -37,7 +38,7 @@ class ProductoAdapter(private var productoData: List<ProductoData>, private val 
         val descripcionProducto: TextView = itemView.findViewById(R.id.descripcionProducto)
         val precioProducto: TextView = itemView.findViewById(R.id.precioProducto)
         val btnCraito: ExtendedFloatingActionButton = itemView.findViewById(R.id.btnAgregarCarrito)
-        val btnFavorito: FloatingActionButton = itemView.findViewById(R.id.btnAgregarFavoritos)
+        val btnFavorito: MaterialButton = itemView.findViewById(R.id.btnAgregarFavoritos)
 
     }
 

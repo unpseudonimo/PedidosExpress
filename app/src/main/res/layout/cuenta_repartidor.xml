@@ -40,15 +40,11 @@
 
             <Button
                 android:id="@+id/btn"
-                style="@style/Widget.Material3.Button.ElevatedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:backgroundTint="#ffa900"
                 android:onClick="login"
-                android:text="Historial de Pedidos"
-                android:textColor="@color/black" />
-
+                android:text="Historial de Pedidos"/>
 
             <TextView
                 android:id="@+id/ajustes"
@@ -56,30 +52,24 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_marginTop="10dp"
-                android:background="?android:selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
                 android:minHeight="48dp"
                 android:onClick="createAccount"
                 android:padding="8dp"
-                android:text="Ajustes de perfil"
-                android:textColor="@color/black" />
-
+                android:text="Ajustes de perfil"/>
             <TextView
                 android:id="@+id/logout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_marginTop="10dp"
-                android:background="?android:selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
                 android:minHeight="48dp"
                 android:onClick="createAccount"
                 android:padding="8dp"
-                android:text="Cerrar sesion"
-                android:textColor="@color/red" />
-
+                android:text="Cerrar sesion"/>
         </LinearLayout>
     </ScrollView>
 
@@ -89,7 +79,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
         android:focusedByDefault="true"
-        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

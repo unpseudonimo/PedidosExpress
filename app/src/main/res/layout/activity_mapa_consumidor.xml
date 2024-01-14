@@ -72,28 +72,5 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:text="Estado del repartidor: " />
-
-        <!-- Dirección -->
-        <TextView
-            android:id="@+id/Direccion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="Dirección: " />
-
-        <!-- Teléfono -->
-        <TextView
-            android:id="@+id/Telefono"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="Teléfono: " />
-
     </LinearLayout>
-    <Button
-        android:id="@+id/BuscarRepartidor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="buscar"/>
-
 </LinearLayout>

@@ -5,12 +5,15 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pedidosexpress.R
 import com.example.pedidosexpress.views.main.Login
 import com.google.gson.Gson
+import com.google.gson.JsonObject
 
 
 import retrofit2.Call
@@ -40,7 +43,8 @@ class Carrito : AppCompatActivity(), CarritoAdapter.OnCantidadChangeListener {
 
         //lista de productos:
         recyclerView = findViewById(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        val layoutManager = GridLayoutManager(this, 1, LinearLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager = layoutManager
 
         // Referencia al TextView del total
         totalTextView = findViewById(R.id.total)
@@ -92,8 +96,9 @@ class Carrito : AppCompatActivity(), CarritoAdapter.OnCantidadChangeListener {
             // URL fija que quieres abrir
             val url1 = AppConfig.buildApiUrl("verProductos")
             val url = AppConfig.buildApiUrl("realizar_pago")
-            val json = Gson().toJson(username)
-            val jsonString = json.toString()
+            val jsonObject = JsonObject()
+            jsonObject.addProperty("username", username)
+            val jsonString = jsonObject.toString()
             Thread {
                 try {
                     val url = URL(url)
@@ -105,13 +110,31 @@ class Carrito : AppCompatActivity(), CarritoAdapter.OnCantidadChangeListener {
                     os.write(jsonString.toByteArray(Charset.forName("UTF-8")))
                     os.close()
                     val responseCode = connection.responseCode
+
                     // Manejar la respuesta del servidor según sea necesario
-                    runOnUiThread {
-                        val intent = Intent(this@Carrito, WebViewActivity::class.java)
-                        intent.putExtra("url", url1)
-                        val pagoExitosoUrl = AppConfig.buildApiUrl("pago_exitoso")
-                        intent.putExtra("pagoExitosoUrl", pagoExitosoUrl)  // URL a esperar para pago exitoso
-                        startActivity(intent)
+                    if (responseCode == HttpURLConnection.HTTP_OK) {
+                        // La solicitud al servidor fue exitosa
+                        val inputStream = connection.inputStream
+                        // Leer la respuesta del servidor según sea necesario
+
+                        // Verificar si hay una compra en proceso en el servidor
+                        val result = inputStream.bufferedReader().use { it.readText() }
+                        if (result.contains("Ya tiene una compra realizada en proceso")) {
+                            // Si hay una compra en proceso, mostrar un mensaje o realizar alguna acción
+                            runOnUiThread {
+                                // Mostrar un mensaje o realizar alguna acción
+                                Toast.makeText(this@Carrito, "Ya tiene una compra en proceso", Toast.LENGTH_SHORT).show()
+                            }
+                        } else {
+                            // Si no hay compra en proceso, continuar con la lógica para abrir la WebViewActivity
+                            runOnUiThread {
+                                val intent = Intent(this@Carrito, WebViewActivity::class.java)
+                                intent.putExtra("url", url1)
+                                val pagoExitosoUrl = AppConfig.buildApiUrl("pago_exitoso")
+                                intent.putExtra("pagoExitosoUrl", pagoExitosoUrl)  // URL a esperar para pago exitoso
+                                startActivity(intent)
+                            }
+                        }
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()

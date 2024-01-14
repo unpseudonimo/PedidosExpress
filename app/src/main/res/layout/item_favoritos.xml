@@ -55,14 +55,12 @@
         android:layout_marginTop="8dp"
         android:contentDescription="TODO"
         android:src="@drawable/baseline_heart_broken_24"
-        app:backgroundTint="@color/colorOrangeStrong"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/precioProductoFav" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnAgregarCarritoFav"
         style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
-        app:backgroundTint="@color/colorOrangeStrong"
         android:src="@drawable/baseline_add_shopping_cart_24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -89,7 +87,6 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnMenosFav"
             style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
-            app:backgroundTint="@color/colorOrangeStrong"
             android:src="@drawable/baseline_remove_circle_outline_24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -111,7 +108,6 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnMasFav"
             style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
-            app:backgroundTint="@color/colorOrangeStrong"
             android:src="@drawable/baseline_add_circle_outline_24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

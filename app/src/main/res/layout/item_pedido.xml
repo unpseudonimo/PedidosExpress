@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardElevation="4dp"
     app:cardCornerRadius="16dp">
 
     <!-- Contenido del elemento del pedido -->
@@ -48,13 +47,10 @@
             android:text="@string/label_total" />
 
         <com.google.android.material.button.MaterialButton
-            style="@style/Widget.Material3.Button.ElevatedButton"
             android:id="@+id/btnAceptarEntrega"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Aceptar Entrega"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/colorOrangeStrong"/>
+            android:text="Aceptar Entrega"/>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -6,6 +6,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -29,13 +31,18 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.MarkerOptions
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 import java.nio.charset.Charset
@@ -44,15 +51,25 @@ import java.nio.charset.Charset
 class PedidoAdapter(
     private val listaPedidoAsignado: MutableList<PedidoAsignado>,
     private val fragmentManager: FragmentManager,
-    private val onDetallePedidoClickListener: IOnDetallePedidoClickListener
+    private val onDetallePedidoClickListener: IOnDetallePedidoClickListener,
 ) : RecyclerView.Adapter<PedidoAdapter.PedidoViewHolder>() {
 
     class PedidoViewHolder(private val binding: ItemPedidoBinding,private val fragmentManager: FragmentManager) :
         RecyclerView.ViewHolder(binding.root), OnMapReadyCallback {
-
         private var isPedidoConfirmado: Boolean = false
-        private lateinit var googleMap: GoogleMap
         private lateinit var username: String
+        private lateinit var googleMap: GoogleMap
+        private var cameraMoved = false
+        private val handler = Handler(Looper.getMainLooper())
+        private val buscarRepartidorRunnable = object : Runnable {
+            override fun run() {
+                // Llamada automática a la función para buscar la ubicación del repartidor
+                enviarDatosBuscarUbicacion(username)
+
+                // Programar la próxima ejecución después de un intervalo de tiempo (por ejemplo, 10 segundos)
+                handler.postDelayed(this, 10000) // 10000 milisegundos = 10 segundos
+            }
+        }
 
         fun bind(pedidoAsignado: PedidoAsignado,context: Context) {
             // Obtener el username y asignarlo a la propiedad de la clase
@@ -61,6 +78,8 @@ class PedidoAdapter(
                 // Inicializar el fragmento de mapa
                 val mapView = fragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment
                 mapView.getMapAsync(this@PedidoViewHolder)
+                // Llamada inicial para buscar la ubicación del repartidor
+                handler.post(buscarRepartidorRunnable)
 
                 tvDireccionConsumidor.text = "Direccion: ${pedidoAsignado.direccion ?: "Dirección no disponible"}"
                 tvTotalPedido.text = "Total: ${pedidoAsignado.total}"
@@ -251,6 +270,96 @@ class PedidoAdapter(
 
                     val responseCode = connection.responseCode
                     // Manejar la respuesta del servidor según sea necesario
+
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }.start()
+        }
+        fun enviarDatosBuscarUbicacion(nombre: String) {
+
+            val url = AppConfig.buildApiUrl("obtenerUbicacionUsuario")
+
+            val jsonObject = JSONObject()
+            jsonObject.put("nombre", nombre)
+
+            val jsonString = jsonObject.toString()
+
+            Thread {
+                try {
+                    val url = URL(url)
+                    val connection = url.openConnection() as HttpURLConnection
+                    connection.requestMethod = "POST"
+                    connection.setRequestProperty("Content-Type", "application/json")
+                    connection.doOutput = true
+
+                    val os = connection.outputStream
+                    os.write(jsonString.toByteArray(Charset.forName("UTF-8")))
+                    os.close()
+
+                    // Leer la respuesta del servidor
+                    val inputStream = if (connection.responseCode == HttpURLConnection.HTTP_OK) {
+                        connection.inputStream
+                    } else {
+                        connection.errorStream
+                    }
+
+                    val bufferedReader = BufferedReader(InputStreamReader(inputStream))
+                    val responseStringBuilder = StringBuilder()
+
+                    var line: String?
+                    while (bufferedReader.readLine().also { line = it } != null) {
+                        responseStringBuilder.append(line).append("\n")
+                    }
+
+                    bufferedReader.close()
+
+                    // Procesar la respuesta del servidor
+                    val jsonResponse = JSONObject(responseStringBuilder.toString())
+                    val mensaje = jsonResponse.getString("mensaje")
+
+                    if (mensaje == "Usuario y ubicación encontrados") {
+                        val nombre = jsonResponse.getString("nombre")
+                        val ubicacion = jsonResponse.getJSONObject("ubicacion")
+                        val latitud = ubicacion.getDouble("latitud")
+                        val longitud = ubicacion.getDouble("longitud")
+
+                        // Guardar la ubicación del usuario
+                        val ubicacionUsuario = Location("Usuario")
+                        ubicacionUsuario.latitude = latitud
+                        ubicacionUsuario.longitude = longitud
+
+                        // Actualizar el mapa con las ubicaciones del usuario y del repartidor
+                        handler.post {
+                            val latLngUsuario =
+                                LatLng(ubicacionUsuario.latitude, ubicacionUsuario.longitude)
+                            val latLngRepartidor = LatLng(latitud, longitud)
+
+                            // Limpiar marcadores existentes
+                            googleMap.clear()
+
+                            // Agregar marcador para la ubicación del repartidor
+                            googleMap.addMarker(
+                                MarkerOptions().position(latLngRepartidor).title(nombre).icon(
+                                    BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)
+                                )
+                            )
+
+                            // Mover la cámara al punto medio entre las dos ubicaciones solo si no se ha movido antes
+                            if (!cameraMoved) {
+                                val boundsBuilder = LatLngBounds.builder().include(latLngUsuario)
+                                    .include(latLngRepartidor)
+                                val bounds = boundsBuilder.build()
+                                val cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 50)
+                                googleMap.moveCamera(cameraUpdate)
+
+                                // Marcar que la cámara se ha movido
+                                cameraMoved = true
+                            }
+                        }
+                    } else {
+                        // ... (mismo código para manejar el caso en que el usuario o la ubicación no fueron encontrados)
+                    }
 
                 } catch (e: Exception) {
                     e.printStackTrace()
