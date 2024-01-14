@@ -17,11 +17,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pedidosexpress.R
 import com.example.pedidosexpress.views.main.Login
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 
 class HomeConsumidor : AppCompatActivity() {
@@ -74,21 +80,26 @@ class HomeConsumidor : AppCompatActivity() {
 
         etSearchProduct = findViewById(R.id.etSearchProduct)
         btnSearch = findViewById(R.id.btnSearch)
-        btnRecomendacion = findViewById(R.id.btnMostrar)
 
         adapter = ProductoAdapter(emptyList(), Login.getUsernameFromSharedPreferences(applicationContext))
         recyclerView.adapter = adapter
 
         btnSearch.setOnClickListener {
             val searchTerm = etSearchProduct.text.toString()
-            buscarProducto(searchTerm)
+            if (searchTerm.isNotEmpty()) {
+                // Utilizamos una coroutine para realizar la búsqueda
+                GlobalScope.launch(Dispatchers.Main) {
+                    buscarProducto(searchTerm)
+                    obtenerRecomendaciones(searchTerm)
+                }
+            } else {
+                cargarTodosLosProductos()
+            }
         }
 
-        btnRecomendacion.setOnClickListener {
-            val nombreProducto = etSearchProduct.text.toString()
-            obtenerRecomendaciones(nombreProducto)
-        }
         cargarTodosLosProductos()
+
+
     }
 
     private fun verificarYActivarGPS() {

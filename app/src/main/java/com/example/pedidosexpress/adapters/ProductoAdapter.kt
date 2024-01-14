@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pedidosexpress.R
 import com.example.pedidosexpress.model.ProductoData
 import com.example.pedidosexpress.views.main.Login
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
@@ -35,10 +36,7 @@ class ProductoAdapter(private var productoData: List<ProductoData>, private val 
         val nombreProducto: TextView = itemView.findViewById(R.id.nombreProducto)
         val descripcionProducto: TextView = itemView.findViewById(R.id.descripcionProducto)
         val precioProducto: TextView = itemView.findViewById(R.id.precioProducto)
-        val btnCraito: FloatingActionButton = itemView.findViewById(R.id.btnAgregarCarrito)
-        val mostrarCantidad: TextView = itemView.findViewById(R.id.tvCantidad)
-        val CantidadMenos: FloatingActionButton = itemView.findViewById(R.id.btnMenos)
-        val CantidadMas: FloatingActionButton = itemView.findViewById(R.id.btnMas)
+        val btnCraito: ExtendedFloatingActionButton = itemView.findViewById(R.id.btnAgregarCarrito)
         val btnFavorito: FloatingActionButton = itemView.findViewById(R.id.btnAgregarFavoritos)
 
     }
@@ -155,23 +153,6 @@ class ProductoAdapter(private var productoData: List<ProductoData>, private val 
         // Utiliza Picasso para cargar imágenes desde la URL
         Picasso.get().load(imageUrl).into(holder.imagenProducto)
 
-        holder.mostrarCantidad.text = producto.cantidadEnCarrito.toString()
-
-        // Configura los clics en los botones para actualizar la cantidad
-        holder.CantidadMas.setOnClickListener {
-            producto.cantidadEnCarrito++
-            holder.mostrarCantidad.text = producto.cantidadEnCarrito.toString()
-            // También puedes enviar la actualización al servidor aquí si es necesario
-        }
-
-        holder.CantidadMenos.setOnClickListener {
-            if (producto.cantidadEnCarrito > 0) {
-                producto.cantidadEnCarrito--
-                holder.mostrarCantidad.text = producto.cantidadEnCarrito.toString()
-                // También puedes enviar la actualización al servidor aquí si es necesario
-            }
-        }
-
         //nuevo solis favorito
         holder.btnFavorito.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
@@ -206,13 +187,11 @@ class ProductoAdapter(private var productoData: List<ProductoData>, private val 
                 if (producto.cantidadEnCarrito == 0) {
                     producto.cantidadEnCarrito = 1
                 }
-                holder.mostrarCantidad.text = producto.cantidadEnCarrito.toString()
                 notifyDataSetChanged()
                 CoroutineScope(Dispatchers.Main).launch {
                     enviarProductoAlServidor(producto)
                     Toast.makeText(it.context, "ProductoData agregado al carrito", Toast.LENGTH_SHORT).show()
                     producto.cantidadEnCarrito = 0
-                    holder.mostrarCantidad.text = producto.cantidadEnCarrito.toString()
                     notifyDataSetChanged()
                 }
             }

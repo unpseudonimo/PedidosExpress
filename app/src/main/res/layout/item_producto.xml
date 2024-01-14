@@ -2,16 +2,19 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:backgroundTint="@color/white"
-    android:layout_margin="5dp"
+    android:layout_margin="2dp"
     android:orientation="vertical">
 
-   <androidx.constraintlayout.widget.ConstraintLayout
+    <!-- Botón para agregar a favoritos -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:layout_margin="10dp">
+       android:layout_margin="5dp">
 
        <ImageView
            android:id="@+id/imagenProducto"
@@ -28,6 +31,7 @@
            android:layout_width="0dp"
            android:layout_height="35dp"
            android:textStyle="bold"
+           android:textSize="13sp"
            app:layout_constraintStart_toStartOf="parent"
            app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintTop_toBottomOf="@+id/imagenProducto"
@@ -39,92 +43,56 @@
            android:layout_height="35dp"
            app:layout_constraintStart_toStartOf="parent"
            app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintTop_toBottomOf="@+id/nombreProducto"
-           android:layout_marginTop="8dp"/>
+           app:layout_constraintTop_toBottomOf="@+id/nombreProducto" />
 
        <TextView
            android:id="@+id/precioProducto"
            android:layout_width="0dp"
-           android:layout_height="wrap_content"
+           android:layout_height="35dp"
            app:layout_constraintStart_toStartOf="parent"
            app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintTop_toBottomOf="@+id/descripcionProducto"
-           android:layout_marginTop="8dp"/>
+           app:layout_constraintTop_toBottomOf="@+id/descripcionProducto"/>
 
-       <!-- Botón para agregar a favoritos -->
-       <com.google.android.material.floatingactionbutton.FloatingActionButton
-           android:id="@+id/btnAgregarFavoritos"
-           style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginStart="103dp"
-           android:layout_marginTop="8dp"
-           android:contentDescription="TODO"
-           android:src="@drawable/ic_favourites_24px"
-           app:backgroundTint="@color/colorOrangeStrong"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toBottomOf="@+id/precioProducto" />
-
-
-       <com.google.android.material.floatingactionbutton.FloatingActionButton
-           android:id="@+id/btnAgregarCarrito"
-           style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
-           app:backgroundTint="@color/colorOrangeStrong"
-           android:src="@drawable/baseline_add_shopping_cart_24"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:contentDescription="TODO"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toBottomOf="@+id/precioProducto"
-           android:layout_marginStart="20dp"
-           android:layout_marginTop="8dp"/>
-
-       <!-- Layout horizontal con botones para agregar al carrito -->
        <LinearLayout
-           android:id="@+id/layoutAgregarCarrito"
-           android:layout_width="0dp"
+           android:id="@+id/layoutAgregarFavoritosCarrito"
+           android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:orientation="horizontal"
            app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toBottomOf="@+id/btnAgregarCarrito"
-           android:layout_marginTop="8dp"
-           app:layout_constraintEnd_toEndOf="parent">
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/precioProducto"
+           app:layout_constraintBottom_toBottomOf="parent"
+           android:gravity="center_horizontal"
+           >
 
-           <!-- Botón de menos para reducir la cantidad -->
-           <com.google.android.material.floatingactionbutton.FloatingActionButton
-               android:id="@+id/btnMenos"
+           <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+               android:id="@+id/btnAgregarCarrito"
                style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
                app:backgroundTint="@color/colorOrangeStrong"
-               android:src="@drawable/baseline_remove_circle_outline_24"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="20dp"
-               android:contentDescription="TODO"
-               android:text="-"/>
-
-           <!-- TextView para mostrar la cantidad actual -->
-           <TextView
-               android:id="@+id/tvCantidad"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="5dp"
-               android:layout_marginEnd="5dp"
-               android:text="0"
-               android:layout_marginTop="8dp"
-               android:textSize="30sp"/>
-
-           <!-- Botón de más para aumentar la cantidad -->
-           <com.google.android.material.floatingactionbutton.FloatingActionButton
-               android:id="@+id/btnMas"
-               style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
-               app:backgroundTint="@color/colorOrangeStrong"
-               android:src="@drawable/baseline_add_circle_outline_24"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:contentDescription="TODO" />
+               app:icon="@drawable/baseline_add_shopping_cart_24"
+               android:text="Agregar producto"
+               android:textSize="10sp"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               textAlignment="center"
+               android:contentDescription="TODO"/>
 
        </LinearLayout>
-   </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnAgregarFavoritos"
+            style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="TODO"
+            android:src="@drawable/ic_favourites_24px"
+            app:backgroundTint="@color/colorOrangeStrong"
+            tools:layout_editor_absoluteX="116dp"
+            tools:layout_editor_absoluteY="1dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </com.google.android.material.card.MaterialCardView>

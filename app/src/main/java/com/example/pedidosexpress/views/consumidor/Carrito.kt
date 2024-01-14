@@ -65,7 +65,7 @@ class Carrito : AppCompatActivity(), CarritoAdapter.OnCantidadChangeListener {
                         // Calcular la suma de cantidad * precio
                         val total = productoscarrito.sumByDouble { it.cantidadEnCarrito * it.precioProducto }
                         val totalFormateado = BigDecimal(total).setScale(2, RoundingMode.HALF_EVEN).toString()
-                        totalTextView.text = totalFormateado
+                        totalTextView.text = "$"+ totalFormateado
 
                         // Configurar el adaptador con la interfaz de cambio de cantidad
                         val adapter = CarritoAdapter(productoscarrito.toMutableList(), this@Carrito)
@@ -133,7 +133,7 @@ class Carrito : AppCompatActivity(), CarritoAdapter.OnCantidadChangeListener {
         // Calcular la suma de cantidad * precio
         val total = productos.sumByDouble { it.cantidadEnCarrito * it.precioProducto }
         val totalFormateado = BigDecimal(total).setScale(2, RoundingMode.HALF_EVEN).toString()
-        totalTextView.text = totalFormateado
+        totalTextView.text = "$"+totalFormateado
     }
 
 }

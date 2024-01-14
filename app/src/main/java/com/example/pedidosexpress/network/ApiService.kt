@@ -4,6 +4,7 @@ import com.example.pedidosexpress.model.CodigoEntregaRequest
 import com.example.pedidosexpress.model.PagosData
 import com.example.pedidosexpress.model.Pedido
 import com.example.pedidosexpress.model.PedidoAsignado
+import com.example.pedidosexpress.model.PedidoEntregado
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -33,8 +34,8 @@ interface ApiService {
     fun obtenerFavorito(@Query("username") username: String): Call<List<Producto>>
 
     // Agregado el método para obtener el historial de entregas
-    @GET("/historial_pedidos/")
-    fun obtenerHistorialPedidos(@Query("username") username: String): Call<List<Pedido>>
+    @GET("/historial_pedidos")
+    fun obtenerHistorialPedidos(@Query("username") username: String): Call<List<PedidoEntregado>>
 
     // Nuevo método para obtener el ID del repartidor actual
     @GET("/ver_pedidos_asignados/{nombre_repartidor}")

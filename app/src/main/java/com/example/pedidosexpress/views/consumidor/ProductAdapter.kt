@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pedidosexpress.R
 import com.example.pedidosexpress.views.main.Login
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
@@ -36,10 +37,7 @@ class ProductoAdapter(private var productos: List<Producto>, private val userId:
         val nombreProducto: TextView = itemView.findViewById(R.id.nombreProducto)
         val descripcionProducto: TextView = itemView.findViewById(R.id.descripcionProducto)
         val precioProducto: TextView = itemView.findViewById(R.id.precioProducto)
-        val btnCraito: FloatingActionButton = itemView.findViewById(R.id.btnAgregarCarrito)
-        val mostrarCantidad: TextView = itemView.findViewById(R.id.tvCantidad)
-        val CantidadMenos: FloatingActionButton = itemView.findViewById(R.id.btnMenos)
-        val CantidadMas: FloatingActionButton = itemView.findViewById(R.id.btnMas)
+        val btnCraito: ExtendedFloatingActionButton = itemView.findViewById(R.id.btnAgregarCarrito)
         val btnFavorito: FloatingActionButton = itemView.findViewById(R.id.btnAgregarFavoritos)
 
     }
@@ -135,22 +133,6 @@ class ProductoAdapter(private var productos: List<Producto>, private val userId:
         // Utiliza Picasso para cargar imágenes desde la URL
         Picasso.get().load(imageUrl).into(holder.imagenProducto)
 
-        holder.mostrarCantidad.text = producto.cantidadEnCarrito.toString()
-
-        // Configura los clics en los botones para actualizar la cantidad
-        holder.CantidadMas.setOnClickListener {
-            producto.cantidadEnCarrito++
-            holder.mostrarCantidad.text = producto.cantidadEnCarrito.toString()
-            // También puedes enviar la actualización al servidor aquí si es necesario
-        }
-
-        holder.CantidadMenos.setOnClickListener {
-            if (producto.cantidadEnCarrito > 0) {
-                producto.cantidadEnCarrito--
-                holder.mostrarCantidad.text = producto.cantidadEnCarrito.toString()
-                // También puedes enviar la actualización al servidor aquí si es necesario
-            }
-        }
         //nuevo solis favorito
         holder.btnFavorito.setOnClickListener {
             username = Login.getUsernameFromSharedPreferences(holder.itemView.context)
@@ -187,7 +169,6 @@ class ProductoAdapter(private var productos: List<Producto>, private val userId:
                 if (producto.cantidadEnCarrito == 0) {
                     // Una vez que se ha agregado al carrito, establece la cantidad a 0
                     producto.cantidadEnCarrito = 1
-                    holder.mostrarCantidad.text = producto.cantidadEnCarrito.toString()
                     // Si lo deseas, también puedes notificar al RecyclerView que los datos han cambiado
                     notifyDataSetChanged()
                     CoroutineScope(Dispatchers.Main).launch {
@@ -195,7 +176,6 @@ class ProductoAdapter(private var productos: List<Producto>, private val userId:
                         Toast.makeText(it.context, "Producto agregado al carrito", Toast.LENGTH_SHORT).show()
                         // Una vez que se ha agregado al carrito, establece la cantidad a 0
                         producto.cantidadEnCarrito = 0
-                        holder.mostrarCantidad.text = producto.cantidadEnCarrito.toString()
                         // Si lo deseas, también puedes notificar al RecyclerView que los datos han cambiado
                         notifyDataSetChanged()
                     }
@@ -206,7 +186,6 @@ class ProductoAdapter(private var productos: List<Producto>, private val userId:
                         Toast.makeText(it.context,"Producto agregado al carrito",Toast.LENGTH_SHORT).show()
                         // Una vez que se ha agregado al carrito, establece la cantidad a 0
                         producto.cantidadEnCarrito = 0
-                        holder.mostrarCantidad.text = producto.cantidadEnCarrito.toString()
                         // Si lo deseas, también puedes notificar al RecyclerView que los datos han cambiado
                         notifyDataSetChanged()
                     }

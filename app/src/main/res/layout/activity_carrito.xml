@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorBackground2"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -28,20 +29,14 @@
             app:iconPadding="10dp" />
     </LinearLayout>
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorBackground2"
-        android:layout_below="@id/toolbar"
-        android:layout_above="@id/bottom_navigation"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="10dp">
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp">
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_below="@id/toolbar"
+            android:layout_above="@id/bottom_navigation">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -62,8 +57,7 @@
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recyclerView"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp"/>
+                            android:layout_height="wrap_content" />
                     </LinearLayout>
                 </ScrollView>
             </LinearLayout>
@@ -77,49 +71,55 @@
                 android:padding="5dp"
                 android:gravity="center_vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="106dp"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/total"
-                    android:textSize="15sp"
-                    android:text="Total a pagar: $" />
-
-                <TextView
-                    android:id="@+id/total"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginEnd="2dp"/>
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/total"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:text="Total a pagar: " />
+
+                    <TextView
+                        android:id="@+id/total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/green"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginEnd="2dp"/>
+                </LinearLayout>
+
                 <com.google.android.material.button.MaterialButton
                     style="@style/Widget.Material3.Button"
                     android:id="@+id/pago"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
                     android:textColor="@color/white"
-                    app:backgroundTint="@color/red"
+                    android:backgroundTint="@color/red"
+                    android:textSize="20dp"
                     android:text="Pagar"
-                    android:layout_marginLeft="10dp"
-                    android:layout_gravity="end"/>
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"/>
                 <TextView
                     android:id="@+id/tvMensajePago"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:layout_marginTop="16dp"/>
+                    android:text="" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </com.google.android.material.card.MaterialCardView>
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
-        android:background="@color/white"
+        android:background="@color/colorBackground2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
